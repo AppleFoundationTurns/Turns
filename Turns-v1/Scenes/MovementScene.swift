@@ -9,7 +9,7 @@ import SpriteKit
 
 class MovementScene: SKScene, SKPhysicsContactDelegate {
     
-    let character = SKSpriteNode(imageNamed: "idle1")
+    var character = SKSpriteNode(imageNamed: "idle1")
     
     var background = SKSpriteNode()
     var platform = SKSpriteNode()
@@ -18,52 +18,59 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
     var jumpSide = SKSpriteNode()
     
     override func didMove(to view: SKView) {
-        
         //let xSize = self.frame.size.width
         //let ySize = self.frame.size.height
         
+        // --- Add physics to scene, no friction, no out of frame ---
         let sceneBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = sceneBody
         sceneBody.friction = 0
         physicsWorld.contactDelegate = self
         
-        character.position = CGPoint(x: 0, y: 0)
-        character.size = CGSize(width: 64, height: 64)
-        character.physicsBody = SKPhysicsBody(circleOfRadius: 32)
-        character.physicsBody?.isDynamic = true
-        character.physicsBody?.allowsRotation = false
-        character.physicsBody?.mass = 0.1
-        character.physicsBody?.affectedByGravity = true
-        character.physicsBody?.categoryBitMask = 1
-        character.physicsBody?.collisionBitMask = 2
+        // --- Hero initialization ---
+        let characterScale: CGFloat = 2.0
+        initSpriteNode(sprite: character,
+            name: "Hero",
+            scale: characterScale,
+            physicsBody: SKPhysicsBody(
+                rectangleOf: CGSize(
+                    width: character.size.width * characterScale,
+                    height: character.size.height * characterScale)),
+            affectedByGravity: true,
+            categoryBitMask: 0b01,
+            collisionsBitMask: 0b10,
+            contactTestBitMask: 0b10)
+        // --- Idle animation ---
+        idleAction(sprite: character)
+        self.addChild(character)
         
+        // --- Background initialization ---
         background = childNode(withName: "background") as! SKSpriteNode
         //background.color = .clear
         
+        // --- Platform initialization ---
         platform = childNode(withName: "platform") as! SKSpriteNode
-        //platform.texture = SKTexture(imageNamed: "Terra")
-        platform.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 1334, height: 200))
-        platform.physicsBody?.mass = 0.1
-        platform.physicsBody?.affectedByGravity = false
-        platform.physicsBody?.categoryBitMask = 2
-        platform.physicsBody?.collisionBitMask = 0
+        let platformSize: CGSize = CGSize(width: 1334, height: 200)
+        initSpriteNode(sprite: platform,
+            name: "platform",
+            position: platform.position,
+            physicsBody: SKPhysicsBody(
+                rectangleOf: platformSize),
+            categoryBitMask: 0b10)
+        
+        platform.size = platformSize
         platform.physicsBody?.friction = 0
         
-        
-        
+        // --- Buttons initialization ---
         leftSide = childNode(withName: "leftSide") as! SKSpriteNode
         rightSide = childNode(withName: "rightSide") as! SKSpriteNode
         jumpSide = childNode(withName: "jumpSide") as! SKSpriteNode
-        
-        leftSide.name = "leftSide"
         
         leftSide.color = .clear
         rightSide.color = .clear
         jumpSide.color = .clear
         
         
-        idleAction(sprite: character)
-        self.addChild(character)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,11 +89,25 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let touchLocation = touch.location(in: self)
-            //let node = self.atPoint(touchLocation)
-            character.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        }
+        //for touch in touches {
+        //let touchLocation = touch.location(in: self)
+        //let node = self.atPoint(touchLocation)
+        character.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        //}
+    }
+    
+    func initSpriteNode(sprite: SKSpriteNode, name: String, position: CGPoint = CGPoint(x: 0, y: 0), scale: CGFloat = 1.0, physicsBody: SKPhysicsBody? = nil, isDynamic: Bool = true, allowsRotation: Bool = false, mass: CGFloat = 0.1, affectedByGravity: Bool = false, categoryBitMask: UInt32 = 0b0, collisionsBitMask: UInt32 = 0b0, contactTestBitMask: UInt32 = 0b0)  {
+        sprite.name = name
+        sprite.position = position
+        sprite.setScale(scale)
+        sprite.physicsBody = physicsBody
+        sprite.physicsBody?.isDynamic = isDynamic
+        sprite.physicsBody?.allowsRotation = allowsRotation
+        sprite.physicsBody?.mass = mass
+        sprite.physicsBody?.affectedByGravity = affectedByGravity
+        sprite.physicsBody?.categoryBitMask = categoryBitMask
+        sprite.physicsBody?.collisionBitMask = collisionsBitMask
+        sprite.physicsBody?.contactTestBitMask = contactTestBitMask
     }
     
     func idleAction(sprite: SKSpriteNode) {
