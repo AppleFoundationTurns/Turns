@@ -9,13 +9,17 @@ import SpriteKit
 
 class MovementScene: SKScene, SKPhysicsContactDelegate {
     
-    var character = SKSpriteNode(imageNamed: "idle1")
+    var character = SKSpriteNode()
     
     var background = SKSpriteNode()
     var platform = SKSpriteNode()
     var leftSide = SKSpriteNode()
     var rightSide = SKSpriteNode()
     var jumpSide = SKSpriteNode()
+    
+    var isTouchPressing = false
+    var isJumping = false
+    var multiTouchList: [UITouch: String?] = [:]
     
     override func didMove(to view: SKView) {
         //let xSize = self.frame.size.width
@@ -26,8 +30,18 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody = sceneBody
         sceneBody.friction = 0
         physicsWorld.contactDelegate = self
+        self.view?.isMultipleTouchEnabled = true
         
-        // --- Hero initialization ---
+        // --- Hero Texture Initialization ---
+        let textureIdleAtlas = SKTextureAtlas(named: "IdleRight")
+        var textureIdleArray: [SKTexture] = []
+        for i in  1...textureIdleAtlas.textureNames.count {
+            let name = "\(i).png"
+            textureIdleArray.append(SKTexture(imageNamed: name))
+        }
+        
+        // --- Hero Initialization
+        character = SKSpriteNode(imageNamed: textureIdleAtlas.textureNames[0])
         let characterScale: CGFloat = 2.0
         initSpriteNode(sprite: character,
             name: "Hero",
@@ -41,12 +55,11 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
             collisionsBitMask: 0b10,
             contactTestBitMask: 0b10)
         // --- Idle animation ---
-        idleAction(sprite: character)
+        addAnimation(sprite: character, animationArray: textureIdleArray)
         self.addChild(character)
         
         // --- Background initialization ---
         background = childNode(withName: "background") as! SKSpriteNode
-        //background.color = .clear
         
         // --- Platform initialization ---
         platform = childNode(withName: "platform") as! SKSpriteNode
@@ -57,9 +70,7 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
             physicsBody: SKPhysicsBody(
                 rectangleOf: platformSize),
             categoryBitMask: 0b10)
-        
         platform.size = platformSize
-        platform.physicsBody?.friction = 0
         
         // --- Buttons initialization ---
         leftSide = childNode(withName: "leftSide") as! SKSpriteNode
@@ -73,32 +84,83 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let touchLocation = touch.location(in: self)
-            let node = self.atPoint(touchLocation)
-            if node.name == "leftSide" {
-                //character.physicsBody?.applyForce(CGVector(dx: -100, dy: 1))
-                character.physicsBody?.velocity = CGVector(dx: -100, dy: 0)
-            } else if node.name == "rightSide" {
-                character.physicsBody?.velocity = CGVector(dx: 100, dy: 1)
-            } else if node.name == "jumpSide" {
-                character.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 100))
+    override func update(_ currentTime: TimeInterval) {
+        if isTouchPressing {
+            for (_, activity) in multiTouchList {
+                switch activity {
+                    case "left":
+                        character.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))
+                    case "right":
+                        character.physicsBody?.applyForce(CGVector(dx: 100, dy: 0))
+                    case "jump":
+                        if isJumping == false {
+                            character.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 100))
+                            isJumping = true
+                        }
+                    default:
+                        continue
+                }
+            }
+        } else {
+            character.physicsBody?.applyForce(CGVector(dx: 0, dy: 0))
+        }
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        // If Hero (category 1) touches
+        if contact.bodyA.categoryBitMask == 1 || contact.bodyB.categoryBitMask == 1 {
+            // Platform (category 2)
+            if contact.bodyA.categoryBitMask == 2 || contact.bodyB.categoryBitMask == 2 {
+                isJumping = false
             }
         }
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //for touch in touches {
-        //let touchLocation = touch.location(in: self)
-        //let node = self.atPoint(touchLocation)
-        character.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        //}
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isTouchPressing = true
+        for touch in touches {
+            multiTouchList[touch] = findButtonPressed(from: touch)
+        }
+        
     }
     
-    func initSpriteNode(sprite: SKSpriteNode, name: String, position: CGPoint = CGPoint(x: 0, y: 0), scale: CGFloat = 1.0, physicsBody: SKPhysicsBody? = nil, isDynamic: Bool = true, allowsRotation: Bool = false, mass: CGFloat = 0.1, affectedByGravity: Bool = false, categoryBitMask: UInt32 = 0b0, collisionsBitMask: UInt32 = 0b0, contactTestBitMask: UInt32 = 0b0)  {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isTouchPressing = false
+        for touch in touches {
+            guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
+            multiTouchList[touch] = nil
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        isTouchPressing = false
+        for touch in touches {
+            guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
+            multiTouchList[touch] = nil
+        }
+    }
+    
+    /// Return a string indicating what to do if touching on a specific frame
+    /// - Parameter touch: UITouch element taken from touchesBegan or touchesEnded
+    /// - Returns: An optional string value that can be "left", "right", "jump" or nil
+    func findButtonPressed(from touch: UITouch) -> String? {
+        let location = touch.location(in: self)
+        if leftSide.frame.contains(location) {
+            return "left"
+        }
+        else if rightSide.frame.contains(location) {
+            return "right"
+        }
+        else if jumpSide.frame.contains(location) && !isJumping {
+            return "jump"
+        }
+        return nil
+    }
+    
+    func initSpriteNode(sprite: SKSpriteNode, name: String, position: CGPoint = CGPoint(x: 0, y: 0), anchorPoint: CGPoint = CGPoint(x: 0.5, y: 0.5), scale: CGFloat = 1.0, physicsBody: SKPhysicsBody? = nil, isDynamic: Bool = true, allowsRotation: Bool = false, mass: CGFloat = 0.1, affectedByGravity: Bool = false, categoryBitMask: UInt32 = 0b0, collisionsBitMask: UInt32 = 0b0, contactTestBitMask: UInt32 = 0b0)  {
         sprite.name = name
         sprite.position = position
+        sprite.anchorPoint = anchorPoint
         sprite.setScale(scale)
         sprite.physicsBody = physicsBody
         sprite.physicsBody?.isDynamic = isDynamic
@@ -110,22 +172,11 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         sprite.physicsBody?.contactTestBitMask = contactTestBitMask
     }
     
-    func idleAction(sprite: SKSpriteNode) {
-        let s1 = SKTexture(imageNamed: "idle1")
-        let s2 = SKTexture(imageNamed: "idle2")
-        let s3 = SKTexture(imageNamed: "idle3")
-        let s4 = SKTexture(imageNamed: "idle4")
-        let s5 = SKTexture(imageNamed: "idle5")
-        let s6 = SKTexture(imageNamed: "idle6")
-        let s7 = SKTexture(imageNamed: "idle7")
-        let s8 = SKTexture(imageNamed: "idle8")
-        let s9 = SKTexture(imageNamed: "idle9")
-        let s10 = SKTexture(imageNamed: "idle10")
-        let s11 = SKTexture(imageNamed: "idle11")
-        let s12 = SKTexture(imageNamed: "idle12")
-        let s13 = SKTexture(imageNamed: "idle13")
-        let s14 = SKTexture(imageNamed: "idle14")
-        let idleAction = SKAction.animate(with: [s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12,s13,s14], timePerFrame: 0.1)
-        sprite.run(SKAction.repeatForever(idleAction))
+    /// Add repetitive animation to sprite
+    /// - Parameters:
+    ///   - sprite: Sprite that will play this animation
+    ///   - animationArray: Array of textures that will animate the sprite
+    func addAnimation(sprite: SKSpriteNode, animationArray: [SKTexture]) {
+        sprite.run(SKAction.repeatForever(SKAction.animate(with: animationArray, timePerFrame: 0.1)))
     }
 }

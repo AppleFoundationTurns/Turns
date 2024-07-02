@@ -14,9 +14,7 @@ class StartScene: SKScene {
     
     var playButton = SKSpriteNode(imageNamed: "HorizontalFrame")
 
-    let frameDebug: Bool = false
-    
-    
+    let nextScene = SKScene(fileNamed: "MovementScene")
     
     override func didMove(to view: SKView) {
         
@@ -89,14 +87,12 @@ class StartScene: SKScene {
         playLabelShadow.position = CGPoint(x: -3, y: 3)
         playLabelShadow.fontColor = .black
         
-        
         let playFrame = SKSpriteNode()
         playFrame.name = "Play_Frame"
         playFrame.color = .clear
         playFrame.size = CGSize(width: 100*3, height: 35*3)
         playFrame.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         playFrame.position = CGPoint(x: 0, y: 0)
-        //playFrame.alpha = frameDebug ? 1 : 0.001
         
         self.addChild(mountains)
         self.addChild(logo)
@@ -108,6 +104,9 @@ class StartScene: SKScene {
         playButton.addChild(playLabel)
         playLabel.addChild(playLabelShadow)
         playButton.addChild(playFrame)
+        
+        nextScene?.size = CGSize(width: 1334, height: 750)
+        nextScene?.scaleMode = .aspectFill
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -128,7 +127,7 @@ class StartScene: SKScene {
         let location = touch?.location(in: self)
         let node = self.atPoint(location!)
         if node.name == "Play_Frame" {
-            
+            scene?.view?.presentScene(nextScene)
         }
         playButton.color = .white
     }
