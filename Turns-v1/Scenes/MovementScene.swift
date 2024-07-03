@@ -61,7 +61,7 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         // --- Background initialization ---
         background = childNode(withName: "background") as! SKSpriteNode
         
-        // --- Platform initialization ---
+        /* --- Platform initialization ---
         platform = childNode(withName: "platform") as! SKSpriteNode
         let platformSize: CGSize = CGSize(width: 1334, height: 200)
         initSpriteNode(sprite: platform,
@@ -70,7 +70,15 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
             physicsBody: SKPhysicsBody(
                 rectangleOf: platformSize),
             categoryBitMask: 0b10)
-        platform.size = platformSize
+        platform.size = platformSize*/
+        for node in self.children {
+            if (node.name == "Platforms") {
+                if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
+                    giveTileMapPhysicsBody(tileMap: someTileMap)
+                    someTileMap.removeFromParent()
+                }
+            }
+        }
         
         // --- Buttons initialization ---
         leftSide = childNode(withName: "leftSide") as! SKSpriteNode
@@ -83,6 +91,7 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         
         
     }
+    var i = 0;
     
     override func update(_ currentTime: TimeInterval) {
         if isTouchPressing {
@@ -107,6 +116,7 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        print("\(contact.bodyA.categoryBitMask) is colliding with \(contact.bodyB.categoryBitMask )")
         // If Hero (category 1) touches
         if contact.bodyA.categoryBitMask == 1 || contact.bodyB.categoryBitMask == 1 {
             // Platform (category 2)
@@ -179,5 +189,44 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
     ///   - animationArray: Array of textures that will animate the sprite
     func addAnimation(sprite: SKSpriteNode, animationArray: [SKTexture]) {
         sprite.run(SKAction.repeatForever(SKAction.animate(with: animationArray, timePerFrame: 0.1)))
+    }
+    
+    func giveTileMapPhysicsBody(tileMap: SKTileMapNode) {
+        
+        let startingLocation :CGPoint = tileMap.position
+        
+        let tileSize = tileMap.tileSize
+        
+        let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
+        let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height
+        
+        for col in 0 ..< tileMap.numberOfColumns {
+            for row in 0 ..< tileMap.numberOfRows {
+                
+                if let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row) {
+                    
+                    let tileArray = tileDefinition.textures
+                    let tileTexture = tileArray[0]
+                    let x = CGFloat(col) * tileSize.width - halfWidth + (tileSize.width / 2)
+                    let y = CGFloat(row) * tileSize.height - halfHeight + (tileSize.height / 2)
+                    
+                    let tileNode = SKSpriteNode(texture: tileTexture)
+                    tileNode.position = CGPoint(x: x, y: y)
+                    tileNode.physicsBody = SKPhysicsBody(texture: tileTexture, size: CGSize(width: tileTexture.size().width, height: tileTexture.size().height))
+                    tileNode.physicsBody?.linearDamping = 60
+                    tileNode.physicsBody?.affectedByGravity = false
+                    tileNode.physicsBody?.allowsRotation = false
+                    tileNode.physicsBody?.isDynamic = false
+                    tileNode.physicsBody?.friction = 1
+                    tileNode.physicsBody?.categoryBitMask = 0b10
+                    tileNode.physicsBody?.collisionBitMask = 0b0
+                    tileNode.physicsBody?.contactTestBitMask = 0b0
+                    self.addChild(tileNode)
+                    
+                    tileNode.position = CGPoint(x: tileNode.position.x + startingLocation.x, y: tileNode.position.y + startingLocation.y)
+                }
+                
+            }
+        }
     }
 }
