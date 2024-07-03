@@ -97,16 +97,15 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         if isTouchPressing {
             for (_, activity) in multiTouchList {
                 switch activity {
-                case "left":
-                    character.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))
-                case "right":
-                    character.physicsBody?.applyForce(CGVector(dx: 100, dy: 0))
-                case "jump":
-                    if !isJumping {
-                        isJumping = false
-                        character.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 100))
-                        isJumping = true
-                    }
+                    case "left":
+                        character.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))
+                    case "right":
+                        character.physicsBody?.applyForce(CGVector(dx: 100, dy: 0))
+                    case "jump":
+                        if !isJumping{
+                            character.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 100))
+                            isJumping = true
+                        }
                     default:
                         continue
                 }
@@ -139,7 +138,8 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         isTouchPressing = false
         for touch in touches {
             guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
-            multiTouchList[touch] = nil
+            multiTouchList.removeValue(forKey: touch)
+            //multiTouchList[touch] = nil
         }
     }
     
@@ -147,7 +147,7 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         isTouchPressing = false
         for touch in touches {
             guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
-            multiTouchList[touch] = nil
+            //multiTouchList[touch] = nil
         }
     }
     

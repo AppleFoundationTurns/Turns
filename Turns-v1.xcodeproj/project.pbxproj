@@ -24,6 +24,9 @@
 		F29227222C31B40E00454AD0 /* MovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29227212C31B40E00454AD0 /* MovementView.swift */; };
 		F29227242C31D9C300454AD0 /* MovementScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F29227232C31D9C300454AD0 /* MovementScene.sks */; };
 		F2F9CABA2C3476B500AAE549 /* IdleRight.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2F9CAB92C3476B500AAE549 /* IdleRight.atlas */; };
+		F2F9CAC02C353D2000AAE549 /* HeroNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F9CABF2C353D2000AAE549 /* HeroNode.swift */; };
+		F2F9CAC22C354CD000AAE549 /* TrialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F9CAC12C354CD000AAE549 /* TrialScene.swift */; };
+		F2F9CAC42C354D3E00AAE549 /* TrialScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F2F9CAC32C354D3E00AAE549 /* TrialScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		F29227212C31B40E00454AD0 /* MovementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementView.swift; sourceTree = "<group>"; };
 		F29227232C31D9C300454AD0 /* MovementScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MovementScene.sks; sourceTree = "<group>"; };
 		F2F9CAB92C3476B500AAE549 /* IdleRight.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = IdleRight.atlas; sourceTree = "<group>"; };
+		F2F9CABF2C353D2000AAE549 /* HeroNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroNode.swift; sourceTree = "<group>"; };
+		F2F9CAC12C354CD000AAE549 /* TrialScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialScene.swift; sourceTree = "<group>"; };
+		F2F9CAC32C354D3E00AAE549 /* TrialScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TrialScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,7 @@
 		F29226FD2C2F322600454AD0 /* Turns-v1 */ = {
 			isa = PBXGroup;
 			children = (
+				F2F9CABE2C353D0600AAE549 /* Custom Classes */,
 				F292271A2C316AEF00454AD0 /* Info.plist */,
 				F29226FE2C2F322600454AD0 /* Turns_v1App.swift */,
 				F29227112C3059C000454AD0 /* MenuView.swift */,
@@ -134,6 +141,16 @@
 				F29227172C3169CB00454AD0 /* alagard.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F2F9CABE2C353D0600AAE549 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F2F9CABF2C353D2000AAE549 /* HeroNode.swift */,
+				F2F9CAC12C354CD000AAE549 /* TrialScene.swift */,
+				F2F9CAC32C354D3E00AAE549 /* TrialScene.sks */,
+			);
+			path = "Custom Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +220,7 @@
 				F29227032C2F322700454AD0 /* Assets.xcassets in Resources */,
 				F2F9CABA2C3476B500AAE549 /* IdleRight.atlas in Resources */,
 				7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */,
+				F2F9CAC42C354D3E00AAE549 /* TrialScene.sks in Resources */,
 				F29227192C3169F800454AD0 /* alagard.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -218,9 +236,11 @@
 				7ACB9F7E2C34AB940019FB02 /* PlatformScene.swift in Sources */,
 				F29227222C31B40E00454AD0 /* MovementView.swift in Sources */,
 				F29227122C3059C000454AD0 /* MenuView.swift in Sources */,
+				F2F9CAC22C354CD000AAE549 /* TrialScene.swift in Sources */,
 				F29226FF2C2F322600454AD0 /* Turns_v1App.swift in Sources */,
 				7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */,
 				F292271C2C31A89E00454AD0 /* MovementScene.swift in Sources */,
+				F2F9CAC02C353D2000AAE549 /* HeroNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
