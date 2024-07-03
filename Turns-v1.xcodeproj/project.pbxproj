@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */; };
+		7ACB9F7E2C34AB940019FB02 /* PlatformScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */; };
+		7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */; };
+		7ACB9F842C3546A60019FB02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ACB9F822C3546A60019FB02 /* Assets.xcassets */; };
 		F2853FF02C32BA7C0045B6B2 /* TileExample.sks in Resources */ = {isa = PBXBuildFile; fileRef = F2853FEF2C32BA7C0045B6B2 /* TileExample.sks */; };
 		F29226FF2C2F322600454AD0 /* Turns_v1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29226FE2C2F322600454AD0 /* Turns_v1App.swift */; };
 		F29227032C2F322700454AD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29227022C2F322700454AD0 /* Assets.xcassets */; };
@@ -23,6 +27,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7ACB9F742C34A7C40019FB02 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
+		7ACB9F782C34A82D0019FB02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlatformScene.sks; sourceTree = "<group>"; };
+		7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformScene.swift; sourceTree = "<group>"; };
+		7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformView.swift; sourceTree = "<group>"; };
+		7ACB9F822C3546A60019FB02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2853FEF2C32BA7C0045B6B2 /* TileExample.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileExample.sks; sourceTree = "<group>"; };
 		F29226FB2C2F322600454AD0 /* Turns-v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turns-v1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29226FE2C2F322600454AD0 /* Turns_v1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turns_v1App.swift; sourceTree = "<group>"; };
@@ -51,6 +61,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7ACB9F732C34A7B30019FB02 /* PlatformTest */ = {
+			isa = PBXGroup;
+			children = (
+				7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */,
+				7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */,
+				7ACB9F742C34A7C40019FB02 /* MyTileSet.sks */,
+				7ACB9F782C34A82D0019FB02 /* Assets.xcassets */,
+			);
+			path = PlatformTest;
+			sourceTree = "<group>";
+		};
 		F29226F22C2F322600454AD0 = {
 			isa = PBXGroup;
 			children = (
@@ -74,7 +95,9 @@
 				F29226FE2C2F322600454AD0 /* Turns_v1App.swift */,
 				F29227112C3059C000454AD0 /* MenuView.swift */,
 				F29227212C31B40E00454AD0 /* MovementView.swift */,
+				7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */,
 				F292270E2C2F335C00454AD0 /* Scenes */,
+				7ACB9F732C34A7B30019FB02 /* PlatformTest */,
 				F29227022C2F322700454AD0 /* Assets.xcassets */,
 				F29227182C3169E100454AD0 /* Fonts */,
 				F2F9CAB92C3476B500AAE549 /* IdleRight.atlas */,
@@ -97,9 +120,10 @@
 				F292270C2C2F335000454AD0 /* StartScene.swift */,
 				F292270F2C2F337800454AD0 /* StartScene.sks */,
 				F292271B2C31A89E00454AD0 /* MovementScene.swift */,
-				F2853FEF2C32BA7C0045B6B2 /* TileExample.sks */,
 				F29227232C31D9C300454AD0 /* MovementScene.sks */,
+				F2853FEF2C32BA7C0045B6B2 /* TileExample.sks */,
 				F292271F2C31ABA600454AD0 /* PlatformTiles.sks */,
+				7ACB9F822C3546A60019FB02 /* Assets.xcassets */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -174,9 +198,11 @@
 				F29227102C2F337800454AD0 /* StartScene.sks in Resources */,
 				F2853FF02C32BA7C0045B6B2 /* TileExample.sks in Resources */,
 				F29227062C2F322700454AD0 /* Preview Assets.xcassets in Resources */,
+				7ACB9F842C3546A60019FB02 /* Assets.xcassets in Resources */,
 				F29227242C31D9C300454AD0 /* MovementScene.sks in Resources */,
 				F29227032C2F322700454AD0 /* Assets.xcassets in Resources */,
 				F2F9CABA2C3476B500AAE549 /* IdleRight.atlas in Resources */,
+				7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */,
 				F29227192C3169F800454AD0 /* alagard.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,9 +215,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F292270D2C2F335000454AD0 /* StartScene.swift in Sources */,
+				7ACB9F7E2C34AB940019FB02 /* PlatformScene.swift in Sources */,
 				F29227222C31B40E00454AD0 /* MovementView.swift in Sources */,
 				F29227122C3059C000454AD0 /* MenuView.swift in Sources */,
 				F29226FF2C2F322600454AD0 /* Turns_v1App.swift in Sources */,
+				7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */,
 				F292271C2C31A89E00454AD0 /* MovementScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
