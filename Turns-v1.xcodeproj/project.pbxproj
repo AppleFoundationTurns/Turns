@@ -16,7 +16,7 @@
 		7ACB9F7E2C34AB940019FB02 /* PlatformScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */; };
 		7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */; };
 		7ACB9F842C3546A60019FB02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ACB9F822C3546A60019FB02 /* Assets.xcassets */; };
-		F2853FF02C32BA7C0045B6B2 /* TileExample.sks in Resources */ = {isa = PBXBuildFile; fileRef = F2853FEF2C32BA7C0045B6B2 /* TileExample.sks */; };
+		F222956F2C36C20F008AE840 /* TrialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F222956E2C36C20F008AE840 /* TrialView.swift */; };
 		F29226FF2C2F322600454AD0 /* Turns_v1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29226FE2C2F322600454AD0 /* Turns_v1App.swift */; };
 		F29227032C2F322700454AD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29227022C2F322700454AD0 /* Assets.xcassets */; };
 		F29227062C2F322700454AD0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29227052C2F322700454AD0 /* Preview Assets.xcassets */; };
@@ -28,7 +28,7 @@
 		F29227202C31ABA600454AD0 /* PlatformTiles.sks in Resources */ = {isa = PBXBuildFile; fileRef = F292271F2C31ABA600454AD0 /* PlatformTiles.sks */; };
 		F29227222C31B40E00454AD0 /* MovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29227212C31B40E00454AD0 /* MovementView.swift */; };
 		F29227242C31D9C300454AD0 /* MovementScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F29227232C31D9C300454AD0 /* MovementScene.sks */; };
-		F2F9CABA2C3476B500AAE549 /* IdleRight.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2F9CAB92C3476B500AAE549 /* IdleRight.atlas */; };
+		F2F9CABA2C3476B500AAE549 /* Idle.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2F9CAB92C3476B500AAE549 /* Idle.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +43,7 @@
 		7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformScene.swift; sourceTree = "<group>"; };
 		7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformView.swift; sourceTree = "<group>"; };
 		7ACB9F822C3546A60019FB02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F2853FEF2C32BA7C0045B6B2 /* TileExample.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileExample.sks; sourceTree = "<group>"; };
+		F222956E2C36C20F008AE840 /* TrialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialView.swift; sourceTree = "<group>"; };
 		F29226FB2C2F322600454AD0 /* Turns-v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turns-v1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29226FE2C2F322600454AD0 /* Turns_v1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turns_v1App.swift; sourceTree = "<group>"; };
 		F29227022C2F322700454AD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 		F292271F2C31ABA600454AD0 /* PlatformTiles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlatformTiles.sks; sourceTree = "<group>"; };
 		F29227212C31B40E00454AD0 /* MovementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementView.swift; sourceTree = "<group>"; };
 		F29227232C31D9C300454AD0 /* MovementScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MovementScene.sks; sourceTree = "<group>"; };
-		F2F9CAB92C3476B500AAE549 /* IdleRight.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = IdleRight.atlas; sourceTree = "<group>"; };
+		F2F9CAB92C3476B500AAE549 /* Idle.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Idle.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				7A0890A62C35A77F00F059CC /* HeroNode.swift */,
-				7A0890A72C35A77F00F059CC /* TrialScene.sks */,
-				7A0890A82C35A77F00F059CC /* TrialScene.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -90,6 +88,26 @@
 				7ACB9F782C34A82D0019FB02 /* Assets.xcassets */,
 			);
 			path = PlatformTest;
+			sourceTree = "<group>";
+		};
+		F222956D2C36C1FD008AE840 /* Trials */ = {
+			isa = PBXGroup;
+			children = (
+				7A0890A72C35A77F00F059CC /* TrialScene.sks */,
+				7A0890A82C35A77F00F059CC /* TrialScene.swift */,
+				F222956E2C36C20F008AE840 /* TrialView.swift */,
+			);
+			path = Trials;
+			sourceTree = "<group>";
+		};
+		F22295702C36CD6B008AE840 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F29227112C3059C000454AD0 /* MenuView.swift */,
+				F29227212C31B40E00454AD0 /* MovementView.swift */,
+				7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F29226F22C2F322600454AD0 = {
@@ -113,17 +131,16 @@
 		F29226FD2C2F322600454AD0 /* Turns-v1 */ = {
 			isa = PBXGroup;
 			children = (
-				7A0890A92C35A77F00F059CC /* Custom Classes */,
 				F292271A2C316AEF00454AD0 /* Info.plist */,
 				F29226FE2C2F322600454AD0 /* Turns_v1App.swift */,
-				F29227112C3059C000454AD0 /* MenuView.swift */,
-				F29227212C31B40E00454AD0 /* MovementView.swift */,
-				7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */,
+				F222956D2C36C1FD008AE840 /* Trials */,
+				7A0890A92C35A77F00F059CC /* Custom Classes */,
+				F22295702C36CD6B008AE840 /* Views */,
 				F292270E2C2F335C00454AD0 /* Scenes */,
 				7ACB9F732C34A7B30019FB02 /* PlatformTest */,
 				F29227022C2F322700454AD0 /* Assets.xcassets */,
 				F29227182C3169E100454AD0 /* Fonts */,
-				F2F9CAB92C3476B500AAE549 /* IdleRight.atlas */,
+				F2F9CAB92C3476B500AAE549 /* Idle.atlas */,
 				F29227042C2F322700454AD0 /* Preview Content */,
 			);
 			path = "Turns-v1";
@@ -144,7 +161,6 @@
 				F292270F2C2F337800454AD0 /* StartScene.sks */,
 				F292271B2C31A89E00454AD0 /* MovementScene.swift */,
 				F29227232C31D9C300454AD0 /* MovementScene.sks */,
-				F2853FEF2C32BA7C0045B6B2 /* TileExample.sks */,
 				F292271F2C31ABA600454AD0 /* PlatformTiles.sks */,
 				7ACB9F822C3546A60019FB02 /* Assets.xcassets */,
 			);
@@ -219,14 +235,13 @@
 			files = (
 				F29227202C31ABA600454AD0 /* PlatformTiles.sks in Resources */,
 				F29227102C2F337800454AD0 /* StartScene.sks in Resources */,
-				F2853FF02C32BA7C0045B6B2 /* TileExample.sks in Resources */,
 				F29227062C2F322700454AD0 /* Preview Assets.xcassets in Resources */,
 				7ACB9F842C3546A60019FB02 /* Assets.xcassets in Resources */,
 				F29227242C31D9C300454AD0 /* MovementScene.sks in Resources */,
 				7A0890AE2C35A83B00F059CC /* README.md in Resources */,
 				F29227032C2F322700454AD0 /* Assets.xcassets in Resources */,
 				7A0890AB2C35A77F00F059CC /* TrialScene.sks in Resources */,
-				F2F9CABA2C3476B500AAE549 /* IdleRight.atlas in Resources */,
+				F2F9CABA2C3476B500AAE549 /* Idle.atlas in Resources */,
 				7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */,
 				7A0890B02C35A85900F059CC /* .gitignore in Resources */,
 				F29227192C3169F800454AD0 /* alagard.ttf in Resources */,
@@ -249,6 +264,7 @@
 				7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */,
 				F292271C2C31A89E00454AD0 /* MovementScene.swift in Sources */,
 				7A0890AC2C35A77F00F059CC /* TrialScene.swift in Sources */,
+				F222956F2C36C20F008AE840 /* TrialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

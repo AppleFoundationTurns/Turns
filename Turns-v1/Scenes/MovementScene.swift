@@ -32,48 +32,17 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         self.view?.isMultipleTouchEnabled = true
         
-        // --- Hero Texture Initialization ---
-        let textureIdleAtlas = SKTextureAtlas(named: "IdleRight")
-        var textureIdleArray: [SKTexture] = []
-        for i in  1...textureIdleAtlas.textureNames.count {
-            let name = "\(i).png"
-            textureIdleArray.append(SKTexture(imageNamed: name))
-        }
-        
-        // --- Hero Initialization
-        character = SKSpriteNode(imageNamed: textureIdleAtlas.textureNames[0])
-        let characterScale: CGFloat = 2.0
-        initSpriteNode(sprite: character,
-            name: "Hero",
-            scale: characterScale,
-            physicsBody: SKPhysicsBody(
-                rectangleOf: CGSize(
-                    width: character.size.width * characterScale,
-                    height: character.size.height * characterScale)),
-            affectedByGravity: true,
-            categoryBitMask: 0b01,
-            collisionsBitMask: 0b10,
-            contactTestBitMask: 0b10)
-        // --- Idle animation ---
-        addAnimation(sprite: character, animationArray: textureIdleArray)
+        // --- Hero Initialization ---
+        character = HeroNode(atlasName: "Idle", scale: 2.0)
         self.addChild(character)
         
         // --- Background initialization ---
         background = childNode(withName: "background") as! SKSpriteNode
         
-        /* --- Platform initialization ---
-        platform = childNode(withName: "platform") as! SKSpriteNode
-        let platformSize: CGSize = CGSize(width: 1334, height: 200)
-        initSpriteNode(sprite: platform,
-            name: "platform",
-            position: platform.position,
-            physicsBody: SKPhysicsBody(
-                rectangleOf: platformSize),
-            categoryBitMask: 0b10)
-        platform.size = platformSize*/
+        // --- Platform initialization ---
         for node in self.children {
-            if (node.name == "Platforms") {
-                if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
+            if (node.name == "platforms") {
+                if let someTileMap: SKTileMapNode = node as? SKTileMapNode {
                     giveTileMapPhysicsBody(tileMap: someTileMap)
                     someTileMap.removeFromParent()
                 }
@@ -139,7 +108,6 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
             multiTouchList.removeValue(forKey: touch)
-            //multiTouchList[touch] = nil
         }
     }
     
@@ -147,7 +115,7 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         isTouchPressing = false
         for touch in touches {
             guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
-            //multiTouchList[touch] = nil
+            multiTouchList.removeValue(forKey: touch)
         }
     }
     
@@ -166,21 +134,6 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
             return "jump"
         }
         return nil
-    }
-    
-    func initSpriteNode(sprite: SKSpriteNode, name: String, position: CGPoint = CGPoint(x: 0, y: 0), anchorPoint: CGPoint = CGPoint(x: 0.5, y: 0.5), scale: CGFloat = 1.0, physicsBody: SKPhysicsBody? = nil, isDynamic: Bool = true, allowsRotation: Bool = false, mass: CGFloat = 0.1, affectedByGravity: Bool = false, categoryBitMask: UInt32 = 0b0, collisionsBitMask: UInt32 = 0b0, contactTestBitMask: UInt32 = 0b0)  {
-        sprite.name = name
-        sprite.position = position
-        sprite.anchorPoint = anchorPoint
-        sprite.setScale(scale)
-        sprite.physicsBody = physicsBody
-        sprite.physicsBody?.isDynamic = isDynamic
-        sprite.physicsBody?.allowsRotation = allowsRotation
-        sprite.physicsBody?.mass = mass
-        sprite.physicsBody?.affectedByGravity = affectedByGravity
-        sprite.physicsBody?.categoryBitMask = categoryBitMask
-        sprite.physicsBody?.collisionBitMask = collisionsBitMask
-        sprite.physicsBody?.contactTestBitMask = contactTestBitMask
     }
     
     /// Add repetitive animation to sprite

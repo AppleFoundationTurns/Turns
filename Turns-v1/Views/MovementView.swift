@@ -18,7 +18,7 @@ struct MovementView: View {
     }
     
     var body: some View {
-        SpriteView(scene: movementScene)
+        SpriteView(scene: movementScene, debugOptions: [.showsPhysics])
             .edgesIgnoringSafeArea(.all)
         
     }
