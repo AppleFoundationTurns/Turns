@@ -39,6 +39,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         flame = FlameNode(position: flame.position, atlasName: "Flame", scale: 0.25)
         self.addChild(flame)
         
+        // --- Platform initialization ---
         for node in self.children {
             if node.name == "deco" {
                 if let node: SKSpriteNode = node as? SKSpriteNode {
@@ -46,10 +47,10 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                     node.physicsBody = nil
                 }
             }
+            
             if (node.name == "Platforms") {
                 if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
                     giveTileMapPhysicsBody(tileMap: someTileMap)
-                    someTileMap.removeFromParent()
                 }
             }
         }
@@ -143,47 +144,116 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         }
         return nil
     }
-    
-    func giveTileMapPhysicsBody(tileMap: SKTileMapNode) {
+
+    /// Function to create and assign physics bodies to the tiles in a given tile map.
+    /// - Parameter tileMap: The `SKTileMapNode` representing the tile map to which physics bodies will be assigned.
+    /// This function iterates through all the tiles in the provided tile map. For each tile that is not null, it creates an `SKSpriteNode`, calculates its position, and adds it to arrays tracking the tiles and their positions. It then groups adjacent tiles together to form larger physics bodies, which are added to the scene with specified physics properties.
+    func giveTileMapPhysicsBody(tileMap: SKTileMapNode){
+        var tileArray:[SKSpriteNode] = []
+        var tilePositionArray:[CGPoint] = []
         
-        let startingLocation :CGPoint = tileMap.position
+        let tilesize = tileMap.tileSize
         
-        let tileSize = tileMap.tileSize
-        
-        let physicSize = CGSize(width: 64, height: 64)
-        
-        let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
-        let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height
-        
+        let halfwidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tilesize.width
+        let halfheight =  CGFloat(tileMap.numberOfRows) / 2.0 * tilesize.height
+
         for col in 0 ..< tileMap.numberOfColumns {
             for row in 0 ..< tileMap.numberOfRows {
-                
-                if let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row) {
+                // Check if the node of the timeMap is not null
+                // TODO: check the specific tile, to have different platforms collisions
+                if (tileMap.tileDefinition(atColumn: col, row: row) != nil) {
                     
-                    let tileArray = tileDefinition.textures
-                    let tileTexture = tileArray[0]
-                    let x = CGFloat(col) * tileSize.width - halfWidth + (tileSize.width / 2)
-                    let y = CGFloat(row) * tileSize.height - halfHeight + (tileSize.height / 2)
+                    let tileDef = tileMap.tileDefinition(atColumn: col, row: row)!
                     
-                    let tileNode = SKSpriteNode(texture: tileTexture)
-                    tileNode.position = CGPoint(x: x, y: y)
-                    tileNode.physicsBody = //SKPhysicsBody(texture: tileTexture, size: tileSize)
-                        SKPhysicsBody(rectangleOf: CGSize(width: physicSize.width + 2, height: physicSize.height + 2))
-                    tileNode.physicsBody?.linearDamping = 60
-                    tileNode.physicsBody?.affectedByGravity = false
-                    tileNode.physicsBody?.allowsRotation = false
-                    tileNode.physicsBody?.isDynamic = false
-                    tileNode.physicsBody?.friction = 1
-                    tileNode.physicsBody?.categoryBitMask = 0b10
-                    tileNode.physicsBody?.collisionBitMask = 0b0
-                    tileNode.physicsBody?.contactTestBitMask = 0b0
-                    self.addChild(tileNode)
+                    // Creates a new sprite node for the tile
+                    let tile = SKSpriteNode()
+                    let x = round(CGFloat(col) * tilesize.width - halfwidth + (tilesize.width / 2))
+                    let y = round(CGFloat(row) * tilesize.height - halfheight + (tilesize.height / 2))
+                    tile.position = CGPoint(x: x, y: y)
+                    tile.size = CGSize(width: tileDef.size.width, height: tileDef.size.height)
                     
-                    tileNode.position = CGPoint(x: tileNode.position.x + startingLocation.x, y: tileNode.position.y + startingLocation.y)
+                    // Adds the tile and its location to the corresponding arrays
+                    tileArray.append(tile)
+                    tilePositionArray.append(tile.position)
                 }
-                
             }
         }
+        
+        // Algorithm for tile grouping
+        
+        let width = tileMap.tileSize.width
+        let height = tileMap.tileSize.height
+        let rWidth = 0.5 * width
+        let rHeight = 0.5 * height
+
+        var ti:Int = 0
+        var ti2:Int = 0
+        var id:Int = 0
+        var dl:CGPoint = CGPoint(x: 0, y: 0)
+
+        // Arrays for the coordinates of the left and right edges of the tiles
+        var tLE = [CGPoint]()
+        var tRE = [CGPoint]()
+
+        for t in tilePositionArray {
+            // Checks whether the previous tile is not vertically adjacent
+            if (ti-1 < 0) || (tilePositionArray[ti-1].y != tilePositionArray[ti].y - height) {
+                dl = CGPoint(x: t.x - rWidth, y: t.y - rHeight)
+            }
+
+            // Checks whether the next tile is not vertically adjacent
+            if (ti+1 > tilePositionArray.count-1) {
+                tLE.append(dl)
+                tRE.append(CGPoint(x: t.x + rWidth, y: t.y + rHeight))
+            } else if (tilePositionArray[ti+1].y != tilePositionArray[ti].y + height) {
+                if let _ = tRE.first(where: {
+                    // Check if there is an adjacent tile in the right edge
+                    if $0 == CGPoint(x: t.x + rWidth - width, y: t.y + rHeight) {id = tRE.index(of: $0)!}
+                    return $0 == CGPoint(x: t.x + rWidth - width, y: t.y + rHeight)}) {
+                    
+                    // If the adjacent tile has the same height as the left edge, update the right edge
+                    if tLE[id].y == dl.y {
+                        tRE[id] = CGPoint(x: t.x + rWidth, y: t.y + rHeight)
+                    } else {
+                        // Otherwise, it adds new left and right edges
+                        tLE.append(dl)
+                        tRE.append(CGPoint(x: t.x + rWidth, y: t.y + rHeight))
+                    }
+                } else {
+                    // If no adjacent tile exists, adds new left and right edges
+                    tLE.append(dl)
+                    tRE.append(CGPoint(x: t.x + rWidth, y: t.y + rHeight))
+                }
+            }
+            // Increases the index of the tile
+            ti+=1
+        }
+
+        // Iterate on all tiles to create physics nodes
+        for t in tLE {
+            // Calculate the rectangle size
+            let size = CGSize(width: abs(t.x - tRE[ti2].x), height: abs(t.y - tRE[ti2].y))
+            let loadnode = SKNode()
+            
+            // Creates the physicBody for the node
+            loadnode.physicsBody = SKPhysicsBody(rectangleOf: size)
+            loadnode.physicsBody?.linearDamping = 60
+            loadnode.physicsBody?.affectedByGravity = false
+            loadnode.physicsBody?.allowsRotation = false
+            loadnode.physicsBody?.isDynamic = false
+            loadnode.physicsBody?.friction = 1
+            loadnode.physicsBody?.categoryBitMask = 0b10
+            loadnode.physicsBody?.collisionBitMask = 0b0
+            loadnode.physicsBody?.contactTestBitMask = 0b0
+            loadnode.physicsBody?.restitution = 0
+            
+            loadnode.position.x = t.x + size.width / 2
+            loadnode.position.y = t.y + size.height / 2
+            
+            scene?.addChild(loadnode)
+            
+            // Increase index for right edges
+            ti2 += 1
+        }
     }
-    
 }
