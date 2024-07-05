@@ -17,6 +17,10 @@
 		7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */; };
 		7ACB9F842C3546A60019FB02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ACB9F822C3546A60019FB02 /* Assets.xcassets */; };
 		F222956F2C36C20F008AE840 /* TrialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F222956E2C36C20F008AE840 /* TrialView.swift */; };
+		F22295722C373AE8008AE840 /* Idle.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295712C373AE8008AE840 /* Idle.atlas */; };
+		F22295742C373AEE008AE840 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295732C373AEE008AE840 /* Jump.atlas */; };
+		F22295762C373AF2008AE840 /* Run.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295752C373AF2008AE840 /* Run.atlas */; };
+		F22295792C374AFB008AE840 /* Flame.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295782C374AFB008AE840 /* Flame.atlas */; };
 		F29226FF2C2F322600454AD0 /* Turns_v1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29226FE2C2F322600454AD0 /* Turns_v1App.swift */; };
 		F29227032C2F322700454AD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29227022C2F322700454AD0 /* Assets.xcassets */; };
 		F29227062C2F322700454AD0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29227052C2F322700454AD0 /* Preview Assets.xcassets */; };
@@ -28,7 +32,7 @@
 		F29227202C31ABA600454AD0 /* PlatformTiles.sks in Resources */ = {isa = PBXBuildFile; fileRef = F292271F2C31ABA600454AD0 /* PlatformTiles.sks */; };
 		F29227222C31B40E00454AD0 /* MovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29227212C31B40E00454AD0 /* MovementView.swift */; };
 		F29227242C31D9C300454AD0 /* MovementScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F29227232C31D9C300454AD0 /* MovementScene.sks */; };
-		F2F9CABA2C3476B500AAE549 /* Idle.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2F9CAB92C3476B500AAE549 /* Idle.atlas */; };
+		F2F9CABA2C3476B500AAE549 /* Old.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2F9CAB92C3476B500AAE549 /* Old.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,13 +41,15 @@
 		7A0890A82C35A77F00F059CC /* TrialScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrialScene.swift; sourceTree = "<group>"; };
 		7A0890AD2C35A83B00F059CC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7A0890AF2C35A85900F059CC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		7ACB9F742C34A7C40019FB02 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
-		7ACB9F782C34A82D0019FB02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlatformScene.sks; sourceTree = "<group>"; };
 		7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformScene.swift; sourceTree = "<group>"; };
 		7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformView.swift; sourceTree = "<group>"; };
 		7ACB9F822C3546A60019FB02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F222956E2C36C20F008AE840 /* TrialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialView.swift; sourceTree = "<group>"; };
+		F22295712C373AE8008AE840 /* Idle.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Idle.atlas; sourceTree = "<group>"; };
+		F22295732C373AEE008AE840 /* Jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Jump.atlas; sourceTree = "<group>"; };
+		F22295752C373AF2008AE840 /* Run.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Run.atlas; sourceTree = "<group>"; };
+		F22295782C374AFB008AE840 /* Flame.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Flame.atlas; sourceTree = "<group>"; };
 		F29226FB2C2F322600454AD0 /* Turns-v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turns-v1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29226FE2C2F322600454AD0 /* Turns_v1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turns_v1App.swift; sourceTree = "<group>"; };
 		F29227022C2F322700454AD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +63,7 @@
 		F292271F2C31ABA600454AD0 /* PlatformTiles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlatformTiles.sks; sourceTree = "<group>"; };
 		F29227212C31B40E00454AD0 /* MovementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementView.swift; sourceTree = "<group>"; };
 		F29227232C31D9C300454AD0 /* MovementScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MovementScene.sks; sourceTree = "<group>"; };
-		F2F9CAB92C3476B500AAE549 /* Idle.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Idle.atlas; sourceTree = "<group>"; };
+		F2F9CAB92C3476B500AAE549 /* Old.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Old.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,23 +85,15 @@
 			path = "Custom Classes";
 			sourceTree = "<group>";
 		};
-		7ACB9F732C34A7B30019FB02 /* PlatformTest */ = {
-			isa = PBXGroup;
-			children = (
-				7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */,
-				7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */,
-				7ACB9F742C34A7C40019FB02 /* MyTileSet.sks */,
-				7ACB9F782C34A82D0019FB02 /* Assets.xcassets */,
-			);
-			path = PlatformTest;
-			sourceTree = "<group>";
-		};
 		F222956D2C36C1FD008AE840 /* Trials */ = {
 			isa = PBXGroup;
 			children = (
 				7A0890A72C35A77F00F059CC /* TrialScene.sks */,
 				7A0890A82C35A77F00F059CC /* TrialScene.swift */,
 				F222956E2C36C20F008AE840 /* TrialView.swift */,
+				7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */,
+				7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */,
+				7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */,
 			);
 			path = Trials;
 			sourceTree = "<group>";
@@ -105,7 +103,6 @@
 			children = (
 				F29227112C3059C000454AD0 /* MenuView.swift */,
 				F29227212C31B40E00454AD0 /* MovementView.swift */,
-				7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -137,10 +134,13 @@
 				7A0890A92C35A77F00F059CC /* Custom Classes */,
 				F22295702C36CD6B008AE840 /* Views */,
 				F292270E2C2F335C00454AD0 /* Scenes */,
-				7ACB9F732C34A7B30019FB02 /* PlatformTest */,
 				F29227022C2F322700454AD0 /* Assets.xcassets */,
 				F29227182C3169E100454AD0 /* Fonts */,
-				F2F9CAB92C3476B500AAE549 /* Idle.atlas */,
+				F2F9CAB92C3476B500AAE549 /* Old.atlas */,
+				F22295712C373AE8008AE840 /* Idle.atlas */,
+				F22295732C373AEE008AE840 /* Jump.atlas */,
+				F22295752C373AF2008AE840 /* Run.atlas */,
+				F22295782C374AFB008AE840 /* Flame.atlas */,
 				F29227042C2F322700454AD0 /* Preview Content */,
 			);
 			path = "Turns-v1";
@@ -234,14 +234,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				F29227202C31ABA600454AD0 /* PlatformTiles.sks in Resources */,
+				F22295722C373AE8008AE840 /* Idle.atlas in Resources */,
 				F29227102C2F337800454AD0 /* StartScene.sks in Resources */,
+				F22295792C374AFB008AE840 /* Flame.atlas in Resources */,
+				F22295742C373AEE008AE840 /* Jump.atlas in Resources */,
 				F29227062C2F322700454AD0 /* Preview Assets.xcassets in Resources */,
 				7ACB9F842C3546A60019FB02 /* Assets.xcassets in Resources */,
 				F29227242C31D9C300454AD0 /* MovementScene.sks in Resources */,
 				7A0890AE2C35A83B00F059CC /* README.md in Resources */,
 				F29227032C2F322700454AD0 /* Assets.xcassets in Resources */,
 				7A0890AB2C35A77F00F059CC /* TrialScene.sks in Resources */,
-				F2F9CABA2C3476B500AAE549 /* Idle.atlas in Resources */,
+				F22295762C373AF2008AE840 /* Run.atlas in Resources */,
+				F2F9CABA2C3476B500AAE549 /* Old.atlas in Resources */,
 				7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */,
 				7A0890B02C35A85900F059CC /* .gitignore in Resources */,
 				F29227192C3169F800454AD0 /* alagard.ttf in Resources */,

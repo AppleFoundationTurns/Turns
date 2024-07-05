@@ -60,7 +60,6 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
         
         
     }
-    var i = 0;
     
     override func update(_ currentTime: TimeInterval) {
         if isTouchPressing {
@@ -85,12 +84,16 @@ class MovementScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
-        print("\(contact.bodyA.categoryBitMask) is colliding with \(contact.bodyB.categoryBitMask )")
+        print("\(contact.bodyA.categoryBitMask) is colliding with \(contact.bodyB.categoryBitMask ) in direction \(contact.contactNormal)")
         // If Hero (category 1) touches
         if contact.bodyA.categoryBitMask == 1 || contact.bodyB.categoryBitMask == 1 {
             // Platform (category 2)
             if contact.bodyA.categoryBitMask == 2 || contact.bodyB.categoryBitMask == 2 {
-                isJumping = false
+                // If the contact is only from upside
+                if contact.contactNormal.dy == -1 {
+                    isJumping = false
+                }
+                
             }
         }
     }
