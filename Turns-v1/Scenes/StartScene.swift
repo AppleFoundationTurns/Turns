@@ -14,7 +14,7 @@ class StartScene: SKScene {
     
     var playButton = SKSpriteNode(imageNamed: "HorizontalFrame")
 
-    let nextScene = SKScene(fileNamed: "MovementScene")
+    let nextScene = SKScene(fileNamed: "PlatformScene")
     
     override func didMove(to view: SKView) {
         

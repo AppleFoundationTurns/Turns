@@ -21,6 +21,8 @@
 		F22295742C373AEE008AE840 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295732C373AEE008AE840 /* Jump.atlas */; };
 		F22295762C373AF2008AE840 /* Run.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295752C373AF2008AE840 /* Run.atlas */; };
 		F22295792C374AFB008AE840 /* Flame.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295782C374AFB008AE840 /* Flame.atlas */; };
+		F23C473A2C39A5BE00B1F0A6 /* FlameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C47392C39A5BE00B1F0A6 /* FlameNode.swift */; };
+		F23C473C2C39A5ED00B1F0A6 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C473B2C39A5ED00B1F0A6 /* utilities.swift */; };
 		F29226FF2C2F322600454AD0 /* Turns_v1App.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29226FE2C2F322600454AD0 /* Turns_v1App.swift */; };
 		F29227032C2F322700454AD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29227022C2F322700454AD0 /* Assets.xcassets */; };
 		F29227062C2F322700454AD0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29227052C2F322700454AD0 /* Preview Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		F22295732C373AEE008AE840 /* Jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Jump.atlas; sourceTree = "<group>"; };
 		F22295752C373AF2008AE840 /* Run.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Run.atlas; sourceTree = "<group>"; };
 		F22295782C374AFB008AE840 /* Flame.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Flame.atlas; sourceTree = "<group>"; };
+		F23C47392C39A5BE00B1F0A6 /* FlameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlameNode.swift; sourceTree = "<group>"; };
+		F23C473B2C39A5ED00B1F0A6 /* utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
 		F29226FB2C2F322600454AD0 /* Turns-v1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turns-v1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29226FE2C2F322600454AD0 /* Turns_v1App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Turns_v1App.swift; sourceTree = "<group>"; };
 		F29227022C2F322700454AD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 			isa = PBXGroup;
 			children = (
 				7A0890A62C35A77F00F059CC /* HeroNode.swift */,
+				F23C47392C39A5BE00B1F0A6 /* FlameNode.swift */,
+				F23C473B2C39A5ED00B1F0A6 /* utilities.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -263,7 +269,9 @@
 				7ACB9F7E2C34AB940019FB02 /* PlatformScene.swift in Sources */,
 				F29227222C31B40E00454AD0 /* MovementView.swift in Sources */,
 				7A0890AA2C35A77F00F059CC /* HeroNode.swift in Sources */,
+				F23C473A2C39A5BE00B1F0A6 /* FlameNode.swift in Sources */,
 				F29227122C3059C000454AD0 /* MenuView.swift in Sources */,
+				F23C473C2C39A5ED00B1F0A6 /* utilities.swift in Sources */,
 				F29226FF2C2F322600454AD0 /* Turns_v1App.swift in Sources */,
 				7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */,
 				F292271C2C31A89E00454AD0 /* MovementScene.swift in Sources */,

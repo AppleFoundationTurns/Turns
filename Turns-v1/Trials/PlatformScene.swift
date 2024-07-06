@@ -9,16 +9,16 @@ import SpriteKit
 
 class PlatformScene: SKScene, SKPhysicsContactDelegate {
     
-    var character = SKSpriteNode()
+    var hero = HeroNode()
     var flame = SKSpriteNode()
     
-    var leftSide = SKSpriteNode()
-    var rightSide = SKSpriteNode()
-    var jumpSide = SKSpriteNode()
+    var leftButton = SKSpriteNode()
+    var rightButton = SKSpriteNode()
+    var jumpButton = SKSpriteNode()
     
     var isTouchPressing = false
     var isJumping = false
-    var multiTouchList: [UITouch: String?] = [:]
+    var multiTouchList: [UITouch: (Direction?, Action?)] = [:]
     
     override func didMove(to view: SKView) {
         
@@ -30,13 +30,15 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         self.view?.isMultipleTouchEnabled = true
         
         // --- Hero Initialization ---
-        character = HeroNode(atlasName: "Idle", scale: 2.0)
-        self.addChild(character)
+        hero = HeroNode(atlasName: "Idle", scale: 2.0)
+        hero.addAtlas(atlasName: "Jump")
+        hero.addAtlas(atlasName: "Run")
+        self.addChild(hero)
         
         // --- Flame Initialization ---
-        flame = childNode(withName: "flame") as! SKSpriteNode
-        flame.isHidden = true
-        flame = FlameNode(position: flame.position, atlasName: "Flame", scale: 0.25)
+        let oldFlame = childNode(withName: "flame") as! SKSpriteNode
+        flame = FlameNode(position: oldFlame.position, atlasName: "Flame", scale: 0.5)
+        oldFlame.removeFromParent()
         self.addChild(flame)
         
         // --- Platform initialization ---
@@ -56,13 +58,21 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // --- Buttons initialization ---
-        leftSide = childNode(withName: "leftSide") as! SKSpriteNode
-        rightSide = childNode(withName: "rightSide") as! SKSpriteNode
-        jumpSide = childNode(withName: "jumpSide") as! SKSpriteNode
+        leftButton = childNode(withName: "Directions//leftButton") as! SKSpriteNode
+        rightButton = childNode(withName: "Directions//rightButton") as! SKSpriteNode
+        jumpButton = childNode(withName: "jumpButton") as! SKSpriteNode
         
-        leftSide.color = .clear
-        rightSide.color = .clear
-        jumpSide.color = .clear
+        leftButton.texture?.filteringMode = .nearest
+        rightButton.texture?.filteringMode = .nearest
+        jumpButton.texture?.filteringMode = .nearest
+        
+        leftButton.colorBlendFactor = 0.5
+        rightButton.colorBlendFactor = 0.5
+        jumpButton.colorBlendFactor = 0.5
+        
+        leftButton.color = .clear
+        rightButton.color = .clear
+        jumpButton.color = .clear
         
         
     }
@@ -71,21 +81,39 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         if isTouchPressing {
             for (_, activity) in multiTouchList {
                 switch activity {
-                    case "left":
-                        character.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))
-                    case "right":
-                        character.physicsBody?.applyForce(CGVector(dx: 100, dy: 0))
-                    case "jump":
+                case (.left, .move):
+                        hero.direction = .left
+                        hero.action = .move
+                        hero.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))
+                        if hero.actualAnimation != hero.allAnimations["Run"]! {
+                            hero.animate(animation: hero.allAnimations["Run"]!, speed: 0.08)
+                        }
+                case (.right, .move):
+                        hero.direction = .right
+                        hero.action = .move
+                        hero.physicsBody?.applyForce(CGVector(dx: 100, dy: 0))
+                        if hero.actualAnimation != hero.allAnimations["Run"]! {
+                            hero.animate(animation: hero.allAnimations["Run"]!, speed: 0.08)
+                        }
+                case (_, .jump):
+                        hero.action = .jump
                         if !isJumping{
-                            character.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
+                            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
                             isJumping = true
+                        }
+                        if hero.actualAnimation != hero.allAnimations["Jump"]! {
+                            hero.animate(animation: hero.allAnimations["Jump"]!, speed: 0.1)
                         }
                     default:
                         continue
                 }
             }
         } else {
-            character.physicsBody?.applyForce(CGVector(dx: 0, dy: 0))
+            hero.action = .idle
+            hero.physicsBody?.applyForce(CGVector(dx: 0, dy: 0))
+            if hero.actualAnimation != hero.allAnimations["Idle"]! && !isJumping {
+                hero.animate(animation: hero.allAnimations["Idle"]!)
+            }
         }
     }
     
@@ -118,6 +146,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
             multiTouchList.removeValue(forKey: touch)
         }
+        leftButton.color = .clear
+        rightButton.color = .clear
+        jumpButton.color = .clear
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -131,18 +162,21 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     /// Return a string indicating what to do if touching on a specific frame
     /// - Parameter touch: UITouch element taken from touchesBegan or touchesEnded
     /// - Returns: An optional string value that can be "left", "right", "jump" or nil
-    func findButtonPressed(from touch: UITouch) -> String? {
+    func findButtonPressed(from touch: UITouch) -> (Direction?, Action?) {
         let location = touch.location(in: self)
-        if leftSide.frame.contains(location) {
-            return "left"
+        if leftButton.frame.contains(location) {
+            leftButton.color = .black
+            return (.left, .move)
         }
-        else if rightSide.frame.contains(location) {
-            return "right"
+        else if rightButton.frame.contains(location) {
+            rightButton.color = .black
+            return (.right, .move)
         }
-        else if jumpSide.frame.contains(location) {
-            return "jump"
+        else if jumpButton.frame.contains(location) {
+            jumpButton.color = .black
+            return (hero.direction, .jump)
         }
-        return nil
+        return (nil, nil)
     }
 
     /// Function to create and assign physics bodies to the tiles in a given tile map.
@@ -181,8 +215,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         
         // Algorithm for tile grouping
         
-        let width = tileMap.tileSize.width
-        let height = tileMap.tileSize.height
+        let width = tilesize.width
+        let height = tilesize.height
         let rWidth = 0.5 * width
         let rHeight = 0.5 * height
 
@@ -208,7 +242,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             } else if (tilePositionArray[ti+1].y != tilePositionArray[ti].y + height) {
                 if let _ = tRE.first(where: {
                     // Check if there is an adjacent tile in the right edge
-                    if $0 == CGPoint(x: t.x + rWidth - width, y: t.y + rHeight) {id = tRE.index(of: $0)!}
+                    if $0 == CGPoint(x: t.x + rWidth - width, y: t.y + rHeight) {id = tRE.firstIndex(of: $0)!}
                     return $0 == CGPoint(x: t.x + rWidth - width, y: t.y + rHeight)}) {
                     
                     // If the adjacent tile has the same height as the left edge, update the right edge
