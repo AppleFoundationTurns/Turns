@@ -123,8 +123,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         if contact.bodyA.categoryBitMask == 1 || contact.bodyB.categoryBitMask == 1 {
             // Platform (category 2)
             if contact.bodyA.categoryBitMask == 2 || contact.bodyB.categoryBitMask == 2 {
-                // If the contact is only from upside
-                if contact.contactNormal.dy <= -0.9 && contact.contactNormal.dy >= -1.1 {
+                // If the contact is only from upside [normalY is contained between -1.1 and -0.9]
+                if (-1.1)...(-0.9) ~= contact.contactNormal.dy {
                     isJumping = false
                 }
                 
