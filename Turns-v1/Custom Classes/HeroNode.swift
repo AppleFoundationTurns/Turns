@@ -38,7 +38,7 @@ class HeroNode: SKSpriteNode {
         self.name = "Hero"
         self.position = CGPoint(x: -450, y: -50)
         self.anchorPoint = CGPoint(x: 0.5, y: 0)
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width * 0.7, height: self.size.height), center: CGPoint(x: 0, y: self.size.height / 2))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width * 0.7, height: self.size.height * 0.7), center: CGPoint(x: 0, y: self.size.height * 0.7 / 2))
         self.physicsBody?.isDynamic = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.affectedByGravity = true
@@ -55,7 +55,7 @@ class HeroNode: SKSpriteNode {
     }
     
     convenience init() {
-        self.init(atlasName: "Idle", scale:1.0)
+        self.init(atlasName: "blueIdle", scale:1.0)
     }
     
     required init(coder aDecoder: NSCoder) {

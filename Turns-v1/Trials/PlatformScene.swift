@@ -15,6 +15,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     var leftButton = SKSpriteNode()
     var rightButton = SKSpriteNode()
     var jumpButton = SKSpriteNode()
+    var switchButton = SKSpriteNode()
     
     var isTouchPressing = false
     var isJumping = false
@@ -30,9 +31,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         self.view?.isMultipleTouchEnabled = true
         
         // --- Hero Initialization ---
-        hero = HeroNode(atlasName: "Idle", scale: 2.0)
-        hero.addAtlas(atlasName: "Jump")
-        hero.addAtlas(atlasName: "Run")
+        hero = HeroNode(atlasName: "blueIdle", scale: 2.0)
+        hero.addAtlas(atlasName: "blueJump")
+        hero.addAtlas(atlasName: "blueRun")
         self.addChild(hero)
         
         // --- Flame Initialization ---
@@ -54,30 +55,37 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
                     giveTileMapPhysicsBody(tileMap: someTileMap, categoryBitMask: PhysicsCategory.ground)
                 }
-            } else if node.name == "Platforms" {
+            } else if node.name == "bluePlatforms" {
                 if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
-                    giveTileMapPhysicsBody(tileMap: someTileMap, categoryBitMask: PhysicsCategory.platform)
+                    giveTileMapPhysicsBody(tileMap: someTileMap, categoryBitMask: PhysicsCategory.bluePlatform)
+                }
+            } else if node.name == "orangePlatforms" {
+                if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
+                    giveTileMapPhysicsBody(tileMap: someTileMap, categoryBitMask: PhysicsCategory.orangePlatform)
                 }
             }
         }
         
         // --- Buttons initialization ---
-        leftButton = childNode(withName: "Directions//leftButton") as! SKSpriteNode
-        rightButton = childNode(withName: "Directions//rightButton") as! SKSpriteNode
+        leftButton = childNode(withName: "leftButton") as! SKSpriteNode
+        rightButton = childNode(withName: "rightButton") as! SKSpriteNode
         jumpButton = childNode(withName: "jumpButton") as! SKSpriteNode
+        switchButton = childNode(withName: "switchButton") as! SKSpriteNode
         
         leftButton.texture?.filteringMode = .nearest
         rightButton.texture?.filteringMode = .nearest
         jumpButton.texture?.filteringMode = .nearest
+        switchButton.texture?.filteringMode = .nearest
         
         leftButton.colorBlendFactor = 0.5
         rightButton.colorBlendFactor = 0.5
         jumpButton.colorBlendFactor = 0.5
+        switchButton.colorBlendFactor = 0.5
         
         leftButton.color = .clear
         rightButton.color = .clear
         jumpButton.color = .clear
-        
+        switchButton.color = .clear
         
     }
     
@@ -86,27 +94,28 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             for (_, activity) in multiTouchList {
                 switch activity {
                 case (.left, .move):
-                    hero.direction = .left
                     hero.action = .move
-                    hero.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))
-                    if hero.actualAnimation != hero.allAnimations["Run"]! {
-                        hero.animate(animation: hero.allAnimations["Run"]!, speed: 0.08)
+                    hero.physicsBody?.applyForce(CGVector(dx: -80, dy: 0))
+                    if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .left {
+                        hero.direction = .left
+                        hero.animate(animation: hero.allAnimations["blueRun"]!, speed: 0.08)
                     }
                 case (.right, .move):
-                    hero.direction = .right
                     hero.action = .move
-                    hero.physicsBody?.applyForce(CGVector(dx: 100, dy: 0))
-                    if hero.actualAnimation != hero.allAnimations["Run"]! {
-                        hero.animate(animation: hero.allAnimations["Run"]!, speed: 0.08)
+                    hero.physicsBody?.applyForce(CGVector(dx: 80, dy: 0))
+                    if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .right {
+                        hero.direction = .right
+                        hero.animate(animation: hero.allAnimations["blueRun"]!, speed: 0.08)
                     }
                 case (_, .jump):
                     hero.action = .jump
                     if !isJumping{
-                        hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
+                        hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+                        hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 50))
                         isJumping = true
                     }
-                    if hero.actualAnimation != hero.allAnimations["Jump"]! {
-                        hero.animate(animation: hero.allAnimations["Jump"]!, speed: 0.1)
+                    if hero.actualAnimation != hero.allAnimations["blueJump"]! {
+                        hero.animate(animation: hero.allAnimations["blueJump"]!, speed: 0.1)
                     }
                 default:
                     continue
@@ -115,15 +124,17 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         } else {
             hero.action = .idle
             hero.physicsBody?.applyForce(CGVector(dx: 0, dy: 0))
-            if hero.actualAnimation != hero.allAnimations["Idle"]! && !isJumping {
-                hero.animate(animation: hero.allAnimations["Idle"]!)
+            if hero.actualAnimation != hero.allAnimations["blueIdle"]! && !isJumping {
+                hero.animate(animation: hero.allAnimations["blueIdle"]!)
             }
         }
         
         if let body = hero.physicsBody {
             let dy = body.velocity.dy
-            if dy > 0 { body.collisionBitMask &= ~PhysicsCategory.platform }
-            else { body.collisionBitMask |= PhysicsCategory.platform }
+            if dy > 0 { body.collisionBitMask &= ~PhysicsCategory.bluePlatform }
+            else {
+                body.collisionBitMask |= PhysicsCategory.bluePlatform
+            }
         }
     }
     
@@ -133,12 +144,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         let bodyB = max(contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask)
         // If Hero (category 1) touches something
         if bodyA == PhysicsCategory.hero {
-            // Platform (category 2)
-            if bodyB == PhysicsCategory.platform || bodyB == PhysicsCategory.ground {
-                // If the contact is only from upside [normalY is contained between -1.1 and -0.9]
-                if (-1.1)...(-0.9) ~= contact.contactNormal.dy {
-                    isJumping = false
-                }
+            // Platform (category 8) or Ground but only from upside [normalY is contained between -1.1 and -0.9]
+            if (bodyB == PhysicsCategory.bluePlatform) || (bodyB == PhysicsCategory.ground && (-1.1)...(-0.9) ~= contact.contactNormal.dy) {
+                isJumping = false
                 
             }
         }
@@ -153,14 +161,17 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        isTouchPressing = false
+        
+        
         for touch in touches {
             guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
             multiTouchList.removeValue(forKey: touch)
         }
+        if touches.isEmpty { isTouchPressing = false }
         leftButton.color = .clear
         rightButton.color = .clear
         jumpButton.color = .clear
+        switchButton.color = .clear
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -187,6 +198,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         else if jumpButton.frame.contains(location) {
             jumpButton.color = .black
             return (hero.direction, .jump)
+        }
+        else if switchButton.frame.contains(location) {
+            switchButton.color = .black
+            print("Switch button not implemented yet")
+            return (nil,nil)
         }
         return (nil, nil)
     }
@@ -287,7 +303,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             loadnode.physicsBody?.affectedByGravity = false
             loadnode.physicsBody?.allowsRotation = false
             loadnode.physicsBody?.isDynamic = false
-            loadnode.physicsBody?.friction = 1
+            loadnode.physicsBody?.friction = 0.8
             loadnode.physicsBody?.categoryBitMask = categoryBitMask
             loadnode.physicsBody?.collisionBitMask = 0b0
             loadnode.physicsBody?.contactTestBitMask = 0b0

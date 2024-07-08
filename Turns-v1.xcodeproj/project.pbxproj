@@ -16,9 +16,9 @@
 		7ACB9F7E2C34AB940019FB02 /* PlatformScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */; };
 		7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */; };
 		F222956F2C36C20F008AE840 /* TrialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F222956E2C36C20F008AE840 /* TrialView.swift */; };
-		F22295722C373AE8008AE840 /* Idle.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295712C373AE8008AE840 /* Idle.atlas */; };
-		F22295742C373AEE008AE840 /* Jump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295732C373AEE008AE840 /* Jump.atlas */; };
-		F22295762C373AF2008AE840 /* Run.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295752C373AF2008AE840 /* Run.atlas */; };
+		F22295722C373AE8008AE840 /* blueIdle.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295712C373AE8008AE840 /* blueIdle.atlas */; };
+		F22295742C373AEE008AE840 /* blueJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295732C373AEE008AE840 /* blueJump.atlas */; };
+		F22295762C373AF2008AE840 /* blueRun.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295752C373AF2008AE840 /* blueRun.atlas */; };
 		F22295792C374AFB008AE840 /* Flame.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F22295782C374AFB008AE840 /* Flame.atlas */; };
 		F23C473A2C39A5BE00B1F0A6 /* FlameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C47392C39A5BE00B1F0A6 /* FlameNode.swift */; };
 		F23C473C2C39A5ED00B1F0A6 /* utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23C473B2C39A5ED00B1F0A6 /* utilities.swift */; };
@@ -31,7 +31,9 @@
 		F29227192C3169F800454AD0 /* alagard.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F29227172C3169CB00454AD0 /* alagard.ttf */; };
 		F29227202C31ABA600454AD0 /* PlatformTiles.sks in Resources */ = {isa = PBXBuildFile; fileRef = F292271F2C31ABA600454AD0 /* PlatformTiles.sks */; };
 		F29227222C31B40E00454AD0 /* MovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29227212C31B40E00454AD0 /* MovementView.swift */; };
-		F2F9CABA2C3476B500AAE549 /* Old.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2F9CAB92C3476B500AAE549 /* Old.atlas */; };
+		F2D6C8AC2C3C6089004180A4 /* orangeJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2D6C8A92C3C6089004180A4 /* orangeJump.atlas */; };
+		F2D6C8AD2C3C6089004180A4 /* orangeRun.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2D6C8AA2C3C6089004180A4 /* orangeRun.atlas */; };
+		F2D6C8AE2C3C6089004180A4 /* orangeIdle.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2D6C8AB2C3C6089004180A4 /* orangeIdle.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,9 +46,9 @@
 		7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformScene.swift; sourceTree = "<group>"; };
 		7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformView.swift; sourceTree = "<group>"; };
 		F222956E2C36C20F008AE840 /* TrialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialView.swift; sourceTree = "<group>"; };
-		F22295712C373AE8008AE840 /* Idle.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Idle.atlas; sourceTree = "<group>"; };
-		F22295732C373AEE008AE840 /* Jump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Jump.atlas; sourceTree = "<group>"; };
-		F22295752C373AF2008AE840 /* Run.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Run.atlas; sourceTree = "<group>"; };
+		F22295712C373AE8008AE840 /* blueIdle.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = blueIdle.atlas; sourceTree = "<group>"; };
+		F22295732C373AEE008AE840 /* blueJump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = blueJump.atlas; sourceTree = "<group>"; };
+		F22295752C373AF2008AE840 /* blueRun.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = blueRun.atlas; sourceTree = "<group>"; };
 		F22295782C374AFB008AE840 /* Flame.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Flame.atlas; sourceTree = "<group>"; };
 		F23C47392C39A5BE00B1F0A6 /* FlameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlameNode.swift; sourceTree = "<group>"; };
 		F23C473B2C39A5ED00B1F0A6 /* utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utilities.swift; sourceTree = "<group>"; };
@@ -61,7 +63,9 @@
 		F292271A2C316AEF00454AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F292271F2C31ABA600454AD0 /* PlatformTiles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlatformTiles.sks; sourceTree = "<group>"; };
 		F29227212C31B40E00454AD0 /* MovementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementView.swift; sourceTree = "<group>"; };
-		F2F9CAB92C3476B500AAE549 /* Old.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Old.atlas; sourceTree = "<group>"; };
+		F2D6C8A92C3C6089004180A4 /* orangeJump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = orangeJump.atlas; sourceTree = "<group>"; };
+		F2D6C8AA2C3C6089004180A4 /* orangeRun.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = orangeRun.atlas; sourceTree = "<group>"; };
+		F2D6C8AB2C3C6089004180A4 /* orangeIdle.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = orangeIdle.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,11 +140,13 @@
 				F292270E2C2F335C00454AD0 /* Scenes */,
 				F29227022C2F322700454AD0 /* Assets.xcassets */,
 				F29227182C3169E100454AD0 /* Fonts */,
-				F2F9CAB92C3476B500AAE549 /* Old.atlas */,
-				F22295712C373AE8008AE840 /* Idle.atlas */,
-				F22295732C373AEE008AE840 /* Jump.atlas */,
-				F22295752C373AF2008AE840 /* Run.atlas */,
+				F22295712C373AE8008AE840 /* blueIdle.atlas */,
+				F22295732C373AEE008AE840 /* blueJump.atlas */,
+				F22295752C373AF2008AE840 /* blueRun.atlas */,
 				F22295782C374AFB008AE840 /* Flame.atlas */,
+				F2D6C8AB2C3C6089004180A4 /* orangeIdle.atlas */,
+				F2D6C8A92C3C6089004180A4 /* orangeJump.atlas */,
+				F2D6C8AA2C3C6089004180A4 /* orangeRun.atlas */,
 				F29227042C2F322700454AD0 /* Preview Content */,
 			);
 			path = "Turns-v1";
@@ -231,17 +237,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				F29227202C31ABA600454AD0 /* PlatformTiles.sks in Resources */,
-				F22295722C373AE8008AE840 /* Idle.atlas in Resources */,
+				F22295722C373AE8008AE840 /* blueIdle.atlas in Resources */,
 				F29227102C2F337800454AD0 /* StartScene.sks in Resources */,
 				F22295792C374AFB008AE840 /* Flame.atlas in Resources */,
-				F22295742C373AEE008AE840 /* Jump.atlas in Resources */,
+				F22295742C373AEE008AE840 /* blueJump.atlas in Resources */,
 				F29227062C2F322700454AD0 /* Preview Assets.xcassets in Resources */,
 				7A0890AE2C35A83B00F059CC /* README.md in Resources */,
+				F2D6C8AC2C3C6089004180A4 /* orangeJump.atlas in Resources */,
 				F29227032C2F322700454AD0 /* Assets.xcassets in Resources */,
+				F2D6C8AD2C3C6089004180A4 /* orangeRun.atlas in Resources */,
 				7A0890AB2C35A77F00F059CC /* TrialScene.sks in Resources */,
-				F22295762C373AF2008AE840 /* Run.atlas in Resources */,
-				F2F9CABA2C3476B500AAE549 /* Old.atlas in Resources */,
+				F22295762C373AF2008AE840 /* blueRun.atlas in Resources */,
 				7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */,
+				F2D6C8AE2C3C6089004180A4 /* orangeIdle.atlas in Resources */,
 				7A0890B02C35A85900F059CC /* .gitignore in Resources */,
 				F29227192C3169F800454AD0 /* alagard.ttf in Resources */,
 			);

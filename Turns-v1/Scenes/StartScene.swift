@@ -105,7 +105,7 @@ class StartScene: SKScene {
         playLabel.addChild(playLabelShadow)
         playButton.addChild(playFrame)
         
-        nextScene?.size = CGSize(width: 1334, height: 750)
+        nextScene?.size = CGSize(width: 1625, height: 750)
         nextScene?.scaleMode = .aspectFill
     }
     
