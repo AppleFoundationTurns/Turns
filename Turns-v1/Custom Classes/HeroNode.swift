@@ -14,6 +14,11 @@ class HeroNode: SKSpriteNode {
     var direction: Direction = .right
     private var actualScale = 1.0
     
+    override func setScale(_ scale: CGFloat) {
+        if actualScale != scale {actualScale = scale}
+        super.setScale(scale)
+    }
+    
     // init Hero with the atlas [reccommended: Idle] and animate it. Set scale and default physics.
     init(atlasName: String, scale: CGFloat = 1.0) {
         let atlas = SKTextureAtlas(named: atlasName)
@@ -38,9 +43,10 @@ class HeroNode: SKSpriteNode {
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.mass = 0.1
-        self.physicsBody?.categoryBitMask = 0b01
-        self.physicsBody?.collisionBitMask = 0b10
-        self.physicsBody?.contactTestBitMask = 0b110
+        self.physicsBody?.restitution = 0
+        self.physicsBody?.categoryBitMask = PhysicsCategory.hero
+        self.physicsBody?.collisionBitMask = PhysicsCategory.ground
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.all
         self.physicsBody?.usesPreciseCollisionDetection = false
         self.setScale(scale)
         actualScale = scale

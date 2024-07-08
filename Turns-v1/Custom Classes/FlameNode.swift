@@ -15,10 +15,10 @@ class FlameNode: HeroNode {
         self.direction = .left
         self.name = "Flame"
         self.position = position
-        self.physicsBody?.categoryBitMask = 0b100
+        self.physicsBody?.categoryBitMask = PhysicsCategory.flame
         self.physicsBody?.isDynamic = false
-        self.physicsBody?.collisionBitMask = 0
-        self.physicsBody?.contactTestBitMask = 0
+        self.physicsBody?.collisionBitMask = 0b0
+        self.physicsBody?.contactTestBitMask = 0b0
     }
     
     convenience init() {

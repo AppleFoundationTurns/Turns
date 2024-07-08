@@ -50,9 +50,13 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             
-            if (node.name == "Platforms") {
+            if node.name == "Grounds" {
                 if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
-                    giveTileMapPhysicsBody(tileMap: someTileMap)
+                    giveTileMapPhysicsBody(tileMap: someTileMap, categoryBitMask: PhysicsCategory.ground)
+                }
+            } else if node.name == "Platforms" {
+                if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
+                    giveTileMapPhysicsBody(tileMap: someTileMap, categoryBitMask: PhysicsCategory.platform)
                 }
             }
         }
@@ -82,30 +86,30 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             for (_, activity) in multiTouchList {
                 switch activity {
                 case (.left, .move):
-                        hero.direction = .left
-                        hero.action = .move
-                        hero.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))
-                        if hero.actualAnimation != hero.allAnimations["Run"]! {
-                            hero.animate(animation: hero.allAnimations["Run"]!, speed: 0.08)
-                        }
+                    hero.direction = .left
+                    hero.action = .move
+                    hero.physicsBody?.applyForce(CGVector(dx: -100, dy: 0))
+                    if hero.actualAnimation != hero.allAnimations["Run"]! {
+                        hero.animate(animation: hero.allAnimations["Run"]!, speed: 0.08)
+                    }
                 case (.right, .move):
-                        hero.direction = .right
-                        hero.action = .move
-                        hero.physicsBody?.applyForce(CGVector(dx: 100, dy: 0))
-                        if hero.actualAnimation != hero.allAnimations["Run"]! {
-                            hero.animate(animation: hero.allAnimations["Run"]!, speed: 0.08)
-                        }
+                    hero.direction = .right
+                    hero.action = .move
+                    hero.physicsBody?.applyForce(CGVector(dx: 100, dy: 0))
+                    if hero.actualAnimation != hero.allAnimations["Run"]! {
+                        hero.animate(animation: hero.allAnimations["Run"]!, speed: 0.08)
+                    }
                 case (_, .jump):
-                        hero.action = .jump
-                        if !isJumping{
-                            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
-                            isJumping = true
-                        }
-                        if hero.actualAnimation != hero.allAnimations["Jump"]! {
-                            hero.animate(animation: hero.allAnimations["Jump"]!, speed: 0.1)
-                        }
-                    default:
-                        continue
+                    hero.action = .jump
+                    if !isJumping{
+                        hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
+                        isJumping = true
+                    }
+                    if hero.actualAnimation != hero.allAnimations["Jump"]! {
+                        hero.animate(animation: hero.allAnimations["Jump"]!, speed: 0.1)
+                    }
+                default:
+                    continue
                 }
             }
         } else {
@@ -115,14 +119,22 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 hero.animate(animation: hero.allAnimations["Idle"]!)
             }
         }
+        
+        if let body = hero.physicsBody {
+            let dy = body.velocity.dy
+            if dy > 0 { body.collisionBitMask &= ~PhysicsCategory.platform }
+            else { body.collisionBitMask |= PhysicsCategory.platform }
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
         print("\(contact.bodyA.categoryBitMask) is colliding with \(contact.bodyB.categoryBitMask ) in direction \(contact.contactNormal)")
-        // If Hero (category 1) touches
-        if contact.bodyA.categoryBitMask == 1 || contact.bodyB.categoryBitMask == 1 {
+        let bodyA = min(contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask)
+        let bodyB = max(contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask)
+        // If Hero (category 1) touches something
+        if bodyA == PhysicsCategory.hero {
             // Platform (category 2)
-            if contact.bodyA.categoryBitMask == 2 || contact.bodyB.categoryBitMask == 2 {
+            if bodyB == PhysicsCategory.platform || bodyB == PhysicsCategory.ground {
                 // If the contact is only from upside [normalY is contained between -1.1 and -0.9]
                 if (-1.1)...(-0.9) ~= contact.contactNormal.dy {
                     isJumping = false
@@ -178,11 +190,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         }
         return (nil, nil)
     }
-
+    
     /// Function to create and assign physics bodies to the tiles in a given tile map.
     /// - Parameter tileMap: The `SKTileMapNode` representing the tile map to which physics bodies will be assigned.
     /// This function iterates through all the tiles in the provided tile map. For each tile that is not null, it creates an `SKSpriteNode`, calculates its position, and adds it to arrays tracking the tiles and their positions. It then groups adjacent tiles together to form larger physics bodies, which are added to the scene with specified physics properties.
-    func giveTileMapPhysicsBody(tileMap: SKTileMapNode){
+    func giveTileMapPhysicsBody(tileMap: SKTileMapNode, categoryBitMask: UInt32){
         var tileArray:[SKSpriteNode] = []
         var tilePositionArray:[CGPoint] = []
         
@@ -190,7 +202,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         
         let halfwidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tilesize.width
         let halfheight =  CGFloat(tileMap.numberOfRows) / 2.0 * tilesize.height
-
+        
         for col in 0 ..< tileMap.numberOfColumns {
             for row in 0 ..< tileMap.numberOfRows {
                 // Check if the node of the timeMap is not null
@@ -219,22 +231,22 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         let height = tilesize.height
         let rWidth = 0.5 * width
         let rHeight = 0.5 * height
-
+        
         var ti:Int = 0
         var ti2:Int = 0
         var id:Int = 0
         var dl:CGPoint = CGPoint(x: 0, y: 0)
-
+        
         // Arrays for the coordinates of the left and right edges of the tiles
         var tLE = [CGPoint]()
         var tRE = [CGPoint]()
-
+        
         for t in tilePositionArray {
             // Checks whether the previous tile is not vertically adjacent
             if (ti-1 < 0) || (tilePositionArray[ti-1].y != tilePositionArray[ti].y - height) {
                 dl = CGPoint(x: t.x - rWidth, y: t.y - rHeight)
             }
-
+            
             // Checks whether the next tile is not vertically adjacent
             if (ti+1 > tilePositionArray.count-1) {
                 tLE.append(dl)
@@ -262,7 +274,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             // Increases the index of the tile
             ti+=1
         }
-
+        
         // Iterate on all tiles to create physics nodes
         for t in tLE {
             // Calculate the rectangle size
@@ -276,7 +288,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             loadnode.physicsBody?.allowsRotation = false
             loadnode.physicsBody?.isDynamic = false
             loadnode.physicsBody?.friction = 1
-            loadnode.physicsBody?.categoryBitMask = 0b10
+            loadnode.physicsBody?.categoryBitMask = categoryBitMask
             loadnode.physicsBody?.collisionBitMask = 0b0
             loadnode.physicsBody?.contactTestBitMask = 0b0
             loadnode.physicsBody?.restitution = 0

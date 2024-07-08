@@ -18,7 +18,7 @@ struct PlatformView: View {
     }
     
     var body: some View {
-        SpriteView(scene: PlatformScene, debugOptions: [.showsPhysics])
+        SpriteView(scene: PlatformScene) //, debugOptions: [.showsPhysics])
             .edgesIgnoringSafeArea(.all)
         
     }
