@@ -18,8 +18,10 @@ class ViewModel {
         self.currentState = zeroState
         self.mpcInterface = mpcInterface
     }
-    
-    //func getState() -> GameState {
-        //return toGameState(mpcInterface.recvState())
-    //}
+}
+
+class ViewModelInjected {
+    static var viewModel: Any = ViewModelInjected()
+
+    private init() { }
 }

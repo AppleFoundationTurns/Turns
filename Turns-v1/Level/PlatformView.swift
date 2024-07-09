@@ -26,9 +26,15 @@ struct PlatformView: View {
         
         if(mpcSession.session.connectedPeers.count == 0){
             StartView()
+                .environment(router)
+                .environment(viewModel)
         } else {
             SpriteView(scene: PlatformScene)//, debugOptions: [.showsPhysics])
                 .edgesIgnoringSafeArea(.all)
+                .onAppear(perform: {
+                    // Injection
+                    ViewModelInjected.viewModel = viewModel
+                })
         }
         
     }

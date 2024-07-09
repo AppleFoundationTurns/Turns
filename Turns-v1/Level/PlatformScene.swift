@@ -27,7 +27,12 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     var isJumping = false
     var multiTouchList: [UITouch: (Direction?, Action?)] = [:]
     
+    var viewModel: ViewModel = ViewModel(mpcInterface: MPCInterface())
+    
     override func didMove(to view: SKView) {
+        // --- ViewModel Initialization ---
+        viewModel = ViewModelInjected.viewModel as! ViewModel
+        viewModel.currentState.username = "Init"
         
         // --- Add physics to scene, no friction, no out of frame ---
         let sceneBody = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -116,10 +121,35 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        // --- TEST Multipeer Connection - TODO REMOVE ---
+        print("currentState: \(viewModel.currentState.username)")
+        if(viewModel.currentState.username == "Left"){
+            hero.action = .move
+            hero.physicsBody?.applyForce(CGVector(dx: -80, dy: 0))
+            if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .left {
+                hero.direction = .left
+                hero.animate(animation: hero.allAnimations["blueRun"]!, speed: 0.08)
+            }
+            viewModel.currentState.username = "init"
+        }
+        if(viewModel.currentState.username == "Right"){
+            hero.action = .move
+            hero.physicsBody?.applyForce(CGVector(dx: 80, dy: 0))
+            if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .right {
+                hero.direction = .right
+                hero.animate(animation: hero.allAnimations["blueRun"]!, speed: 0.08)
+            }
+            viewModel.currentState.username = "init"
+        }
+        // --- TEST Multipeer Connection - TODO REMOVE ---
         if isTouchPressing {
             for (_, activity) in multiTouchList {
                 switch activity {
                 case (.left, .move):
+                    // --- TEST Multipeer Connection - TODO REMOVE ---
+                    viewModel.currentState.username = "Left"
+                    viewModel.mpcInterface.sendState()
+                    // --- TEST Multipeer Connection - TODO REMOVE ---
                     hero.action = .move
                     hero.physicsBody?.applyForce(CGVector(dx: -80, dy: 0))
                     if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .left {
@@ -127,6 +157,10 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                         hero.animate(animation: hero.allAnimations["blueRun"]!, speed: 0.08)
                     }
                 case (.right, .move):
+                    // --- TEST Multipeer Connection - TODO REMOVE ---
+                    viewModel.currentState.username = "Right"
+                    viewModel.mpcInterface.sendState()
+                    // --- TEST Multipeer Connection - TODO REMOVE ---
                     hero.action = .move
                     hero.physicsBody?.applyForce(CGVector(dx: 80, dy: 0))
                     if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .right {
