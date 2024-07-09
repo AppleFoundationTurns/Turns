@@ -143,7 +143,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         let bodyA = min(contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask)
         let bodyB = max(contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask)
         // If Hero (category 1) touches something
-        if bodyA == PhysicsCategory.hero {
+        if bodyA == PhysicsCategory.blueHero {
             // Platform (category 8) or Ground but only from upside [normalY is contained between -1.1 and -0.9]
             if (bodyB == PhysicsCategory.bluePlatform) || (bodyB == PhysicsCategory.ground && (-1.1)...(-0.9) ~= contact.contactNormal.dy) {
                 isJumping = false
@@ -167,7 +167,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
             multiTouchList.removeValue(forKey: touch)
         }
-        if touches.isEmpty { isTouchPressing = false }
+        if multiTouchList.isEmpty { isTouchPressing = false }
         leftButton.color = .clear
         rightButton.color = .clear
         jumpButton.color = .clear
@@ -318,4 +318,40 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             ti2 += 1
         }
     }
+    
+    func giveCollectablesPhysicsBody(tileMap: SKTileMapNode) {
+
+            let startingLocation :CGPoint = tileMap.position
+
+            let tileSize = tileMap.tileSize
+
+            let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
+            let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height
+
+            for col in 0 ..< tileMap.numberOfRows {
+                for row in 0 ..< tileMap.numberOfColumns {
+
+                    if let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row) {
+
+                        let tileArray = tileDefinition.textures
+                        let tileTexture = tileArray[0]
+                        let x = CGFloat(col) * tileSize.width - halfWidth + (tileSize.width / 2)
+                        let y = CGFloat(row) * tileSize.height - halfHeight + (tileSize.height / 2)
+
+                        let tileNode = SKSpriteNode(texture: tileTexture)
+                        tileNode.position = CGPoint(x: x, y: y)
+                        tileNode.physicsBody = SKPhysicsBody(texture: tileTexture, size: CGSize(width: tileTexture.size().width, height: tileTexture.size().height))
+                        tileNode.physicsBody?.linearDamping = 60
+                        tileNode.physicsBody?.affectedByGravity = false
+                        tileNode.physicsBody?.allowsRotation = false
+                        tileNode.physicsBody?.isDynamic = false
+                        tileNode.physicsBody?.friction = 1
+                        self.addChild(tileNode)
+
+                        tileNode.position = CGPoint(x: tileNode.position.x + startingLocation.x, y: tileNode.position.y + startingLocation.y)
+                    }
+
+                }
+            }
+        }
 }

@@ -44,7 +44,7 @@ class HeroNode: SKSpriteNode {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.mass = 0.1
         self.physicsBody?.restitution = 0
-        self.physicsBody?.categoryBitMask = PhysicsCategory.hero
+        self.physicsBody?.categoryBitMask = PhysicsCategory.blueHero
         self.physicsBody?.collisionBitMask = PhysicsCategory.ground
         self.physicsBody?.contactTestBitMask = PhysicsCategory.all
         self.physicsBody?.usesPreciseCollisionDetection = false
