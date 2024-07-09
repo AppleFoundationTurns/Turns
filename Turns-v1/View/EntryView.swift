@@ -21,12 +21,13 @@ struct EntryView: View {
                 Text("Turns")
                     .font(.custom("ArcadeClassic", size: 95))
                     .foregroundColor(Color(hex: 0xEF8540))
-                    .position(x: (1334 / 4)+25, y: (750 / 4) - 90)
+                    .position(x: (1334 / 4)+25, y: (750 / 6) - 90)
                     .shadow(color: .black, radius: 5)
                     
-                Image("pixelatedLogoNoBackground")
+                Image("shadowedLogo")
                     .resizable()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 1000 * 0.3, height: 426 * 0.3)
+                    .aspectRatio(contentMode: .fit)
                     .position(x: (1334 / 4)+25, y: (750 / 4) - 130)
                     .shadow(color: .black, radius: 5)
                 
@@ -50,7 +51,7 @@ struct EntryView: View {
                         }
                     }
                     
-                }.position(x: (1334 / 4)+25, y: (750 / 4) - 150)
+                }.position(x: (1334 / 4)+25, y: (750 / 4) - 120)
                 
             }
             .padding()
@@ -61,4 +62,6 @@ struct EntryView: View {
 #Preview {
     EntryView()
         .previewInterfaceOrientation(.landscapeRight)
+        .environment(ViewModel(mpcInterface: MPCInterface()))
+        .environment(Router())
 }

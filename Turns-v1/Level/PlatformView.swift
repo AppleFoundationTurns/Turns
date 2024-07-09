@@ -38,5 +38,7 @@ struct Platform_Previews: PreviewProvider {
     static var previews: some View {
         PlatformView()
             .previewInterfaceOrientation(.landscapeRight)
+            .environment(ViewModel(mpcInterface: MPCInterface()))
+            .environment(Router())
     }
 }

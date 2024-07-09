@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BackView: View {
-    @State private var moveRight = false
+    @State private var offset: CGFloat = 20
     
     var body: some View {
         GeometryReader{_ in
@@ -21,11 +21,14 @@ struct BackView: View {
                     .resizable()
                     .interpolation(.none)
                     .aspectRatio(contentMode: .fit)
-                    .offset(x: moveRight ? 20 : -20)
-                    .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true))
-                    .onAppear {self.moveRight.toggle()
+                    .offset(x: offset)
+                    .onAppear(perform: {
+                        withAnimation(.easeInOut.repeatForever(autoreverses: true).speed(0.5)) {
+                            offset = -20
+                        }
+                    })
                         
-                    }
+                    
             }
         }
     }

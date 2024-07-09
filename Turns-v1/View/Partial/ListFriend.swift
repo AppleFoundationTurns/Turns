@@ -87,4 +87,5 @@ struct ListFriend: View {
 
 #Preview {
     ListFriend()
+        .environment(MPCInterface())
 }

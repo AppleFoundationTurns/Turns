@@ -17,7 +17,8 @@ struct StartView: View {
     var body: some View {
         @Bindable var mpcInterface = viewModel.mpcInterface
         ZStack{
-            BackView().aspectRatio(contentMode: .fill)
+            BackView()
+                .offset(y: -50)
             VStack {
                 HStack {
                     Text("Enter a nickname below. Choose something your friend will recognize!")
