@@ -9,6 +9,11 @@ import SpriteKit
 
 class PlatformScene: SKScene, SKPhysicsContactDelegate {
     
+    var blueFruitListCollected:[Bool] = []
+    var orangeFruitListCollected:[Bool] = []
+    var blueFruitList:[SKSpriteNode] = []
+    var orangeFruitList:[SKSpriteNode] = []
+    
     var hero = HeroNode()
     var flame = SKSpriteNode()
     
@@ -62,6 +67,16 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             } else if node.name == "orangePlatforms" {
                 if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
                     giveTileMapPhysicsBody(tileMap: someTileMap, categoryBitMask: PhysicsCategory.orangePlatform)
+                }
+            } else if node.name == "blueFruit" {
+                if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
+                    giveCollectablesPhysicsBody(tileMap: someTileMap, fruitList: &blueFruitList, fruitCollectedList: &blueFruitListCollected,categoryBitMask: PhysicsCategory.blueFruit)
+                    someTileMap.removeFromParent()
+                }
+            } else if node.name == "orangeFruit" {
+                if let someTileMap:SKTileMapNode = node as? SKTileMapNode {
+                    giveCollectablesPhysicsBody(tileMap: someTileMap, fruitList: &orangeFruitList, fruitCollectedList: &orangeFruitListCollected,categoryBitMask: PhysicsCategory.orangeFruit)
+                    someTileMap.removeFromParent()
                 }
             }
         }
@@ -149,6 +164,13 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 isJumping = false
                 
             }
+            if (bodyB == PhysicsCategory.blueFruit) {
+                handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)
+            }
+        } else if bodyA == PhysicsCategory.orangeHero {
+            if (bodyB == PhysicsCategory.orangeFruit) {
+                handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)
+            }
         }
     }
     
@@ -208,9 +230,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     }
     
     /// Function to create and assign physics bodies to the tiles in a given tile map.
-    /// - Parameter tileMap: The `SKTileMapNode` representing the tile map to which physics bodies will be assigned.
-    /// This function iterates through all the tiles in the provided tile map. For each tile that is not null, it creates an `SKSpriteNode`, calculates its position, and adds it to arrays tracking the tiles and their positions. It then groups adjacent tiles together to form larger physics bodies, which are added to the scene with specified physics properties.
-    func giveTileMapPhysicsBody(tileMap: SKTileMapNode, categoryBitMask: UInt32){
+    func giveTileMapPhysicsBody(tileMap: SKTileMapNode, categoryBitMask: UInt32, collisionBitMask: UInt32 = 0b0, contactTestBitMask: UInt32 = 0b0){
         var tileArray:[SKSpriteNode] = []
         var tilePositionArray:[CGPoint] = []
         
@@ -305,8 +325,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             loadnode.physicsBody?.isDynamic = false
             loadnode.physicsBody?.friction = 0.8
             loadnode.physicsBody?.categoryBitMask = categoryBitMask
-            loadnode.physicsBody?.collisionBitMask = 0b0
-            loadnode.physicsBody?.contactTestBitMask = 0b0
+            loadnode.physicsBody?.collisionBitMask = collisionBitMask
+            loadnode.physicsBody?.contactTestBitMask = contactTestBitMask
             loadnode.physicsBody?.restitution = 0
             
             loadnode.position.x = t.x + size.width / 2
@@ -319,39 +339,95 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    func giveCollectablesPhysicsBody(tileMap: SKTileMapNode) {
+    func giveCollectablesPhysicsBody(tileMap: SKTileMapNode, fruitList: inout [SKSpriteNode], fruitCollectedList: inout [Bool], categoryBitMask: UInt32, collisionBitMask: UInt32 = 0b0, contactTestBitMask: UInt32 = 0b0) {
 
-            let startingLocation :CGPoint = tileMap.position
+        let startingLocation: CGPoint = tileMap.position
+        let tileSize = tileMap.tileSize
+        let scaleFactor: CGFloat = 3.0 // Fattore di scala
 
-            let tileSize = tileMap.tileSize
+        let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width * scaleFactor
+        let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height * scaleFactor
 
-            let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
-            let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height
+        for col in 0 ..< tileMap.numberOfColumns {
+            for row in 0 ..< tileMap.numberOfRows {
 
-            for col in 0 ..< tileMap.numberOfRows {
-                for row in 0 ..< tileMap.numberOfColumns {
+                if let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row) {
 
-                    if let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row) {
+                    let tileArray = tileDefinition.textures
+                    let tileTexture = tileArray[0]
+                    let x = CGFloat(col) * tileSize.width * scaleFactor - halfWidth + (tileSize.width * scaleFactor / 2)
+                    let y = CGFloat(row) * tileSize.height * scaleFactor - halfHeight + (tileSize.height * scaleFactor / 2)
 
-                        let tileArray = tileDefinition.textures
-                        let tileTexture = tileArray[0]
-                        let x = CGFloat(col) * tileSize.width - halfWidth + (tileSize.width / 2)
-                        let y = CGFloat(row) * tileSize.height - halfHeight + (tileSize.height / 2)
+                    let tileNode = SKSpriteNode(texture: tileTexture)
+                    tileNode.position = CGPoint(x: x, y: y)
+                    tileNode.setScale(scaleFactor) // Scala il nodo
 
-                        let tileNode = SKSpriteNode(texture: tileTexture)
-                        tileNode.position = CGPoint(x: x, y: y)
-                        tileNode.physicsBody = SKPhysicsBody(texture: tileTexture, size: CGSize(width: tileTexture.size().width, height: tileTexture.size().height))
-                        tileNode.physicsBody?.linearDamping = 60
-                        tileNode.physicsBody?.affectedByGravity = false
-                        tileNode.physicsBody?.allowsRotation = false
-                        tileNode.physicsBody?.isDynamic = false
-                        tileNode.physicsBody?.friction = 1
-                        self.addChild(tileNode)
+                    // Crea il physics body con le dimensioni scalate
+                    tileNode.physicsBody = SKPhysicsBody(texture: tileTexture, size: CGSize(width: tileTexture.size().width * scaleFactor, height: tileTexture.size().height * scaleFactor))
+                    tileNode.physicsBody?.linearDamping = 60
+                    tileNode.physicsBody?.affectedByGravity = false
+                    tileNode.physicsBody?.allowsRotation = false
+                    tileNode.physicsBody?.isDynamic = false
+                    tileNode.physicsBody?.friction = 1
+                    tileNode.physicsBody?.categoryBitMask = categoryBitMask
+                    tileNode.physicsBody?.collisionBitMask = collisionBitMask
+                    tileNode.physicsBody?.contactTestBitMask = contactTestBitMask
+                    
+                    fruitList.append(tileNode)
+                    fruitCollectedList.append(false)
+                    self.addChild(tileNode)
 
-                        tileNode.position = CGPoint(x: tileNode.position.x + startingLocation.x, y: tileNode.position.y + startingLocation.y)
-                    }
-
+                    tileNode.position = CGPoint(x: tileNode.position.x + startingLocation.x, y: tileNode.position.y + startingLocation.y)
                 }
+
             }
         }
+    }
+    
+    func updateCollectables(blueFruitListCollected: [Bool], orangeFruitListCollected: [Bool]) {
+        // Mi assicuro che gli array abbiano la stessa lunghezza
+        guard blueFruitListCollected.count == blueFruitList.count,
+              orangeFruitListCollected.count == orangeFruitList.count else {
+            print("Array lengths do not match")
+            return
+        }
+        
+        // Rimuovo i nodi dai blueFruitList se il corrispondente booleano è true
+        for (index, collected) in blueFruitListCollected.enumerated().reversed() {
+            if collected {
+                let node = blueFruitList[index]
+                node.removeFromParent()
+                //blueFruitList.remove(at: index)
+            }
+        }
+
+        for (index, collected) in orangeFruitListCollected.enumerated().reversed() {
+            if collected {
+                let node = orangeFruitList[index]
+                node.removeFromParent()
+                //orangeFruitList.remove(at: index)
+            }
+        }
+    }
+    
+    func handleContactBetweenPlayerAndFruit(playerBody: SKPhysicsBody, fruitBody: SKPhysicsBody) {
+        if let node = fruitBody.node {
+            // Verifica se il nodo è in blueFruitList
+            if let index = blueFruitList.firstIndex(of: node as! SKSpriteNode) {
+                //blueFruitList.remove(at: index)
+                blueFruitListCollected[index] = true
+                node.removeFromParent()
+                print("Blue fruit at index \(index) collected.\nNew Blue Fruit Array: \(blueFruitListCollected)")
+            }
+            // Verifica se il nodo è in orangeFruitList
+            else if let index = orangeFruitList.firstIndex(of: node as! SKSpriteNode) {
+                //orangeFruitList.remove(at: index)
+                orangeFruitListCollected[index] = true
+                node.removeFromParent()
+                print("Orange fruit at index \(index) collected.\nNew Orange Fruit Array: \(orangeFruitListCollected)")
+            }
+        }
+    }
+
+
 }
