@@ -1,16 +1,16 @@
 //
-//  MovementView.swift
+//  EntryView.swift
 //  Turns-v1
 //
-//  Created by Giuseppe Damiata on 30/06/24.
+//  Created by Giuseppe Damiata on 29/06/24.
 //
 
 import SwiftUI
 import SpriteKit
 
-struct MovementView: View {
-    var movementScene: SKScene {
-        let scene = SKScene(fileNamed: "MovementScene")
+struct MenuView: View {
+    var menuScene: SKScene {
+        let scene = SKScene(fileNamed: "MenuScene")
         scene!.size = CGSize(width: 1334, height: 750)
         scene?.scaleMode = .aspectFill
         
@@ -18,15 +18,15 @@ struct MovementView: View {
     }
     
     var body: some View {
-        SpriteView(scene: movementScene, debugOptions: [.showsPhysics])
+        SpriteView(scene: menuScene)
             .edgesIgnoringSafeArea(.all)
         
     }
 }
 
-struct Movement_Previews: PreviewProvider {
+struct StartView_Previews: PreviewProvider {
     static var previews: some View {
-        MovementView()
+        MenuView()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }

@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Turns_v1App: App {
+    var mpcInterface: MPCInterface = MPCInterface()
+    
     var body: some Scene {
         WindowGroup {
-            MenuView()
+            RouterView()
+                .environment(mpcInterface)
+                .environment(ViewModel(mpcInterface: mpcInterface))
         }
     }
 }

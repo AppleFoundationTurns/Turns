@@ -1,5 +1,5 @@
 //
-//  CloudScene.swift
+//  EntryScene.swift
 //  Turns-v1
 //
 //  Created by Giuseppe Damiata on 28/06/24.
@@ -7,13 +7,14 @@
 
 import SpriteKit
 
-class StartScene: SKScene {
+class MenuScene: SKScene {
     
     let numClouds = 3
     let scaleVal: CGFloat = 1.0
     
     var playButton = SKSpriteNode(imageNamed: "HorizontalFrame")
 
+    let reveal = SKTransition.reveal(with: .left, duration: 1)
     let nextScene = SKScene(fileNamed: "PlatformScene")
     
     override func didMove(to view: SKView) {
@@ -127,7 +128,7 @@ class StartScene: SKScene {
         let location = touch?.location(in: self)
         let node = self.atPoint(location!)
         if node.name == "Play_Frame" {
-            scene?.view?.presentScene(nextScene)
+            scene?.view?.presentScene(nextScene!, transition: reveal)
         }
         playButton.color = .white
     }

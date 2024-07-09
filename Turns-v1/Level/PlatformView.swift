@@ -9,6 +9,9 @@ import SwiftUI
 import SpriteKit
 
 struct PlatformView: View {
+    @Environment(ViewModel.self) var viewModel
+    @Environment(Router.self) var router
+    
     var PlatformScene: SKScene {
         let scene = SKScene(fileNamed: "PlatformScene")
         scene!.size = CGSize(width: 1625, height: 750)
@@ -18,8 +21,15 @@ struct PlatformView: View {
     }
     
     var body: some View {
-        SpriteView(scene: PlatformScene, debugOptions: [.showsPhysics])
-            .edgesIgnoringSafeArea(.all)
+        @Bindable var mpcInterface = viewModel.mpcInterface
+        @Bindable var mpcSession = viewModel.mpcInterface.mpcSession!
+        
+        if(mpcSession.session.connectedPeers.count == 0){
+            StartView()
+        } else {
+            SpriteView(scene: PlatformScene)//, debugOptions: [.showsPhysics])
+                .edgesIgnoringSafeArea(.all)
+        }
         
     }
 }
