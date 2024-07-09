@@ -13,6 +13,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     var orangeFruitListCollected:[Bool] = []
     var blueFruitList:[SKSpriteNode] = []
     var orangeFruitList:[SKSpriteNode] = []
+    var fruitCounterLabel: SKLabelNode!
     
     var hero = HeroNode()
     var flame = SKSpriteNode()
@@ -102,6 +103,16 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         jumpButton.color = .clear
         switchButton.color = .clear
         
+        
+        // --- Fruit Counter initialization ---
+        fruitCounterLabel = SKLabelNode(fontNamed: "ArcadeClassic")
+        fruitCounterLabel.fontSize = 24
+        fruitCounterLabel.fontColor = .white
+        fruitCounterLabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - 50)
+        addChild(fruitCounterLabel)
+        
+        updateFruitCounter()
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -168,6 +179,10 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)
             }
         } else if bodyA == PhysicsCategory.orangeHero {
+            if (bodyB == PhysicsCategory.orangePlatform) || (bodyB == PhysicsCategory.ground && (-1.1)...(-0.9) ~= contact.contactNormal.dy) {
+                isJumping = false
+                
+            }
             if (bodyB == PhysicsCategory.orangeFruit) {
                 handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)
             }
@@ -426,8 +441,34 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 node.removeFromParent()
                 print("Orange fruit at index \(index) collected.\nNew Orange Fruit Array: \(orangeFruitListCollected)")
             }
+            
+            updateFruitCounter()
         }
     }
+    
+    func updateFruitCounter() {
+        let totalBlueFruits = blueFruitListCollected.count
+        let totalOrangeFruits = orangeFruitListCollected.count
+        let collectedBlueFruits = blueFruitListCollected.filter { $0 }.count
+        let collectedOrangeFruits = orangeFruitListCollected.filter { $0 }.count
+
+        let counterText = "Blue: \(collectedBlueFruits) / \(totalBlueFruits)   Orange: \(collectedOrangeFruits) / \(totalOrangeFruits)"
+        
+        let attributedString = NSMutableAttributedString(string: counterText)
+        
+        let font = UIFont(name: "ArcadeClassic", size: 50)
+        
+        let blueRange = (counterText as NSString).range(of: "Blue: \(collectedBlueFruits) / \(totalBlueFruits)")
+        let orangeRange = (counterText as NSString).range(of: "Orange: \(collectedOrangeFruits) / \(totalOrangeFruits)")
+        
+        attributedString.addAttribute(.font, value: font!, range: NSRange(location: 0, length: counterText.count))
+        attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: blueRange)
+        attributedString.addAttribute(.foregroundColor, value: UIColor.orange, range: orangeRange)
+        
+        fruitCounterLabel.attributedText = attributedString
+    }
+
+
 
 
 }
