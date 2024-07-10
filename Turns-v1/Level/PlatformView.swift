@@ -11,6 +11,7 @@ import SpriteKit
 struct PlatformView: View {
     @Environment(ViewModel.self) var viewModel
     @Environment(Router.self) var router
+    //@Bindable var zIndex: ViewModel
     
     var PlatformScene: SKScene {
         let scene = SKScene(fileNamed: "PlatformScene")
@@ -29,12 +30,18 @@ struct PlatformView: View {
                 .environment(router)
                 .environment(viewModel)
         } else {
-            SpriteView(scene: PlatformScene)//, debugOptions: [.showsPhysics])
-                .edgesIgnoringSafeArea(.all)
-                .onAppear(perform: {
-                    // Injection
-                    ViewModelInjected.viewModel = viewModel
-                })
+            ZStack{
+                SpriteView(scene: PlatformScene)//, debugOptions: [.showsPhysics])
+                    .edgesIgnoringSafeArea(.all)
+                    .onAppear(perform: {
+                        // Injection
+                        ViewModelInjected.viewModel = viewModel
+                    })
+                WaitingView()
+                    .environment(router)
+                    .environment(viewModel)
+                    .zIndex(viewModel.appState.isPlaying ? -1.0 : 1.0)
+            }
         }
         
     }

@@ -17,7 +17,7 @@ class ViewModel {
     
     init(mpcInterface: MPCInterface) {
         self.currentState = zeroState
-        self.appState = AppState(isGuest: false)
+        self.appState = AppState(isGuest: false, isPlaying: true)
         self.mpcInterface = mpcInterface
     }
 }

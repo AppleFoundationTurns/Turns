@@ -38,6 +38,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         
         host = !viewModel.appState.isGuest
         viewModel.currentState.username = host ? "Host" : "Guest"
+        viewModel.appState.isPlaying = host
         let blueFruit = Collectable.init(label: "Blue", collectables: [])
         let orangeFruit = Collectable.init(label: "Orange", collectables: [])
         viewModel.currentState.collectables.append(blueFruit)
@@ -189,6 +190,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             
         if(viewModel.currentState.newInfo){ // Se ho ricevuto un nuovo pacchetto
             viewModel.currentState.newInfo = false
+            viewModel.appState.isPlaying = true
             
             hero.position.x = CGFloat(viewModel.currentState.positionX)
             hero.position.y = CGFloat(viewModel.currentState.positionY)
@@ -242,6 +244,10 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         isTouchPressing = true
         for touch in touches {
             multiTouchList[touch] = findButtonPressed(from: touch)
+            let loc = touch.location(in: self)
+            if switchButton.frame.contains(loc) {
+                switchButton.color = .black
+            }
         }
         
     }
@@ -254,9 +260,10 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             multiTouchList.removeValue(forKey: touch)
             let loc = touch.location(in: self)
             if switchButton.frame.contains(loc) {
-                viewModel.currentState.newInfo = true;
+                viewModel.currentState.newInfo = true
                 viewModel.mpcInterface.sendState()
-                viewModel.currentState.newInfo = false;
+                viewModel.currentState.newInfo = false
+                viewModel.appState.isPlaying = false
             }
         }
         if multiTouchList.isEmpty { isTouchPressing = false }

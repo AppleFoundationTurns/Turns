@@ -9,4 +9,5 @@ import Foundation
 
 struct AppState {
     var isGuest: Bool
+    var isPlaying: Bool
 }

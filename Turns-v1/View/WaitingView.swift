@@ -15,6 +15,7 @@ struct WaitingView: View {
     
     var body: some View {
         ZStack{
+            
             BackView()
             
             VStack {
