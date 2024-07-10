@@ -55,6 +55,7 @@ struct ListFriend: View {
                             
                             Image((Int.random(in: 0...1)) % 2 == 0 ? "Dude" : "DudeO")
                                 .resizable()
+                                .interpolation(.none)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: size, height: size)
                                 .background(Color.blue)

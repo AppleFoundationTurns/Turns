@@ -35,6 +35,7 @@ struct EntryView: View {
                     ZStack{
                         Image("bottone")
                             .resizable()
+                            .interpolation(.none)
                             .scaledToFit()
                             .frame(width: 200, height: 200)
                         
@@ -46,6 +47,7 @@ struct EntryView: View {
                             
                             Image("Play")
                                 .resizable()
+                                .interpolation(.none)
                                 .scaledToFit()
                                 .frame(width: 35, height: 35)
                         }
