@@ -13,6 +13,6 @@
 		<string>_mpc-service._tcp</string>
 	</array>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>This app needs multipeer connectivity to work</string>
+	<string>This app needs multipeer connectivity to work. If you do not agree, you can go to General-&gt;Privacy and Security-&gt;Local Network to enable permissions</string>
 </dict>
 </plist>
