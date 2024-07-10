@@ -36,8 +36,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         
         host = !viewModel.appState.isGuest
         viewModel.currentState.username = host ? "Host" : "Guest"
-        viewModel.currentState.collectables[0].label = "Blue"
-        viewModel.currentState.collectables[1].label = "Orange"
+        let blueFruit = Collectable.init(label: "Blue", collectables: [])
+        let orangeFruit = Collectable.init(label: "Orange", collectables: [])
+        viewModel.currentState.collectables.append(blueFruit)
+        viewModel.currentState.collectables.append(orangeFruit)
+        
         
         // --- Add physics to scene, no friction, no out of frame ---
         let sceneBody = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -156,8 +159,6 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                     if hero.actualAnimation != hero.animations.jump {
                         hero.animate(animation: hero.animations.jump, speed: 0.1)
                     }
-                case (_, .swap):
-                    viewModel.mpcInterface.sendState()
                 default:
                     continue
                 }
@@ -229,6 +230,10 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         for touch in touches {
             guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
             multiTouchList.removeValue(forKey: touch)
+            let loc = touch.location(in: self)
+            if switchButton.frame.contains(loc) {
+                viewModel.mpcInterface.sendState()
+            }
         }
         if multiTouchList.isEmpty { isTouchPressing = false }
         leftButton.color = .clear
@@ -238,11 +243,15 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        isTouchPressing = false
         for touch in touches {
             guard let _ = multiTouchList[touch] else { fatalError("Touch just ended but not found into multiTouchList") }
             multiTouchList.removeValue(forKey: touch)
         }
+        if multiTouchList.isEmpty { isTouchPressing = false }
+        leftButton.color = .clear
+        rightButton.color = .clear
+        jumpButton.color = .clear
+        switchButton.color = .clear
     }
     
     /// Return a string indicating what to do if touching on a specific frame
@@ -261,11 +270,6 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         else if jumpButton.frame.contains(location) {
             jumpButton.color = .black
             return (hero.direction, .jump)
-        }
-        else if switchButton.frame.contains(location) {
-            switchButton.color = .black
-            //print("Switch button not implemented yet")
-            return (hero.direction, .swap)
         }
         return (nil, nil)
     }
