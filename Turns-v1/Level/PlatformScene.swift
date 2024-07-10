@@ -130,7 +130,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // --- TEST Multipeer Connection - TODO REMOVE ---
-        print("currentState: \(viewModel.currentState.username)")
+        //print("currentState: \(viewModel.currentState.username)")
         // --- TEST Multipeer Connection - TODO REMOVE ---
         if isTouchPressing {
             for (_, activity) in multiTouchList {

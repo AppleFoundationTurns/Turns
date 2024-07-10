@@ -21,7 +21,7 @@ struct PairView: View {
         ZStack{
             if(!mpcInterface.isPaired()){
                 ZStack{
-                    BackView().padding(.bottom, 430)//.aspectRatio(contentMode: .fill)
+                    BackView().offset(y: -40)//.aspectRatio(contentMode: .fill)
                     ListFriend()
                         .alert(
                             "Received an invite from \(mpcInterface.mpcSession!.recvdInviteFrom?.displayName ?? "ERR")!",
