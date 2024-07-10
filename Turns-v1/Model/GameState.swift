@@ -21,6 +21,8 @@ struct GameState: Codable {
     var velocityX: Float
     var velocityY: Float
     
+    var newInfo: Bool
+    
     init(username: String, peerName: String, positionX: Float, positionY: Float, collectables: [Collectable], checkpoint: Int, velocityX: Float, velocityY: Float) {
         self.username = username
         self.peerName = peerName
@@ -30,6 +32,7 @@ struct GameState: Codable {
         self.checkpoint = checkpoint
         self.velocityX = velocityX
         self.velocityY = velocityY
+        self.newInfo = false
     }
     
     static func encodeJSON(state: GameState) -> String {

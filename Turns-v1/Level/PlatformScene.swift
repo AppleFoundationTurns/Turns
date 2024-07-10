@@ -177,6 +177,18 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             else {
                 body.collisionBitMask |= host ? PhysicsCategory.bluePlatform : PhysicsCategory.orangePlatform
             }
+            
+            if(viewModel.currentState.newInfo){ // Se ho ricevuto un nuovo pacchetto
+                viewModel.currentState.newInfo = false
+                
+                hero.position.x = CGFloat(viewModel.currentState.positionX)
+                hero.position.y = CGFloat(viewModel.currentState.positionY)
+                hero.physicsBody!.velocity.dx = CGFloat(viewModel.currentState.velocityX)
+                hero.physicsBody!.velocity.dy = CGFloat(viewModel.currentState.velocityY)
+                
+                updateCollectables(blueFruitListCollected: viewModel.currentState.collectables[0].collectables, orangeFruitListCollected: viewModel.currentState.collectables[1].collectables)
+                
+            }
         }
         
         viewModel.currentState.positionX = Float(hero.position.x)
@@ -232,7 +244,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             multiTouchList.removeValue(forKey: touch)
             let loc = touch.location(in: self)
             if switchButton.frame.contains(loc) {
+                viewModel.currentState.newInfo = true;
                 viewModel.mpcInterface.sendState()
+                viewModel.currentState.newInfo = false;
             }
         }
         if multiTouchList.isEmpty { isTouchPressing = false }
