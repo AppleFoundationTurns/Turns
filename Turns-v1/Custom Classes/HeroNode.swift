@@ -38,7 +38,7 @@ class HeroNode: SKSpriteNode {
         self.animations = .init(idle: textures, jump: [], run: [])
         super.init(texture: firstTexture, color: .clear, size: firstTexture!.size() )
         self.name = "Hero"
-        self.position = CGPoint(x: -450, y: -50)
+        self.position = CGPoint(x: -650, y: +20)
         self.anchorPoint = CGPoint(x: 0.5, y: 0)
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width * 0.7, height: self.size.height * 0.7), center: CGPoint(x: 0, y: self.size.height * 0.7 / 2))
         self.physicsBody?.isDynamic = true

@@ -13,7 +13,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     var orangeFruitListCollected:[Bool] = []
     var blueFruitList:[SKSpriteNode] = []
     var orangeFruitList:[SKSpriteNode] = []
-    var fruitCounterLabel: SKLabelNode!
+    
+    var blueFruitLabel: SKLabelNode = SKLabelNode()
+    var orangeFruitLabel: SKLabelNode = SKLabelNode()
     
     var host:Bool = true
     var hero = HeroNode()
@@ -118,20 +120,26 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         
         
         // --- Fruit Counter initialization ---
-        fruitCounterLabel = SKLabelNode(fontNamed: "ArcadeClassic")
-        fruitCounterLabel.fontSize = 24
-        fruitCounterLabel.fontColor = .white
-        fruitCounterLabel.position = CGPoint(x: self.frame.midX, y: self.frame.maxY - 50)
-        addChild(fruitCounterLabel)
+        let blueFruitIcon = self.childNode(withName: "blueFruitIcon") as! SKSpriteNode
+        let orangeFruitIcon = self.childNode(withName: "orangeFruitIcon") as! SKSpriteNode
+        blueFruitIcon.texture!.filteringMode = .nearest
+        orangeFruitIcon.texture!.filteringMode = .nearest
+        
+        blueFruitLabel = blueFruitIcon.childNode(withName: "blueFruitLabel") as! SKLabelNode
+        orangeFruitLabel = orangeFruitIcon.childNode(withName: "orangeFruitLabel") as! SKLabelNode
+        
+        blueFruitLabel.fontName = "ArcadeClassic"
+        orangeFruitLabel.fontName = "ArcadeClassic"
+        blueFruitLabel.fontColor = .blue
+        orangeFruitLabel.fontColor = .orange
+        blueFruitLabel.fontSize = 50
+        orangeFruitLabel.fontSize = 50
         
         updateFruitCounter()
         
     }
     
     override func update(_ currentTime: TimeInterval) {
-        // --- TEST Multipeer Connection - TODO REMOVE ---
-        //print("currentState: \(viewModel.currentState.username)")
-        // --- TEST Multipeer Connection - TODO REMOVE ---
         if isTouchPressing {
             for (_, activity) in multiTouchList {
                 switch activity {
@@ -177,19 +185,21 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             else {
                 body.collisionBitMask |= host ? PhysicsCategory.bluePlatform : PhysicsCategory.orangePlatform
             }
-            
-            if(viewModel.currentState.newInfo){ // Se ho ricevuto un nuovo pacchetto
-                viewModel.currentState.newInfo = false
-                
-                hero.position.x = CGFloat(viewModel.currentState.positionX)
-                hero.position.y = CGFloat(viewModel.currentState.positionY)
-                hero.physicsBody!.velocity.dx = CGFloat(viewModel.currentState.velocityX)
-                hero.physicsBody!.velocity.dy = CGFloat(viewModel.currentState.velocityY)
-                
-                updateCollectables(blueFruitListCollected: viewModel.currentState.collectables[0].collectables, orangeFruitListCollected: viewModel.currentState.collectables[1].collectables)
-                
-            }
         }
+            
+        if(viewModel.currentState.newInfo){ // Se ho ricevuto un nuovo pacchetto
+            viewModel.currentState.newInfo = false
+            
+            hero.position.x = CGFloat(viewModel.currentState.positionX)
+            hero.position.y = CGFloat(viewModel.currentState.positionY)
+            hero.physicsBody!.velocity.dx = CGFloat(viewModel.currentState.velocityX)
+            hero.physicsBody!.velocity.dy = CGFloat(viewModel.currentState.velocityY)
+            
+            updateCollectables(blueFruitListCollected: viewModel.currentState.collectables[0].collectables, orangeFruitListCollected: viewModel.currentState.collectables[1].collectables)
+            updateFruitCounter()
+            
+        }
+        
         
         viewModel.currentState.positionX = Float(hero.position.x)
         viewModel.currentState.positionY = Float(hero.position.y)
@@ -467,6 +477,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 //orangeFruitList.remove(at: index)
             }
         }
+        self.blueFruitListCollected = blueFruitListCollected
+        self.orangeFruitListCollected = orangeFruitListCollected
     }
     
     func handleContactBetweenPlayerAndFruit(playerBody: SKPhysicsBody, fruitBody: SKPhysicsBody) {
@@ -495,7 +507,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         let totalOrangeFruits = orangeFruitListCollected.count
         let collectedBlueFruits = blueFruitListCollected.filter { $0 }.count
         let collectedOrangeFruits = orangeFruitListCollected.filter { $0 }.count
+        
+        blueFruitLabel.text = "\(collectedBlueFruits) / \(totalBlueFruits)"
+        orangeFruitLabel.text = "\(collectedOrangeFruits) / \(totalOrangeFruits)"
 
+        /*
         let counterText = "Blue: \(collectedBlueFruits) / \(totalBlueFruits)   Orange: \(collectedOrangeFruits) / \(totalOrangeFruits)"
         
         let attributedString = NSMutableAttributedString(string: counterText)
@@ -509,7 +525,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         attributedString.addAttribute(.foregroundColor, value: UIColor.blue, range: blueRange)
         attributedString.addAttribute(.foregroundColor, value: UIColor.orange, range: orangeRange)
         
-        fruitCounterLabel.attributedText = attributedString
+        fruitCounterLabel.attributedText = attributedString*/
         
         viewModel.currentState.collectables[0].collectables = blueFruitListCollected
         viewModel.currentState.collectables[1].collectables = orangeFruitListCollected
