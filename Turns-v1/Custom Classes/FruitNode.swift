@@ -15,6 +15,6 @@ class FruitNode : SKSpriteNode {
         let scale = SKAction.scale(by: 1.5, duration: 0.2)
         let fadeOut = SKAction.fadeOut(withDuration: 0.2)
         let sound = SKAction.playSoundFileNamed("", waitForCompletion: false)
-        let collectSequence = SKAction.sequence([scale, fadeOut])
+        let collectSequence = SKAction.sequence([sound, scale, fadeOut])
     }
 }
