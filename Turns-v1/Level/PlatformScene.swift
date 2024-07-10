@@ -540,7 +540,4 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         viewModel.currentState.collectables[1].collectables = orangeFruitListCollected
     }
 
-
-
-
 }
