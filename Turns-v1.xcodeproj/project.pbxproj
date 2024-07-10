@@ -11,9 +11,9 @@
 		7A0890AA2C35A77F00F059CC /* HeroNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0890A62C35A77F00F059CC /* HeroNode.swift */; };
 		7A0890AE2C35A83B00F059CC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7A0890AD2C35A83B00F059CC /* README.md */; };
 		7A0890B02C35A85900F059CC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7A0890AF2C35A85900F059CC /* .gitignore */; };
+		7A11D6722C3F388C00394BD1 /* blueRunFix.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7A11D6712C3F388C00394BD1 /* blueRunFix.atlas */; };
 		7A21F9A32C3E90C800FDF0C4 /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21F9A22C3E90C800FDF0C4 /* WaitingView.swift */; };
 		7A21F9A52C3EC6F100FDF0C4 /* SpinningDude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21F9A42C3EC6F100FDF0C4 /* SpinningDude.swift */; };
-		7A6AF3DF2C3F31F0005486B6 /* blueRunFix.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7A6AF3DE2C3F31F0005486B6 /* blueRunFix.atlas */; };
 		7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */; };
 		7ACB9F7E2C34AB940019FB02 /* PlatformScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */; };
 		7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */; };
@@ -56,9 +56,9 @@
 		7A0890A62C35A77F00F059CC /* HeroNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroNode.swift; sourceTree = "<group>"; };
 		7A0890AD2C35A83B00F059CC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7A0890AF2C35A85900F059CC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7A11D6712C3F388C00394BD1 /* blueRunFix.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = blueRunFix.atlas; sourceTree = "<group>"; };
 		7A21F9A22C3E90C800FDF0C4 /* WaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
 		7A21F9A42C3EC6F100FDF0C4 /* SpinningDude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningDude.swift; sourceTree = "<group>"; };
-		7A6AF3DE2C3F31F0005486B6 /* blueRunFix.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = blueRunFix.atlas; sourceTree = "<group>"; };
 		7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlatformScene.sks; sourceTree = "<group>"; };
 		7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformScene.swift; sourceTree = "<group>"; };
 		7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformView.swift; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 				F29227182C3169E100454AD0 /* Fonts */,
 				F22295712C373AE8008AE840 /* blueIdle.atlas */,
 				F22295732C373AEE008AE840 /* blueJump.atlas */,
-				7A6AF3DE2C3F31F0005486B6 /* blueRunFix.atlas */,
+				7A11D6712C3F388C00394BD1 /* blueRunFix.atlas */,
 				F22295782C374AFB008AE840 /* Flame.atlas */,
 				F2D6C8AB2C3C6089004180A4 /* orangeIdle.atlas */,
 				F2D6C8A92C3C6089004180A4 /* orangeJump.atlas */,
@@ -345,7 +345,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A6AF3DF2C3F31F0005486B6 /* blueRunFix.atlas in Resources */,
 				F29227202C31ABA600454AD0 /* PlatformTiles.sks in Resources */,
 				F22295722C373AE8008AE840 /* blueIdle.atlas in Resources */,
 				F29227102C2F337800454AD0 /* MenuScene.sks in Resources */,
@@ -353,6 +352,7 @@
 				F22295742C373AEE008AE840 /* blueJump.atlas in Resources */,
 				F29227062C2F322700454AD0 /* Preview Assets.xcassets in Resources */,
 				7A0890AE2C35A83B00F059CC /* README.md in Resources */,
+				7A11D6722C3F388C00394BD1 /* blueRunFix.atlas in Resources */,
 				F2D6C8AC2C3C6089004180A4 /* orangeJump.atlas in Resources */,
 				F29227032C2F322700454AD0 /* Assets.xcassets in Resources */,
 				F2D6C8AD2C3C6089004180A4 /* orangeRun.atlas in Resources */,
