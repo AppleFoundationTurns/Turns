@@ -431,6 +431,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
 
                     let tileArray = tileDefinition.textures
                     let tileTexture = tileArray[0]
+                    tileTexture.filteringMode = .nearest
                     let x = CGFloat(col) * tileSize.width * scaleFactor - halfWidth + (tileSize.width * scaleFactor / 2)
                     let y = CGFloat(row) * tileSize.height * scaleFactor - halfHeight + (tileSize.height * scaleFactor / 2)
 
@@ -448,6 +449,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                     tileNode.physicsBody?.categoryBitMask = categoryBitMask
                     tileNode.physicsBody?.collisionBitMask = collisionBitMask
                     tileNode.physicsBody?.contactTestBitMask = contactTestBitMask
+                    
                     
                     fruitList.append(tileNode)
                     fruitCollectedList.append(false)

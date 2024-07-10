@@ -17,6 +17,7 @@ struct WaitingView: View {
         ZStack{
             
             BackView()
+                .offset(y:-40)
             
             VStack {
                 Image("shadowedLogo")
