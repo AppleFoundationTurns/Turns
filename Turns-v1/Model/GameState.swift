@@ -63,6 +63,6 @@ struct GameState: Codable {
 }
 
 struct Collectable: Codable {
-    private var label: String
-    private var collectables: [Bool]
+    var label: String
+    var collectables: [Bool]
 }

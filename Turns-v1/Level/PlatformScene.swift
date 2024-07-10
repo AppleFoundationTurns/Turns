@@ -33,9 +33,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         // --- ViewModel Initialization ---
         viewModel = ViewModelInjected.viewModel as! ViewModel
-        viewModel.currentState.username = "Init"
         
         host = !viewModel.appState.isGuest
+        viewModel.currentState.username = host ? "Host" : "Guest"
+        viewModel.currentState.collectables[0].label = "Blue"
+        viewModel.currentState.collectables[1].label = "Orange"
         
         // --- Add physics to scene, no friction, no out of frame ---
         let sceneBody = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -126,33 +128,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         // --- TEST Multipeer Connection - TODO REMOVE ---
         print("currentState: \(viewModel.currentState.username)")
-        if(viewModel.currentState.username == "Left"){
-            hero.action = .move
-            hero.physicsBody?.applyForce(CGVector(dx: -80, dy: 0))
-            if hero.actualAnimation != hero.animations.run || hero.direction != .left {
-                hero.direction = .left
-                hero.animate(animation: hero.animations.run, speed: 0.08)
-            }
-            viewModel.currentState.username = "init"
-        }
-        if(viewModel.currentState.username == "Right"){
-            hero.action = .move
-            hero.physicsBody?.applyForce(CGVector(dx: 80, dy: 0))
-            if hero.actualAnimation != hero.animations.run || hero.direction != .right {
-                hero.direction = .right
-                hero.animate(animation: hero.animations.run, speed: 0.08)
-            }
-            viewModel.currentState.username = "init"
-        }
         // --- TEST Multipeer Connection - TODO REMOVE ---
         if isTouchPressing {
             for (_, activity) in multiTouchList {
                 switch activity {
                 case (.left, .move):
-                    // --- TEST Multipeer Connection - TODO REMOVE ---
-                    viewModel.currentState.username = "Left"
-                    viewModel.mpcInterface.sendState()
-                    // --- TEST Multipeer Connection - TODO REMOVE ---
                     hero.action = .move
                     hero.physicsBody?.applyForce(CGVector(dx: -80, dy: 0))
                     if hero.actualAnimation != hero.animations.run || hero.direction != .left {
@@ -160,10 +140,6 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                         hero.animate(animation: hero.animations.run, speed: 0.08)
                     }
                 case (.right, .move):
-                    // --- TEST Multipeer Connection - TODO REMOVE ---
-                    viewModel.currentState.username = "Right"
-                    viewModel.mpcInterface.sendState()
-                    // --- TEST Multipeer Connection - TODO REMOVE ---
                     hero.action = .move
                     hero.physicsBody?.applyForce(CGVector(dx: 80, dy: 0))
                     if hero.actualAnimation != hero.animations.run || hero.direction != .right {
@@ -180,6 +156,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                     if hero.actualAnimation != hero.animations.jump {
                         hero.animate(animation: hero.animations.jump, speed: 0.1)
                     }
+                case (_, .swap):
+                    viewModel.mpcInterface.sendState()
                 default:
                     continue
                 }
@@ -199,6 +177,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 body.collisionBitMask |= host ? PhysicsCategory.bluePlatform : PhysicsCategory.orangePlatform
             }
         }
+        
+        viewModel.currentState.positionX = Float(hero.position.x)
+        viewModel.currentState.positionY = Float(hero.position.y)
+        viewModel.currentState.velocityX = Float(hero.physicsBody!.velocity.dx)
+        viewModel.currentState.velocityY = Float(hero.physicsBody!.velocity.dy)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -281,8 +264,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         }
         else if switchButton.frame.contains(location) {
             switchButton.color = .black
-            print("Switch button not implemented yet")
-            return (nil,nil)
+            //print("Switch button not implemented yet")
+            return (hero.direction, .swap)
         }
         return (nil, nil)
     }
@@ -509,6 +492,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         attributedString.addAttribute(.foregroundColor, value: UIColor.orange, range: orangeRange)
         
         fruitCounterLabel.attributedText = attributedString
+        
+        viewModel.currentState.collectables[0].collectables = blueFruitListCollected
+        viewModel.currentState.collectables[1].collectables = orangeFruitListCollected
     }
 
 

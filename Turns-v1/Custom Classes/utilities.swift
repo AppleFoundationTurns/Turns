@@ -11,6 +11,7 @@ enum Action {
     case idle
     case move
     case jump
+    case swap
 }
 
 enum Direction {
