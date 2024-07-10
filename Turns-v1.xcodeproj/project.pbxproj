@@ -43,6 +43,7 @@
 		F2B77F512C3D4A9000FDFDBF /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B77F492C3D4A9000FDFDBF /* StartView.swift */; };
 		F2B77F562C3D4F4B00FDFDBF /* PairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B77F552C3D4F4B00FDFDBF /* PairView.swift */; };
 		F2B77F5A2C3D50D000FDFDBF /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B77F592C3D50D000FDFDBF /* EntryView.swift */; };
+		F2CA6D7F2C3E8ABC00220B64 /* FruitNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CA6D7E2C3E8ABC00220B64 /* FruitNode.swift */; };
 		F2D6C8AC2C3C6089004180A4 /* orangeJump.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2D6C8A92C3C6089004180A4 /* orangeJump.atlas */; };
 		F2D6C8AD2C3C6089004180A4 /* orangeRun.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2D6C8AA2C3C6089004180A4 /* orangeRun.atlas */; };
 		F2D6C8AE2C3C6089004180A4 /* orangeIdle.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F2D6C8AB2C3C6089004180A4 /* orangeIdle.atlas */; };
@@ -87,6 +88,7 @@
 		F2B77F522C3D4E2800FDFDBF /* ArcadeClassic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArcadeClassic.ttf; sourceTree = "<group>"; };
 		F2B77F552C3D4F4B00FDFDBF /* PairView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PairView.swift; sourceTree = "<group>"; };
 		F2B77F592C3D50D000FDFDBF /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
+		F2CA6D7E2C3E8ABC00220B64 /* FruitNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitNode.swift; sourceTree = "<group>"; };
 		F2D6C8A92C3C6089004180A4 /* orangeJump.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = orangeJump.atlas; sourceTree = "<group>"; };
 		F2D6C8AA2C3C6089004180A4 /* orangeRun.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = orangeRun.atlas; sourceTree = "<group>"; };
 		F2D6C8AB2C3C6089004180A4 /* orangeIdle.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = orangeIdle.atlas; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				7A0890A62C35A77F00F059CC /* HeroNode.swift */,
 				F23C47392C39A5BE00B1F0A6 /* FlameNode.swift */,
 				F23C473B2C39A5ED00B1F0A6 /* utilities.swift */,
+				F2CA6D7E2C3E8ABC00220B64 /* FruitNode.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 			files = (
 				F2B77F562C3D4F4B00FDFDBF /* PairView.swift in Sources */,
 				F292270D2C2F335000454AD0 /* MenuScene.swift in Sources */,
+				F2CA6D7F2C3E8ABC00220B64 /* FruitNode.swift in Sources */,
 				F2B77F512C3D4A9000FDFDBF /* StartView.swift in Sources */,
 				F2B77F502C3D4A9000FDFDBF /* SenderView.swift in Sources */,
 				7ACB9F7E2C34AB940019FB02 /* PlatformScene.swift in Sources */,
