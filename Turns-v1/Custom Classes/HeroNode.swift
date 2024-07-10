@@ -12,6 +12,7 @@ class HeroNode: SKSpriteNode {
     var actualAnimation: [SKTexture]
     var action: Action = .idle
     var direction: Direction = .right
+    var animations: Animation
     private var actualScale = 1.0
     
     override func setScale(_ scale: CGFloat) {
@@ -20,7 +21,7 @@ class HeroNode: SKSpriteNode {
     }
     
     // init Hero with the atlas [reccommended: Idle] and animate it. Set scale and default physics.
-    init(atlasName: String, scale: CGFloat = 1.0) {
+    init(atlasName: String, scale: CGFloat = 1.0, host: Bool = true) {
         let atlas = SKTextureAtlas(named: atlasName)
         var textures: [SKTexture] = []
         for i in  1...atlas.textureNames.count {
@@ -34,6 +35,7 @@ class HeroNode: SKSpriteNode {
         allAnimations[atlasName] = textures
         let firstTexture = allAnimations[atlasName]!.first
         self.actualAnimation = allAnimations[atlasName]!
+        self.animations = .init(idle: textures, jump: [], run: [])
         super.init(texture: firstTexture, color: .clear, size: firstTexture!.size() )
         self.name = "Hero"
         self.position = CGPoint(x: -450, y: -50)
@@ -44,7 +46,7 @@ class HeroNode: SKSpriteNode {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.mass = 0.1
         self.physicsBody?.restitution = 0
-        self.physicsBody?.categoryBitMask = PhysicsCategory.blueHero
+        self.physicsBody?.categoryBitMask = host ? PhysicsCategory.blueHero : PhysicsCategory.orangeHero
         self.physicsBody?.collisionBitMask = PhysicsCategory.ground
         self.physicsBody?.contactTestBitMask = PhysicsCategory.all
         self.physicsBody?.usesPreciseCollisionDetection = false
@@ -62,7 +64,7 @@ class HeroNode: SKSpriteNode {
             fatalError("init(coder:) has not been implemented")
     }
     
-    func addAtlas(atlasName: String) {
+    func addAtlas(atlasName: String) -> [SKTexture] {
         let atlas = SKTextureAtlas(named: atlasName)
         var textures: [SKTexture] = []
         for i in  1...atlas.textureNames.count {
@@ -74,6 +76,7 @@ class HeroNode: SKSpriteNode {
             }())
         }
         allAnimations[atlasName] = textures
+        return textures
     }
     
     func animate(animation: [SKTexture], speed: CGFloat = 0.2) {

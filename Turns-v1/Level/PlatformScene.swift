@@ -15,6 +15,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     var orangeFruitList:[SKSpriteNode] = []
     var fruitCounterLabel: SKLabelNode!
     
+    var host:Bool = true
     var hero = HeroNode()
     var flame = SKSpriteNode()
     
@@ -34,6 +35,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         viewModel = ViewModelInjected.viewModel as! ViewModel
         viewModel.currentState.username = "Init"
         
+        host = !viewModel.appState.isGuest
+        
         // --- Add physics to scene, no friction, no out of frame ---
         let sceneBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody = sceneBody
@@ -42,9 +45,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         self.view?.isMultipleTouchEnabled = true
         
         // --- Hero Initialization ---
-        hero = HeroNode(atlasName: "blueIdle", scale: 2.0)
-        hero.addAtlas(atlasName: "blueJump")
-        hero.addAtlas(atlasName: "blueRun")
+        hero = HeroNode(atlasName: host ? "blueIdle" : "orangeIdle", scale: 2.0, host: host)
+        hero.animations.jump = hero.addAtlas(atlasName: host ? "blueJump" : "orangeJump")
+        hero.animations.run = hero.addAtlas(atlasName: host ? "blueRun" : "orangeRun")
         self.addChild(hero)
         
         // --- Flame Initialization ---
@@ -126,18 +129,18 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         if(viewModel.currentState.username == "Left"){
             hero.action = .move
             hero.physicsBody?.applyForce(CGVector(dx: -80, dy: 0))
-            if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .left {
+            if hero.actualAnimation != hero.animations.run || hero.direction != .left {
                 hero.direction = .left
-                hero.animate(animation: hero.allAnimations["blueRun"]!, speed: 0.08)
+                hero.animate(animation: hero.animations.run, speed: 0.08)
             }
             viewModel.currentState.username = "init"
         }
         if(viewModel.currentState.username == "Right"){
             hero.action = .move
             hero.physicsBody?.applyForce(CGVector(dx: 80, dy: 0))
-            if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .right {
+            if hero.actualAnimation != hero.animations.run || hero.direction != .right {
                 hero.direction = .right
-                hero.animate(animation: hero.allAnimations["blueRun"]!, speed: 0.08)
+                hero.animate(animation: hero.animations.run, speed: 0.08)
             }
             viewModel.currentState.username = "init"
         }
@@ -152,9 +155,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                     // --- TEST Multipeer Connection - TODO REMOVE ---
                     hero.action = .move
                     hero.physicsBody?.applyForce(CGVector(dx: -80, dy: 0))
-                    if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .left {
+                    if hero.actualAnimation != hero.animations.run || hero.direction != .left {
                         hero.direction = .left
-                        hero.animate(animation: hero.allAnimations["blueRun"]!, speed: 0.08)
+                        hero.animate(animation: hero.animations.run, speed: 0.08)
                     }
                 case (.right, .move):
                     // --- TEST Multipeer Connection - TODO REMOVE ---
@@ -163,9 +166,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                     // --- TEST Multipeer Connection - TODO REMOVE ---
                     hero.action = .move
                     hero.physicsBody?.applyForce(CGVector(dx: 80, dy: 0))
-                    if hero.actualAnimation != hero.allAnimations["blueRun"]! || hero.direction != .right {
+                    if hero.actualAnimation != hero.animations.run || hero.direction != .right {
                         hero.direction = .right
-                        hero.animate(animation: hero.allAnimations["blueRun"]!, speed: 0.08)
+                        hero.animate(animation: hero.animations.run, speed: 0.08)
                     }
                 case (_, .jump):
                     hero.action = .jump
@@ -174,8 +177,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                         hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 50))
                         isJumping = true
                     }
-                    if hero.actualAnimation != hero.allAnimations["blueJump"]! {
-                        hero.animate(animation: hero.allAnimations["blueJump"]!, speed: 0.1)
+                    if hero.actualAnimation != hero.animations.jump {
+                        hero.animate(animation: hero.animations.jump, speed: 0.1)
                     }
                 default:
                     continue
@@ -184,16 +187,16 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         } else {
             hero.action = .idle
             hero.physicsBody?.applyForce(CGVector(dx: 0, dy: 0))
-            if hero.actualAnimation != hero.allAnimations["blueIdle"]! && !isJumping {
-                hero.animate(animation: hero.allAnimations["blueIdle"]!)
+            if hero.actualAnimation != hero.animations.idle && !isJumping {
+                hero.animate(animation: hero.animations.idle)
             }
         }
         
         if let body = hero.physicsBody {
             let dy = body.velocity.dy
-            if dy > 0 { body.collisionBitMask &= ~PhysicsCategory.bluePlatform }
+            if dy > 0 { body.collisionBitMask &= host ? ~PhysicsCategory.bluePlatform : ~PhysicsCategory.orangePlatform}
             else {
-                body.collisionBitMask |= PhysicsCategory.bluePlatform
+                body.collisionBitMask |= host ? PhysicsCategory.bluePlatform : PhysicsCategory.orangePlatform
             }
         }
     }
@@ -212,6 +215,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             if (bodyB == PhysicsCategory.blueFruit) {
                 handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)
             }
+            if (bodyB == PhysicsCategory.flame){
+                // End Game
+            }
         } else if bodyA == PhysicsCategory.orangeHero {
             if (bodyB == PhysicsCategory.orangePlatform) || (bodyB == PhysicsCategory.ground && (-1.1)...(-0.9) ~= contact.contactNormal.dy) {
                 isJumping = false
@@ -219,6 +225,9 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             }
             if (bodyB == PhysicsCategory.orangeFruit) {
                 handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)
+            }
+            if (bodyB == PhysicsCategory.flame){
+                // End Game
             }
         }
     }
