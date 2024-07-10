@@ -55,7 +55,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         // --- Hero Initialization ---
         hero = HeroNode(atlasName: host ? "blueIdle" : "orangeIdle", scale: 2.0, host: host)
         hero.animations.jump = hero.addAtlas(atlasName: host ? "blueJump" : "orangeJump")
-        hero.animations.run = hero.addAtlas(atlasName: host ? "blueRun" : "orangeRun")
+        hero.animations.run = hero.addAtlas(atlasName: host ? "blueRun2" : "orangeRun")
         self.addChild(hero)
         
         // --- Flame Initialization ---
