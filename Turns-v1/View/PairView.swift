@@ -10,7 +10,6 @@ import os
 
 struct PairView: View {
     
-    //@Environment(MPCInterface.self) var mpcInterface
     @Environment(ViewModel.self) var viewModel
     @Environment(Router.self) var router
     
@@ -31,6 +30,8 @@ struct PairView: View {
                             Button("Accept") {
                                 if (mpcInterface.mpcSession!.invitationHandler != nil) {
                                     mpcInterface.mpcSession!.invitationHandler!(true, mpcInterface.mpcSession!.session)
+                                    
+                                    viewModel.appState.isGuest = true
                                 }
                             }
                             Button("Reject") {

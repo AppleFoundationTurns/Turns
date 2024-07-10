@@ -7,5 +7,12 @@
 		<string>ArcadeClassic.ttf</string>
 		<string>alagard.ttf</string>
 	</array>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_mpc-service._udp</string>
+		<string>_mpc-service._tcp</string>
+	</array>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>This app needs multipeer connectivity to work</string>
 </dict>
 </plist>
