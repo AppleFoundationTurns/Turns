@@ -63,6 +63,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         let oldFlame = childNode(withName: "flame") as! SKSpriteNode
         flame = FlameNode(position: oldFlame.position, atlasName: "Flame", scale: 0.5)
         oldFlame.removeFromParent()
+        PhysicsCategory.flame = PhysicsCategory.flameBackup
         self.addChild(flame)
         
         // --- Platform initialization ---

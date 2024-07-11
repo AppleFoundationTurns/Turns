@@ -180,7 +180,7 @@ class TutorialScene: SKScene {
          table.addChild(scrittaTurn2)
         
         let blackBackGround = SKSpriteNode(color: .black, size: CGSize(width: 1334, height: 750))
-        blackBackGround.alpha = 0.9
+        blackBackGround.alpha = 0.7
         blackBackGround.position = CGPoint(x: -1334/2, y: -750/2)
         blackBackGround.anchorPoint = CGPoint(x: 0, y: 0)
         blackBackGround.zPosition = 10

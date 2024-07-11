@@ -40,4 +40,5 @@ struct PhysicsCategory{
     static var blueFruit: UInt32        = 0b01000000
     static var orangeFruit: UInt32      = 0b10000000
     static var all: UInt32              = UInt32.max
+    static var flameBackup: UInt32            = 0b00001000
 }

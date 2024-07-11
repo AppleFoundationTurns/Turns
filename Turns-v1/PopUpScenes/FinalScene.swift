@@ -61,7 +61,7 @@ class FinalScene: SKScene {
             self.addChild(table)
             
             let complimenti = SKLabelNode(fontNamed: "ArcadeClassic")
-            complimenti.text = "CONGRATULATIONS !"
+            complimenti.text = "CONGRATU LATIONS !"
             complimenti.fontSize = 90
             complimenti.fontColor = .black
             complimenti.position = CGPoint(x: 0, y: 240)
@@ -76,33 +76,48 @@ class FinalScene: SKScene {
             complimenti_shadow.position = CGPoint(x: 0, y: 5)
             complimenti.addChild(complimenti_shadow)
             
+            //IMMAGINE ANIMATA FIAMMELLA
+            let fiamma = SKSpriteNode(imageNamed: "flame1")
+            fiamma.texture?.filteringMode = .nearest
+            fiamma.position = CGPoint(x: -160, y: 170)
+            fiamma.zPosition = 15
+            fiamma.scale(to: CGSize(width: 80, height: 80))
+            let f1 = SKTexture(imageNamed: "flame1")
+            f1.filteringMode = .nearest
+            let f2 = SKTexture(imageNamed: "flame2")
+            f2.filteringMode = .nearest
+            //ANIMAZIONE
+            let action = SKAction.animate(with: [f1, f2], timePerFrame: 0.5)
+            fiamma.run(SKAction.repeatForever(action))
+            table.addChild(fiamma)
+            
+            let hasFlame = SKLabelNode(fontNamed: "ArcadeClassic")
+            hasFlame.text = ("rescued !")
+            hasFlame.fontSize = 65
+            hasFlame.position = CGPoint(x: 60, y: 150)
+            hasFlame.zPosition = 15
+            table.addChild(hasFlame)
+            
             let stats1 = SKLabelNode(fontNamed: "ArcadeClassic")
-            stats1.text = "Co llected  fruit:"
+            stats1.text = "Collected  fruits:"
             stats1.fontSize = 65
-            stats1.position = CGPoint(x: -150, y: 130)
+            stats1.position = CGPoint(x: 0, y: 30)
             stats1.zPosition = 15
             table.addChild(stats1)
             
             //uso array di esempio per verificare il corretto funzionamento di spawnFruit
-            let fruitB = spawnFruit(fruits: blueFruits, name: "blueFruit", xPos: -325, yPos: 90)
+            let fruitB = spawnFruit(fruits: blueFruits, name: "blueFruit", xPos: -280, yPos: -10)
             for fruitBlu in fruitB {
                 fruitBlu.zPosition = 15
                 table.addChild(fruitBlu)
             }
             
             //uso array di esempio per verificare il corretto funzionamento di spawnFruit
-            let fruit = spawnFruit(fruits: orangeFruits, name: "orangeFruit", xPos: -325, yPos: 30)
+            let fruit = spawnFruit(fruits: orangeFruits, name: "orangeFruit", xPos: 80, yPos: -10)
             for fruitOrange in fruit {
                 fruitOrange.zPosition = 15
                 table.addChild(fruitOrange)
             }
-            
-            let hasFlame = SKLabelNode(fontNamed: "ArcadeClassic")
-            hasFlame.text = ("Flame  rescued !")
-            hasFlame.fontSize = 65
-            hasFlame.position = CGPoint(x: -80, y: -100)
-            hasFlame.zPosition = 15
-            table.addChild(hasFlame)
             
             /*let stats2 = SKLabelNode(fontNamed: "ArcadeClassic")
              stats2.text = ("Time:")
@@ -115,7 +130,14 @@ class FinalScene: SKScene {
              time.fontSize = 100
              time.position = CGPoint(x: 0, y: -300)
              table.addChild(time) */
-            
+            if !allValuesTrue(array1: blueFruits, array2: orangeFruits) {
+                let allStar = SKLabelNode(fontNamed: "ArcadeClassic")
+                allStar.text = "Collect  them  all  to  earn  more  stars"
+                allStar.fontSize = 38
+                allStar.position = CGPoint(x: 0, y: -90)
+                allStar.zPosition = 15
+                table.addChild(allStar)
+            }
             
             let star_shadow = SKSpriteNode(imageNamed: "Star")
             star_shadow.texture?.filteringMode = .nearest
@@ -149,7 +171,7 @@ class FinalScene: SKScene {
             star2.texture?.filteringMode = .nearest
             star2.size = CGSize(width: 175, height: 175)
             star2.anchorPoint = CGPoint(x: -0.22, y: -0.22)
-            star2.isHidden = !calculateTotalFruit(fruitBlue: blueFruits, fruitOrange: orangeFruits, confront: 3)
+            star2.isHidden = !calculateTotalFruit(fruitBlue: blueFruits, fruitOrange: orangeFruits, confront: 4)
             star2.zPosition = 16
             star_shadow2.addChild(star2)
             
@@ -233,5 +255,16 @@ class FinalScene: SKScene {
         }
         
         return isVisible
+    }
+    
+    func allValuesTrue(array1: [Bool], array2: [Bool]) -> Bool {
+        // Verifica se tutti i valori in array1 sono true
+        let allTrueInArray1 = array1.allSatisfy { $0 }
+        
+        // Verifica se tutti i valori in array2 sono true
+        let allTrueInArray2 = array2.allSatisfy { $0 }
+        
+        // Restituisce true solo se tutti i valori in entrambi gli array sono true
+        return allTrueInArray1 && allTrueInArray2
     }
 }
