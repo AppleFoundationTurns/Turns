@@ -14,7 +14,7 @@ struct FinalView: View {
         var scene: SKScene {
             let scene = SKScene(fileNamed: "FinalScene")
             scene!.size = CGSize(width: 1334, height: 750)
-            scene?.scaleMode = .aspectFit
+            scene?.scaleMode = .aspectFill
             return scene!
         }
     var body: some View {

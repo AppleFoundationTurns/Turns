@@ -16,7 +16,7 @@ struct SpinningDude: View {
     
     var body: some View {
         //var size: CGFloat = 70
-        Image(color % 2 == 0 ? "Dude" : "DudeO")
+        Image(color % 2 == 0 ? "dudeBlue" : "dudeOrange")
             .resizable()
             .interpolation(.none)
         //.aspectRatio(contentMode: .fit)

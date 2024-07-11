@@ -18,6 +18,8 @@
 		7A1DE3BD2C3FCB90007A0634 /* FinalScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7A1DE3BC2C3FCB90007A0634 /* FinalScene.sks */; };
 		7A21F9A32C3E90C800FDF0C4 /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21F9A22C3E90C800FDF0C4 /* WaitingView.swift */; };
 		7A21F9A52C3EC6F100FDF0C4 /* SpinningDude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21F9A42C3EC6F100FDF0C4 /* SpinningDude.swift */; };
+		7AB65F642C4016B000BD7643 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB65F632C4016AF00BD7643 /* TutorialScene.swift */; };
+		7AB65F662C4016FB00BD7643 /* TutorialScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7AB65F652C4016FB00BD7643 /* TutorialScene.sks */; };
 		7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */; };
 		7ACB9F7E2C34AB940019FB02 /* PlatformScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */; };
 		7ACB9F802C34ADE00019FB02 /* PlatformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */; };
@@ -67,6 +69,8 @@
 		7A1DE3BC2C3FCB90007A0634 /* FinalScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FinalScene.sks; sourceTree = "<group>"; };
 		7A21F9A22C3E90C800FDF0C4 /* WaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
 		7A21F9A42C3EC6F100FDF0C4 /* SpinningDude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningDude.swift; sourceTree = "<group>"; };
+		7AB65F632C4016AF00BD7643 /* TutorialScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
+		7AB65F652C4016FB00BD7643 /* TutorialScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialScene.sks; sourceTree = "<group>"; };
 		7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlatformScene.sks; sourceTree = "<group>"; };
 		7ACB9F7D2C34AB940019FB02 /* PlatformScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformScene.swift; sourceTree = "<group>"; };
 		7ACB9F7F2C34ADE00019FB02 /* PlatformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformView.swift; sourceTree = "<group>"; };
@@ -131,10 +135,12 @@
 		7A1DE3B92C3FCADD007A0634 /* PopUpScenes */ = {
 			isa = PBXGroup;
 			children = (
-				7A1DE3B52C3FC07A007A0634 /* TutorialView.swift */,
 				7A1DE3B72C3FC2AE007A0634 /* FinalView.swift */,
 				7A1DE3BA2C3FCB33007A0634 /* FinalScene.swift */,
 				7A1DE3BC2C3FCB90007A0634 /* FinalScene.sks */,
+				7A1DE3B52C3FC07A007A0634 /* TutorialView.swift */,
+				7AB65F632C4016AF00BD7643 /* TutorialScene.swift */,
+				7AB65F652C4016FB00BD7643 /* TutorialScene.sks */,
 			);
 			path = PopUpScenes;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				F2D6C8AD2C3C6089004180A4 /* orangeRun.atlas in Resources */,
 				7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */,
 				F2D6C8AE2C3C6089004180A4 /* orangeIdle.atlas in Resources */,
+				7AB65F662C4016FB00BD7643 /* TutorialScene.sks in Resources */,
 				7A0890B02C35A85900F059CC /* .gitignore in Resources */,
 				F29227192C3169F800454AD0 /* alagard.ttf in Resources */,
 				F288E7B12C3D51EF0017668E /* ArcadeClassic.ttf in Resources */,
@@ -396,6 +403,7 @@
 				7A1DE3B82C3FC2AE007A0634 /* FinalView.swift in Sources */,
 				7A21F9A32C3E90C800FDF0C4 /* WaitingView.swift in Sources */,
 				F292270D2C2F335000454AD0 /* MenuScene.swift in Sources */,
+				7AB65F642C4016B000BD7643 /* TutorialScene.swift in Sources */,
 				F2CA6D7F2C3E8ABC00220B64 /* FruitNode.swift in Sources */,
 				7A1DE3BB2C3FCB33007A0634 /* FinalScene.swift in Sources */,
 				F2B77F512C3D4A9000FDFDBF /* StartView.swift in Sources */,

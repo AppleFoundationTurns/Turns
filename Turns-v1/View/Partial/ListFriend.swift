@@ -53,7 +53,7 @@ struct ListFriend: View {
                     label: {
                         HStack{
                             
-                            Image((Int.random(in: 0...1)) % 2 == 0 ? "Dude" : "DudeO")
+                            Image((Int.random(in: 0...1)) % 2 == 0 ? "dudeOrange" : "dudeOrange")
                                 .resizable()
                                 .interpolation(.none)
                                 .aspectRatio(contentMode: .fit)

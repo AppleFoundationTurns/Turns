@@ -69,7 +69,7 @@ class FinalScene: SKScene {
             table.addChild(complimenti)
             
             let complimenti_shadow = SKLabelNode(fontNamed: "ArcadeClassic")
-            complimenti_shadow.text = "CONGRATULATIONS !"
+            complimenti_shadow.text = "CONGRATU LATIONS !"
             complimenti_shadow.colorBlendFactor = 0
             //complimenti_shadow.fontColor = SKColor(hex: "#3174B5")
             complimenti_shadow.fontSize = 90
@@ -77,7 +77,7 @@ class FinalScene: SKScene {
             complimenti.addChild(complimenti_shadow)
             
             let stats1 = SKLabelNode(fontNamed: "ArcadeClassic")
-            stats1.text = "Collectibles:"
+            stats1.text = "Co llected  fruit:"
             stats1.fontSize = 65
             stats1.position = CGPoint(x: -150, y: 130)
             stats1.zPosition = 15
@@ -98,7 +98,7 @@ class FinalScene: SKScene {
             }
             
             let hasFlame = SKLabelNode(fontNamed: "ArcadeClassic")
-            hasFlame.text = ("Flame rescued !!!")
+            hasFlame.text = ("Flame  rescued !")
             hasFlame.fontSize = 65
             hasFlame.position = CGPoint(x: -80, y: -100)
             hasFlame.zPosition = 15
@@ -174,12 +174,16 @@ class FinalScene: SKScene {
             
             let blackBackGround = SKSpriteNode(imageNamed: "colorfulBackground")
             blackBackGround.texture?.filteringMode = .nearest
-            //blackBackGround.size = CGSize(width: 1334, height: 750)
+            blackBackGround.size = CGSize(width: 1334, height: 750)
             
             blackBackGround.position = CGPoint(x: -1334/2, y: -750/2)
             blackBackGround.anchorPoint = CGPoint(x: 0, y: 0)
             blackBackGround.zPosition = 10
             self.addChild(blackBackGround)
+            
+            table.setScale(0.8)
+            tableBase.setScale(0.8)
+
             
             resultsRendered = true
         }
