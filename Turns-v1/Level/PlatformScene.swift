@@ -39,6 +39,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         host = !viewModel.appState.isGuest
         viewModel.currentState.username = host ? "Host" : "Guest"
         viewModel.appState.isPlaying = host
+        viewModel.appState.isTutorialShown = true
         let blueFruit = Collectable.init(label: "Blue", collectables: [])
         let orangeFruit = Collectable.init(label: "Orange", collectables: [])
         viewModel.currentState.collectables.append(blueFruit)
@@ -225,6 +226,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             }
             if (bodyB == PhysicsCategory.flame){
                 // End Game
+                viewModel.currentState.newInfo = true
+                viewModel.mpcInterface.sendState()
+                viewModel.currentState.newInfo = false
+                PhysicsCategory.flame = PhysicsCategory.none
+                viewModel.appState.isCompletedLevel = true
             }
         } else if bodyA == PhysicsCategory.orangeHero {
             if (bodyB == PhysicsCategory.orangePlatform) || (bodyB == PhysicsCategory.ground && (-1.1)...(-0.9) ~= contact.contactNormal.dy) {
@@ -236,6 +242,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             }
             if (bodyB == PhysicsCategory.flame){
                 // End Game
+                viewModel.currentState.newInfo = true
+                viewModel.mpcInterface.sendState()
+                viewModel.currentState.newInfo = false
+                PhysicsCategory.flame = PhysicsCategory.none
+                viewModel.appState.isCompletedLevel = true
             }
         }
     }

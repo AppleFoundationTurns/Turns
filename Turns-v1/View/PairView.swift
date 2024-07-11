@@ -41,7 +41,9 @@ struct PairView: View {
                             }
                         }
                     
-                }
+                }.onAppear(perform: {
+                    viewModel.resetState()
+                })
             } else {
                 //SenderView(currentView: $currentView)
                 PlatformView()

@@ -15,10 +15,17 @@ class ViewModel {
     
     let zeroState = GameState(username: "", peerName: "", positionX: 0.0, positionY: 0.0, collectables: [], checkpoint: 0, velocityX: 0.0, velocityY: 0.0)
     
+    let zeroAppState = AppState(isGuest: false, isPlaying: false, isTutorialShown: true, isCompletedLevel: false)
+    
     init(mpcInterface: MPCInterface) {
         self.currentState = zeroState
-        self.appState = AppState(isGuest: false, isPlaying: true)
+        self.appState = AppState(isGuest: false, isPlaying: true, isTutorialShown: true, isCompletedLevel: false)
         self.mpcInterface = mpcInterface
+    }
+    
+    func resetState() {
+        self.appState = zeroAppState
+        self.currentState = zeroState
     }
 }
 

@@ -12,6 +12,10 @@
 		7A0890AE2C35A83B00F059CC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7A0890AD2C35A83B00F059CC /* README.md */; };
 		7A0890B02C35A85900F059CC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7A0890AF2C35A85900F059CC /* .gitignore */; };
 		7A11D6722C3F388C00394BD1 /* blueRunFix.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 7A11D6712C3F388C00394BD1 /* blueRunFix.atlas */; };
+		7A1DE3B62C3FC07A007A0634 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1DE3B52C3FC07A007A0634 /* TutorialView.swift */; };
+		7A1DE3B82C3FC2AE007A0634 /* FinalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1DE3B72C3FC2AE007A0634 /* FinalView.swift */; };
+		7A1DE3BB2C3FCB33007A0634 /* FinalScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1DE3BA2C3FCB33007A0634 /* FinalScene.swift */; };
+		7A1DE3BD2C3FCB90007A0634 /* FinalScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7A1DE3BC2C3FCB90007A0634 /* FinalScene.sks */; };
 		7A21F9A32C3E90C800FDF0C4 /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21F9A22C3E90C800FDF0C4 /* WaitingView.swift */; };
 		7A21F9A52C3EC6F100FDF0C4 /* SpinningDude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21F9A42C3EC6F100FDF0C4 /* SpinningDude.swift */; };
 		7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */; };
@@ -57,6 +61,10 @@
 		7A0890AD2C35A83B00F059CC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7A0890AF2C35A85900F059CC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7A11D6712C3F388C00394BD1 /* blueRunFix.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = blueRunFix.atlas; sourceTree = "<group>"; };
+		7A1DE3B52C3FC07A007A0634 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		7A1DE3B72C3FC2AE007A0634 /* FinalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalView.swift; sourceTree = "<group>"; };
+		7A1DE3BA2C3FCB33007A0634 /* FinalScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalScene.swift; sourceTree = "<group>"; };
+		7A1DE3BC2C3FCB90007A0634 /* FinalScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FinalScene.sks; sourceTree = "<group>"; };
 		7A21F9A22C3E90C800FDF0C4 /* WaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
 		7A21F9A42C3EC6F100FDF0C4 /* SpinningDude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningDude.swift; sourceTree = "<group>"; };
 		7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlatformScene.sks; sourceTree = "<group>"; };
@@ -120,6 +128,17 @@
 			path = "Custom Classes";
 			sourceTree = "<group>";
 		};
+		7A1DE3B92C3FCADD007A0634 /* PopUpScenes */ = {
+			isa = PBXGroup;
+			children = (
+				7A1DE3B52C3FC07A007A0634 /* TutorialView.swift */,
+				7A1DE3B72C3FC2AE007A0634 /* FinalView.swift */,
+				7A1DE3BA2C3FCB33007A0634 /* FinalScene.swift */,
+				7A1DE3BC2C3FCB90007A0634 /* FinalScene.sks */,
+			);
+			path = PopUpScenes;
+			sourceTree = "<group>";
+		};
 		F222956D2C36C1FD008AE840 /* Level */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +186,7 @@
 				F2B77F4A2C3D4A9000FDFDBF /* View */,
 				F2B77F2E2C3D45E500FDFDBF /* Model */,
 				F22295702C36CD6B008AE840 /* Entry */,
+				7A1DE3B92C3FCADD007A0634 /* PopUpScenes */,
 				F222956D2C36C1FD008AE840 /* Level */,
 				7A0890A92C35A77F00F059CC /* Custom Classes */,
 				F292270E2C2F335C00454AD0 /* Tiles */,
@@ -352,6 +372,7 @@
 				F22295742C373AEE008AE840 /* blueJump.atlas in Resources */,
 				F29227062C2F322700454AD0 /* Preview Assets.xcassets in Resources */,
 				7A0890AE2C35A83B00F059CC /* README.md in Resources */,
+				7A1DE3BD2C3FCB90007A0634 /* FinalScene.sks in Resources */,
 				7A11D6722C3F388C00394BD1 /* blueRunFix.atlas in Resources */,
 				F2D6C8AC2C3C6089004180A4 /* orangeJump.atlas in Resources */,
 				F29227032C2F322700454AD0 /* Assets.xcassets in Resources */,
@@ -372,9 +393,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2B77F562C3D4F4B00FDFDBF /* PairView.swift in Sources */,
+				7A1DE3B82C3FC2AE007A0634 /* FinalView.swift in Sources */,
 				7A21F9A32C3E90C800FDF0C4 /* WaitingView.swift in Sources */,
 				F292270D2C2F335000454AD0 /* MenuScene.swift in Sources */,
 				F2CA6D7F2C3E8ABC00220B64 /* FruitNode.swift in Sources */,
+				7A1DE3BB2C3FCB33007A0634 /* FinalScene.swift in Sources */,
 				F2B77F512C3D4A9000FDFDBF /* StartView.swift in Sources */,
 				7A21F9A52C3EC6F100FDF0C4 /* SpinningDude.swift in Sources */,
 				F2B77F502C3D4A9000FDFDBF /* SenderView.swift in Sources */,
@@ -382,6 +405,7 @@
 				7A0890AA2C35A77F00F059CC /* HeroNode.swift in Sources */,
 				F2B77F3E2C3D462A00FDFDBF /* Route.swift in Sources */,
 				F23C473A2C39A5BE00B1F0A6 /* FlameNode.swift in Sources */,
+				7A1DE3B62C3FC07A007A0634 /* TutorialView.swift in Sources */,
 				F2B77F4B2C3D4A9000FDFDBF /* BackView.swift in Sources */,
 				F2B77F412C3D462A00FDFDBF /* ViewModel.swift in Sources */,
 				F2B77F5A2C3D50D000FDFDBF /* EntryView.swift in Sources */,
@@ -531,7 +555,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Turns-v1/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3WNGN5C5XS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Turns-v1/Info.plist";
@@ -551,7 +575,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Gheim2.turns;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FedeDC.turns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -570,7 +594,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Turns-v1/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3WNGN5C5XS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Turns-v1/Info.plist";
@@ -590,7 +614,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Gheim2.turns;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FedeDC.turns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

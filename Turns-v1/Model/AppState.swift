@@ -10,4 +10,6 @@ import Foundation
 struct AppState {
     var isGuest: Bool
     var isPlaying: Bool
+    var isTutorialShown: Bool
+    var isCompletedLevel: Bool
 }

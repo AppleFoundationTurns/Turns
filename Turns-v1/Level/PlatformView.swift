@@ -41,6 +41,14 @@ struct PlatformView: View {
                     .environment(router)
                     .environment(viewModel)
                     .zIndex(viewModel.appState.isPlaying ? -1.0 : 1.0)
+                TutorialView()
+                    .environment(router)
+                    .environment(viewModel)
+                    .zIndex(viewModel.appState.isTutorialShown ? 2.0 : -2.0)
+                FinalView()
+                    .environment(router)
+                    .environment(viewModel)
+                    .zIndex(viewModel.appState.isCompletedLevel ? 3.0 : -3.0)
             }
         }
         

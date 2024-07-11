@@ -32,6 +32,7 @@ struct RouterView: View {
                                 .environment(router)
                                 .environment(viewModel)
                                 .onAppear(perform: {
+                                    viewModel.resetState()
                                     if(viewModel.mpcInterface.mpcSession != nil){
                                         if(viewModel.mpcInterface.isPaired()){
                                             viewModel.mpcInterface.disconnect()
@@ -42,6 +43,9 @@ struct RouterView: View {
                             PairView()
                                 .environment(router)
                                 .environment(viewModel)
+                                .onAppear(perform: {
+                                    viewModel.resetState()
+                                })
                                 
                         case .platformView:
                             PlatformView()
