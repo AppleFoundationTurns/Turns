@@ -9,6 +9,11 @@ import SpriteKit
 
 class PlatformScene: SKScene, SKPhysicsContactDelegate {
     
+    let scale = SKAction.scale(by: 1.5, duration: 0.2)
+    let fadeOut = SKAction.fadeOut(withDuration: 0.2)
+    let sound = SKAction.playSoundFileNamed("CollectSound", waitForCompletion: false)
+    
+    
     var blueFruitListCollected:[Bool] = []
     var orangeFruitListCollected:[Bool] = []
     var blueFruitList:[SKSpriteNode] = []
@@ -223,7 +228,10 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 
             }
             if (bodyB == PhysicsCategory.blueFruit) {
-                handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)
+                let fruit = contact.bodyB.node as! SKSpriteNode
+                let collectSequence = SKAction.sequence([sound, scale, fadeOut])
+                fruit.run(collectSequence, completion: {self.handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)})
+                fruit.physicsBody?.categoryBitMask = PhysicsCategory.none
             }
             if (bodyB == PhysicsCategory.flame){
                 // End Game
@@ -239,7 +247,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 
             }
             if (bodyB == PhysicsCategory.orangeFruit) {
-                handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)
+                let fruit = contact.bodyB.node as! SKSpriteNode
+                let collectSequence = SKAction.sequence([sound, scale, fadeOut])
+                
+                fruit.run(collectSequence, completion: {self.handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)})
+                fruit.physicsBody?.categoryBitMask = PhysicsCategory.none
             }
             if (bodyB == PhysicsCategory.flame){
                 // End Game
