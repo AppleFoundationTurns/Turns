@@ -68,7 +68,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         let oldFlame = childNode(withName: "flame") as! SKSpriteNode
         flame = FlameNode(position: oldFlame.position, atlasName: "Flame", scale: 0.5)
         oldFlame.removeFromParent()
-        PhysicsCategory.flame = PhysicsCategory.flameBackup
+        viewModel.appState.isCompletedLevel = false
         self.addChild(flame)
         
         // --- Platform initialization ---
@@ -233,12 +233,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 fruit.run(collectSequence, completion: {self.handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)})
                 fruit.physicsBody?.categoryBitMask = PhysicsCategory.none
             }
-            if (bodyB == PhysicsCategory.flame){
+            if (bodyB == PhysicsCategory.flame && !viewModel.appState.isCompletedLevel){
                 // End Game
                 viewModel.currentState.newInfo = true
                 viewModel.mpcInterface.sendState()
                 viewModel.currentState.newInfo = false
-                PhysicsCategory.flame = PhysicsCategory.none
                 viewModel.appState.isCompletedLevel = true
             }
         } else if bodyA == PhysicsCategory.orangeHero {
@@ -253,12 +252,11 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 fruit.run(collectSequence, completion: {self.handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)})
                 fruit.physicsBody?.categoryBitMask = PhysicsCategory.none
             }
-            if (bodyB == PhysicsCategory.flame){
+            if (bodyB == PhysicsCategory.flame && !viewModel.appState.isCompletedLevel){
                 // End Game
                 viewModel.currentState.newInfo = true
                 viewModel.mpcInterface.sendState()
                 viewModel.currentState.newInfo = false
-                PhysicsCategory.flame = PhysicsCategory.none
                 viewModel.appState.isCompletedLevel = true
             }
         }
