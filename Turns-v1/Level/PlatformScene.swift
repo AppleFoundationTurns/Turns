@@ -10,7 +10,9 @@ import SpriteKit
 class PlatformScene: SKScene, SKPhysicsContactDelegate {
     
     let scale = SKAction.scale(by: 1.5, duration: 0.2)
+    let moveUp = SKAction.moveBy(x: 0, y: 10, duration: 0.2)
     let fadeOut = SKAction.fadeOut(withDuration: 0.2)
+    var collectSequence = SKAction()
     let sound = SKAction.playSoundFileNamed("CollectSound", waitForCompletion: false)
     
     
@@ -145,6 +147,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         
         updateFruitCounter()
         
+        collectSequence = SKAction.sequence([sound, moveUp, fadeOut])
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -229,7 +233,6 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             }
             if (bodyB == PhysicsCategory.blueFruit) {
                 let fruit = contact.bodyB.node as! SKSpriteNode
-                let collectSequence = SKAction.sequence([sound, scale, fadeOut])
                 fruit.run(collectSequence, completion: {self.handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)})
                 fruit.physicsBody?.categoryBitMask = PhysicsCategory.none
             }
@@ -247,8 +250,6 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
             }
             if (bodyB == PhysicsCategory.orangeFruit) {
                 let fruit = contact.bodyB.node as! SKSpriteNode
-                let collectSequence = SKAction.sequence([sound, scale, fadeOut])
-                
                 fruit.run(collectSequence, completion: {self.handleContactBetweenPlayerAndFruit(playerBody: contact.bodyA, fruitBody: contact.bodyB)})
                 fruit.physicsBody?.categoryBitMask = PhysicsCategory.none
             }

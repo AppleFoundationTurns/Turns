@@ -47,8 +47,8 @@ class FinalScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         
         if viewModel.appState.isCompletedLevel && !resultsRendered {
-            var blueFruits:[Bool] = viewModel.currentState.collectables[0].collectables
-            var orangeFruits:[Bool] = viewModel.currentState.collectables[1].collectables
+            let blueFruits:[Bool] = viewModel.currentState.collectables[0].collectables
+            let orangeFruits:[Bool] = viewModel.currentState.collectables[1].collectables
             
             let tableBase = SKSpriteNode(color: .black, size: CGSize(width: 850, height: 680))
             tableBase.alpha = 0.6
