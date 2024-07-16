@@ -13,7 +13,8 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
     let moveUp = SKAction.moveBy(x: 0, y: 10, duration: 0.2)
     let fadeOut = SKAction.fadeOut(withDuration: 0.2)
     var collectSequence = SKAction()
-    let sound = SKAction.playSoundFileNamed("CollectSound", waitForCompletion: false)
+    let collectSound = SKAction.playSoundFileNamed("CollectSound2", waitForCompletion: false)
+    let jumpSound = SKAction.playSoundFileNamed("JumpSound", waitForCompletion: false)
     
     
     var blueFruitListCollected:[Bool] = []
@@ -147,7 +148,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
         
         updateFruitCounter()
         
-        collectSequence = SKAction.sequence([sound, moveUp, fadeOut])
+        collectSequence = SKAction.sequence([collectSound, moveUp, fadeOut])
         
     }
     
@@ -172,6 +173,7 @@ class PlatformScene: SKScene, SKPhysicsContactDelegate {
                 case (_, .jump):
                     hero.action = .jump
                     if !isJumping{
+                        hero.run(jumpSound)
                         hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                         hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 50))
                         isJumping = true
