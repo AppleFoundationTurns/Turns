@@ -6,7 +6,6 @@
 //
 
 import SpriteKit
-import AVFoundation
 
 enum Action {
     case idle

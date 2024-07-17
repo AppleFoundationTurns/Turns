@@ -43,6 +43,7 @@ struct PairView: View {
                     
                 }.onAppear(perform: {
                     viewModel.resetState()
+                    AudioManager.shared.playSound(named: AudioManager.shared.menuSoundName)
                 })
             } else {
                 //SenderView(currentView: $currentView)

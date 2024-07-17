@@ -29,6 +29,9 @@ struct PlatformView: View {
             StartView()
                 .environment(router)
                 .environment(viewModel)
+                .onAppear {
+                    AudioManager.shared.playSound(named: AudioManager.shared.menuSoundName)
+                }
         } else {
             ZStack{
                 SpriteView(scene: PlatformScene)//, debugOptions: [.showsPhysics])
@@ -36,6 +39,13 @@ struct PlatformView: View {
                     .onAppear(perform: {
                         // Injection
                         ViewModelInjected.viewModel = viewModel
+                        
+                        AudioManager.shared.stopSound()
+                        AudioManager.shared.playSound(named: AudioManager.shared.levelSoundName, volume: 0.14)
+                    })
+                    .onDisappear(perform: {
+                        AudioManager.shared.stopSound()
+                        AudioManager.shared.playSound(named: AudioManager.shared.menuSoundName)
                     })
                 WaitingView()
                     .environment(router)

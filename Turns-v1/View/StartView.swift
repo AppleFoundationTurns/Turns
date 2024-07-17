@@ -45,6 +45,9 @@ struct StartView: View {
                         .background(Color(hex: 0xEF8540, alpha: 1.0))
                         .cornerRadius(12)
                         .disabled(username.isEmpty ? true : false)
+                        .onAppear {
+                            AudioManager.shared.playSound(named: AudioManager.shared.menuSoundName)
+                        }
                 }
                 HStack {
                     Spacer()
