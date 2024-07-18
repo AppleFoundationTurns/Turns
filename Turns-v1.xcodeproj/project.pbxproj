@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		553CEED42C3E84B700EDEBFC /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553CEED32C3E84B600EDEBFC /* AppState.swift */; };
+		7A0837E62C4699F600448953 /* JumpSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7A0837E42C4699F600448953 /* JumpSound.wav */; };
+		7A0837E92C469D7100448953 /* ButtonPress.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A0837E82C469D7100448953 /* ButtonPress.mp3 */; };
 		7A0890AA2C35A77F00F059CC /* HeroNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0890A62C35A77F00F059CC /* HeroNode.swift */; };
 		7A0890AE2C35A83B00F059CC /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7A0890AD2C35A83B00F059CC /* README.md */; };
 		7A0890B02C35A85900F059CC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7A0890AF2C35A85900F059CC /* .gitignore */; };
@@ -18,6 +20,12 @@
 		7A1DE3BD2C3FCB90007A0634 /* FinalScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7A1DE3BC2C3FCB90007A0634 /* FinalScene.sks */; };
 		7A21F9A32C3E90C800FDF0C4 /* WaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21F9A22C3E90C800FDF0C4 /* WaitingView.swift */; };
 		7A21F9A52C3EC6F100FDF0C4 /* SpinningDude.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A21F9A42C3EC6F100FDF0C4 /* SpinningDude.swift */; };
+		7A257B632C47FFBB00928DB8 /* CollectSound2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A257B622C47FFBB00928DB8 /* CollectSound2.mp3 */; };
+		7A257B682C48016F00928DB8 /* Menu2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A257B642C48016F00928DB8 /* Menu2.mp3 */; };
+		7A257B692C48016F00928DB8 /* Level2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A257B652C48016F00928DB8 /* Level2.mp3 */; };
+		7A257B6A2C48016F00928DB8 /* Menu1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A257B662C48016F00928DB8 /* Menu1.mp3 */; };
+		7A257B6B2C48016F00928DB8 /* Level1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7A257B672C48016F00928DB8 /* Level1.mp3 */; };
+		7A257B6D2C480E6300928DB8 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A257B6C2C480E6300928DB8 /* AudioManager.swift */; };
 		7AB65F642C4016B000BD7643 /* TutorialScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB65F632C4016AF00BD7643 /* TutorialScene.swift */; };
 		7AB65F662C4016FB00BD7643 /* TutorialScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7AB65F652C4016FB00BD7643 /* TutorialScene.sks */; };
 		7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */; };
@@ -56,6 +64,8 @@
 
 /* Begin PBXFileReference section */
 		553CEED32C3E84B600EDEBFC /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		7A0837E42C4699F600448953 /* JumpSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = JumpSound.wav; sourceTree = "<group>"; };
+		7A0837E82C469D7100448953 /* ButtonPress.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ButtonPress.mp3; sourceTree = "<group>"; };
 		7A0890A62C35A77F00F059CC /* HeroNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroNode.swift; sourceTree = "<group>"; };
 		7A0890AD2C35A83B00F059CC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7A0890AF2C35A85900F059CC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -66,6 +76,12 @@
 		7A1DE3BC2C3FCB90007A0634 /* FinalScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FinalScene.sks; sourceTree = "<group>"; };
 		7A21F9A22C3E90C800FDF0C4 /* WaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingView.swift; sourceTree = "<group>"; };
 		7A21F9A42C3EC6F100FDF0C4 /* SpinningDude.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinningDude.swift; sourceTree = "<group>"; };
+		7A257B622C47FFBB00928DB8 /* CollectSound2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CollectSound2.mp3; sourceTree = "<group>"; };
+		7A257B642C48016F00928DB8 /* Menu2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Menu2.mp3; sourceTree = "<group>"; };
+		7A257B652C48016F00928DB8 /* Level2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Level2.mp3; sourceTree = "<group>"; };
+		7A257B662C48016F00928DB8 /* Menu1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Menu1.mp3; sourceTree = "<group>"; };
+		7A257B672C48016F00928DB8 /* Level1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Level1.mp3; sourceTree = "<group>"; };
+		7A257B6C2C480E6300928DB8 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		7AB65F632C4016AF00BD7643 /* TutorialScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialScene.swift; sourceTree = "<group>"; };
 		7AB65F652C4016FB00BD7643 /* TutorialScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TutorialScene.sks; sourceTree = "<group>"; };
 		7ACB9F7B2C34A9AF0019FB02 /* PlatformScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlatformScene.sks; sourceTree = "<group>"; };
@@ -121,6 +137,7 @@
 				7A0890A62C35A77F00F059CC /* HeroNode.swift */,
 				F23C47392C39A5BE00B1F0A6 /* FlameNode.swift */,
 				F23C473B2C39A5ED00B1F0A6 /* utilities.swift */,
+				7A257B6C2C480E6300928DB8 /* AudioManager.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -221,7 +238,14 @@
 		F2AC1C3C2C4083F6009AD7FF /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				7A257B622C47FFBB00928DB8 /* CollectSound2.mp3 */,
+				7A0837E42C4699F600448953 /* JumpSound.wav */,
+				7A0837E82C469D7100448953 /* ButtonPress.mp3 */,
 				F2AC1C3D2C408532009AD7FF /* CollectSound.wav */,
+				7A257B672C48016F00928DB8 /* Level1.mp3 */,
+				7A257B652C48016F00928DB8 /* Level2.mp3 */,
+				7A257B662C48016F00928DB8 /* Menu1.mp3 */,
+				7A257B642C48016F00928DB8 /* Menu2.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -362,6 +386,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A257B692C48016F00928DB8 /* Level2.mp3 in Resources */,
+				7A257B682C48016F00928DB8 /* Menu2.mp3 in Resources */,
 				F29227202C31ABA600454AD0 /* PlatformTiles.sks in Resources */,
 				F22295722C373AE8008AE840 /* blueIdle.atlas in Resources */,
 				F22295792C374AFB008AE840 /* Flame.atlas in Resources */,
@@ -372,9 +398,14 @@
 				7A1DE3BD2C3FCB90007A0634 /* FinalScene.sks in Resources */,
 				7A11D6722C3F388C00394BD1 /* blueRunFix.atlas in Resources */,
 				F2D6C8AC2C3C6089004180A4 /* orangeJump.atlas in Resources */,
+				7A0837E62C4699F600448953 /* JumpSound.wav in Resources */,
+				7A257B6A2C48016F00928DB8 /* Menu1.mp3 in Resources */,
 				F29227032C2F322700454AD0 /* Assets.xcassets in Resources */,
 				F2D6C8AD2C3C6089004180A4 /* orangeRun.atlas in Resources */,
+				7A257B632C47FFBB00928DB8 /* CollectSound2.mp3 in Resources */,
 				7ACB9F7C2C34A9AF0019FB02 /* PlatformScene.sks in Resources */,
+				7A0837E92C469D7100448953 /* ButtonPress.mp3 in Resources */,
+				7A257B6B2C48016F00928DB8 /* Level1.mp3 in Resources */,
 				F2D6C8AE2C3C6089004180A4 /* orangeIdle.atlas in Resources */,
 				7AB65F662C4016FB00BD7643 /* TutorialScene.sks in Resources */,
 				7A0890B02C35A85900F059CC /* .gitignore in Resources */,
@@ -412,6 +443,7 @@
 				F23C473C2C39A5ED00B1F0A6 /* utilities.swift in Sources */,
 				F2B77F4C2C3D4A9000FDFDBF /* ListFriend.swift in Sources */,
 				553CEED42C3E84B700EDEBFC /* AppState.swift in Sources */,
+				7A257B6D2C480E6300928DB8 /* AudioManager.swift in Sources */,
 				F2B77F3F2C3D462A00FDFDBF /* Router.swift in Sources */,
 				F2B77F2F2C3D45E500FDFDBF /* GameState.swift in Sources */,
 				F29226FF2C2F322600454AD0 /* Turns_v1App.swift in Sources */,
@@ -551,7 +583,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Turns-v1/Preview Content\"";
-				DEVELOPMENT_TEAM = 8RB4735FJ2;
+				DEVELOPMENT_TEAM = 3WNGN5C5XS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Turns-v1/Info.plist";
@@ -571,7 +603,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Gheim2.turns;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FedeDC.turns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -590,7 +622,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Turns-v1/Preview Content\"";
-				DEVELOPMENT_TEAM = 8RB4735FJ2;
+				DEVELOPMENT_TEAM = 3WNGN5C5XS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Turns-v1/Info.plist";
@@ -610,7 +642,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Gheim2.turns;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FedeDC.turns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
