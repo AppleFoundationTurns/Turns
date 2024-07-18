@@ -36,12 +36,12 @@
 
 To run the project, you have two options:
 
-### Option 1: Using Xcode
+### Option 1: Using Xcode (macOS only)
 
 1. **Xcode**: Install the latest version of Xcode to build and run the application.
 2. **macOS**: Ensure your Mac is running a recent version of macOS that supports the latest Swift, SwiftUI and SpriteKit features.
 
-### Option 2: Installing from IPA File using AltStore
+### Option 2: Installing from IPA File using AltStore (works on macOS and Windows)
 
 Alternatively, you can install the app using an IPA file. Follow these steps to install the IPA file using AltStore:
 
