@@ -24,13 +24,10 @@
 
 ## Screenshots
 <div>
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Menu.PNG" alt="Home Screen" style="width: 40%; height: auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/PlayerSelect.PNG" alt="Player Select Screen" style="width: 40%; height: auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Tutorial.PNG" alt="Tutorial" style="width: 40%; height: auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Level1.PNG" alt="Player 1 View" style="width: 40%; height: auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Waiting.PNG" alt="Waiting Screen" style="width: 40%; height: auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Level2.PNG" alt="Player 2 View" style="width: 40%; height: auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/FinalScreen.PNG" alt="Final Screen" style="width: 40%; height: auto;">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Menu.PNG" alt="Home Screen">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Tutorial.PNG" alt="Tutorial">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Level1.PNG" alt="Player 1 View">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Level2.PNG" alt="Player 2 View">
 </div>
 
 ## Technologies and Methodologies
