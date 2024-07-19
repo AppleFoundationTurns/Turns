@@ -14,6 +14,10 @@
 
 ## Overview
 
+<a href="https://www.parthenokit.cloud/finalreviewpal.aspx?cr=PALS124" target="_blank">
+  <img src="https://www.parthenokit.cloud/images/review/iospabianco.png" alt="UniPa Apple" style="width:30%;height:auto;">
+</a>
+
 2D Platform game where the player controller keeps turning between two players.
 
 ## Features
