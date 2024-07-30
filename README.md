@@ -18,9 +18,14 @@
   <img src="https://www.parthenokit.cloud/images/review/iospabianco.png" alt="UniPa Apple" style="width:30%;height:auto;">
 </a>
 
-2D Platform game where the player controller keeps turning between two players.
+Turns is an engaging and cooperative platformer game developed in Swift as the Final Project for the "Apple Foundation Program 2024" at the University of Palermo. Inspired by the excitement of playing video games with friends during childhood, it allows two players to take turns controlling their characters, each with unique abilities, to navigate through levels and reach the goal. The game features a strategic "Turn" button to switch control between players, emphasizing teamwork and coordination.
 
 ## Features
+
+- **Cooperative Gameplay**: Players control two different characters, each with distinct abilities, and must work together to reach the end of the level.
+- **Unique Turn Mechanic**: Players alternate control by pressing the "Turn" button, switching visibility and control between the two.
+- **Single Tutorial Level**: A tutorial level helps players understand the game's mechanics and how to utilize the turn-based cooperation effectively.
+- **Custom Assets**: All assets, including the logo, sprites, and music, are either created from scratch or sourced from free-to-use, non-copyrighted materials.
 
 ## Screenshots
 <div>
@@ -31,7 +36,6 @@
 </div>
 
 ## Technologies and Methodologies
-
 
 ## Running the Project
 
@@ -62,11 +66,12 @@ By following these steps, you can install the app using the IPA file with AltSto
 
 ## Conclusion
 
+Through the development of Turns, we learned valuable lessons in cooperative game design and the implementation of unique gameplay mechanics. The project enhanced our skills in Swift programming and game development with SpriteKit. We also acquired hands-on experience with multiplayer functionality using Multipeer Connectivity and mastered the MVVM design pattern, which improved our ability to build modular and maintainable codebases. Overall, creating Turns was an enriching experience that deepened our understanding of game development and collaborative programming.
 
 ## Credits
 
-- Giuseppe Damiata - Coder / Game Designer
 - Federico Agnello - Coder / Game Designer / Video Editor
+- Giuseppe Damiata - Coder / Game Designer
 - Davide Testaverde - Software Engineer
 - Alberto Scannaliato - Coder / Game Designer / Field Researcher
 - Paolosalvatore Piazza - Coder / Field Researcher / Video Editor
