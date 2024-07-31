@@ -7,7 +7,7 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Gallery](#gallery)
-- [Technologies and Methodologies](#technologies-and-methodologies)
+- [Tools and Techniques](#tools-and-techniques)
 - [Running the Project](#running-the-project)
 - [Conclusion](#conclusion)
 - [Credits](#credits)
@@ -35,7 +35,7 @@ Turns is an engaging and cooperative platformer game developed in Swift as the F
 :-------------------------:|:-------------------------:
 |<img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player1.gif" alt="Player1"><br><b>Player 1 View</b>|<img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player2.gif" alt="Player2"><br><b>Player 2 View</b>|
 
-## Technologies and Methodologies
+## Tools and Techniques
 
 ### Swift and SwiftUI
 
@@ -59,7 +59,7 @@ Turns is an engaging and cooperative platformer game developed in Swift as the F
 - **AVAudioPlayer**: Used to manage and play audio files, providing controls for volume, looping, and playback.
 - **Sound Management**: Functions to start and stop audio playback based on views changes, ensuring an immersive audio experience.
 
-### Multiplayer Connectivity
+### Multipeer Connectivity
 
 The project incorporates multiplayer functionality using a custom-built interface. This includes:
 - **Peer-to-Peer Communication**: Managing connections between multiple players to synchronize game states.
