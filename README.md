@@ -6,7 +6,7 @@
 
 - [Overview](#overview)
 - [Features](#features)
-- [Screenshots](#screenshots)
+- [Gallery](#gallery)
 - [Technologies and Methodologies](#technologies-and-methodologies)
 - [Running the Project](#running-the-project)
 - [Conclusion](#conclusion)
@@ -29,15 +29,11 @@ Turns is an engaging and cooperative platformer game developed in Swift as the F
 - **Single Tutorial Level**: A tutorial level helps players understand the game's mechanics and how to utilize the turn-based cooperation effectively.
 - **Custom Assets**: All assets, including the logo, sprites, and music, are either created from scratch or sourced from free-to-use, non-copyrighted materials.
 
-## Screenshots
-<div style="display:flex">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Menu.PNG" alt="Home Screen" style="width:49%;height:auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Tutorial.PNG" alt="Tutorial" style="width:49%;height:auto;">
-</div>
+## Gallery
 
-Player 1 View              |  Player 2 View
+<img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Menu.PNG" alt="Home Screen"> | <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Tutorial.PNG" alt="Tutorial">
 :-------------------------:|:-------------------------:
-![](https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player1.gif)  |  ![](https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player2.gif)
+|<img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player1.gif" alt="Player1"><br><b>Player 1 View</b>|<img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player2.gif" alt="Player2"><br><b>Player 2 View</b>|
 
 ## Technologies and Methodologies
 
