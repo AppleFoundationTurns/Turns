@@ -14,11 +14,13 @@
 
 ## Overview
 
-<a href="https://www.parthenokit.cloud/finalreviewpal.aspx?cr=PALS124" target="_blank">
-  <img src="https://www.parthenokit.cloud/images/review/iospabianco.png" alt="UniPa Apple" style="width:30%;height:auto;">
-</a>
-
 Turns is an engaging and cooperative platformer game developed in Swift as the Final Project for the "Apple Foundation Program 2024" at the University of Palermo. Inspired by the excitement of playing video games with friends during childhood, it allows two players to take turns controlling their characters, each with unique abilities, to navigate through levels and reach the goal. The game features a strategic "Turn" button to switch control between players, emphasizing teamwork and coordination.
+
+<p align="center">
+  <a href="https://www.parthenokit.cloud/finalreviewpal.aspx?cr=PALS124" target="_blank">
+    <img src="https://www.parthenokit.cloud/images/review/iospabianco.png" alt="UniPa Apple" style="width:30%;height:auto;">
+  </a>
+</p>
 
 ## Features
 
@@ -28,12 +30,14 @@ Turns is an engaging and cooperative platformer game developed in Swift as the F
 - **Custom Assets**: All assets, including the logo, sprites, and music, are either created from scratch or sourced from free-to-use, non-copyrighted materials.
 
 ## Screenshots
-<div>
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Menu.PNG" alt="Home Screen" style="width:50%;height:auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Tutorial.PNG" alt="Tutorial" style="width:50%;height:auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player1.gif" alt="Player 1 View" style="width:50%;height:auto;">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player2.gif" alt="Player 2 View" style="width:50%;height:auto;">
+<div style="display:flex">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Menu.PNG" alt="Home Screen" style="width:49%;height:auto;">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Tutorial.PNG" alt="Tutorial" style="width:49%;height:auto;">
 </div>
+
+Player 1 View              |  Player 2 View
+:-------------------------:|:-------------------------:
+![](https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player1.gif)  |  ![](https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player2.gif)
 
 ## Technologies and Methodologies
 
