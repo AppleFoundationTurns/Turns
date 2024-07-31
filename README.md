@@ -37,6 +37,65 @@ Turns is an engaging and cooperative platformer game developed in Swift as the F
 
 ## Technologies and Methodologies
 
+### Swift and SwiftUI
+
+**Swift** is the primary programming language used for the development of this project. Swift is known for its performance, safety, and modern syntax, which facilitates the creation of efficient and reliable code. 
+
+**SwiftUI** is employed for building the user interface. SwiftUI is a framework that allows developers to design interfaces declaratively. It integrates seamlessly with Swift, enabling the creation of flexible and dynamic UIs using a minimal amount of code. Key features utilized include:
+- **State Management**: Using `@State` and `@Binding` to manage state within views.
+- **Composable Views**: Creating reusable and modular UI components.
+- **Dynamic UIs**: Building responsive and adaptive interfaces that adjust to different device sizes and orientations.
+
+### SpriteKit
+
+**SpriteKit** is the framework used for 2D game development within this project. It provides a robust infrastructure for animation, physics simulation, and rendering. Key functionalities utilized include:
+- **Node System**: Managing game elements as nodes, which can be hierarchically organized.
+- **Physics Engine**: Implementing realistic physics interactions, such as collisions and movements.
+- **Animation**: Creating smooth and performant animations using texture atlases and actions.
+
+### AVFoundation
+
+**AVFoundation** is employed for audio playback within the game. It supports a wide range of audio operations, such as playing background music and sound effects. Specific uses include:
+- **AVAudioPlayer**: Used to manage and play audio files, providing controls for volume, looping, and playback.
+- **Sound Management**: Functions to start and stop audio playback based on views changes, ensuring an immersive audio experience.
+
+### Multiplayer Connectivity
+
+The project incorporates multiplayer functionality using a custom-built interface. This includes:
+- **Peer-to-Peer Communication**: Managing connections between multiple players to synchronize game states.
+- **State Synchronization**: Sending and receiving game state information to ensure all players have a consistent view of the game.
+- **Error Handling**: Managing connectivity issues and ensuring robust communication channels.
+
+### Custom Physics and Collision Handling
+
+Advanced custom physics and collision handling mechanisms are implemented to create unique gameplay experiences. This involves:
+- **Custom Physics Bodies**: Defining physics bodies for various game elements, including custom shapes and sizes.
+- **Collision Detection**: Implementing detailed collision detection algorithms to handle interactions between game elements.
+- **Tile Map Physics**: Assigning physics properties to tile maps, enabling realistic movement and interactions on platforms and other surfaces.
+
+### Algorithmic Tile Grouping
+
+To optimize performance, an algorithm for grouping tiles is used. This algorithm:
+- **Tile Grouping**: Groups adjacent tiles into larger physics bodies to reduce the number of individual physics calculations.
+- **Optimization**: Enhances performance by minimizing the complexity of the physics simulation, allowing for smoother gameplay.
+
+### Multi-Touch Handling
+
+Multi-touch handling is crucial for the game’s control system. This includes:
+- **Touch Events**: Detecting and managing multiple simultaneous touch events to allow for complex control schemes.
+
+### Animation and Texture Management
+
+Efficient management of animations and textures is achieved using:
+- **Texture Atlases**: Storing multiple textures in a single image to reduce memory usage and improve performance.
+- **Animation Sequences**: Creating smooth animations by sequencing textures and managing frame rates.
+
+### Data Persistence
+
+Data persistence is managed to save before sending and load after receiving game states between the two devices. This involves:
+- **GameState**: Storing various pieces of game data, such as the player position, collected items, and player velocities. Complex game state information is serialized using the Codable protocol for efficient saving and loading.
+- **AppState**: Storing small pieces of data, such as if the player is the host and which view to show during the gameplay.
+
 ## Running the Project
 
 To run the project, you have two options:
