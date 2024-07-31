@@ -29,10 +29,10 @@ Turns is an engaging and cooperative platformer game developed in Swift as the F
 
 ## Screenshots
 <div>
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Menu.PNG" alt="Home Screen">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Tutorial.PNG" alt="Tutorial">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Level1.PNG" alt="Player 1 View">
-  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Level2.PNG" alt="Player 2 View">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Menu.PNG" alt="Home Screen" style="width:50%;height:auto;">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Tutorial.PNG" alt="Tutorial" style="width:50%;height:auto;">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player1.gif" alt="Player 1 View" style="width:50%;height:auto;">
+  <img src="https://github.com/AppleFoundationTurns/Turns/blob/main/images/Player2.gif" alt="Player 2 View" style="width:50%;height:auto;">
 </div>
 
 ## Technologies and Methodologies
