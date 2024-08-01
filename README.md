@@ -16,6 +16,10 @@
 
 Turns is an engaging and cooperative platformer game developed in Swift as the Final Project for the "Apple Foundation Program 2024" at the University of Palermo. Inspired by the excitement of playing video games with friends during childhood, it allows two players to take turns controlling their characters, each with unique abilities, to navigate through levels and reach the goal. The game features a strategic "Turn" button to switch control between players, emphasizing teamwork and coordination.
 
+You can download the [Keynote Pitch Presentation](https://www.parthenokit.cloud/kn/PALS124/Turns.key) that was showcased to representatives from Apple and the University Parthenope of Naples.
+
+For more information about the Apple Foundation Course, visit [Palermo S1 Standard Course - July 19, 2024](https://www.parthenokit.cloud/finalreviewpal.aspx?cr=PALS124).
+
 <p align="center">
   <a href="https://www.parthenokit.cloud/finalreviewpal.aspx?cr=PALS124" target="_blank">
     <img src="https://www.parthenokit.cloud/images/review/iospabianco.png" alt="UniPa Apple" style="width:30%;height:auto;">
