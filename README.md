@@ -22,7 +22,7 @@ For more information about the Apple Foundation Course, visit [Palermo S1 Standa
 
 <p align="center">
   <a href="https://www.parthenokit.cloud/finalreviewpal.aspx?cr=PALS124" target="_blank">
-    <img src="https://www.parthenokit.cloud/images/review/iospabianco.png" alt="UniPa Apple" style="width:30%;height:auto;">
+    <img src="https://www.parthenokit.cloud/images/review/iospabianco.png" alt="UniPa Apple" style="width:400px;height:auto;">
   </a>
 </p>
 
